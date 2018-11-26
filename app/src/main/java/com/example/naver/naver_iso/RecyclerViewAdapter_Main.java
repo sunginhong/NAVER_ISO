@@ -162,6 +162,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
             public void afterDelay() {
                 Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
                 view_d.getContext().startActivity(intent);
+
             }
         });
     }
