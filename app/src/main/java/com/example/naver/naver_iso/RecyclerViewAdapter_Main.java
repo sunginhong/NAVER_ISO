@@ -157,7 +157,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
     @Override
     public void onClick(View view) {
         view_d = view;
-        Utils.delayMin(2, new Utils.DelayCallback() {
+        Utils.delay(10, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {
                 Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
