@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1e1e1e">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/sidemenu00_category"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:transitionName="side_menu00_trasit"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <View
+            android:id="@+id/sidemenu00_category_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <View
+            android:id="@+id/sidemenu00_icon_rect"
+            android:layout_width="59dp"
+            android:layout_height="41dp"
+            android:layout_alignParentRight="true"
+            android:alpha="0" />
+
+        <RelativeLayout
+            android:id="@+id/sidemenu00_category_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="56dp"
+            android:clipChildren="false"
+            android:background="#1e1e1e">
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="74dp"
+                android:clipChildren="false"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <View
+                        android:id="@+id/sidemenu00_category_current0"
+                        android:layout_width="28dp"
+                        android:layout_height="4dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="14dp"
+                        android:background="#ffffff"
+                        android:foregroundGravity="center" />
+                    <ImageView
+                        android:id="@+id/BTN_ARTICLE_MAIN"
+                        android:layout_width="107dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/sidemenu_article_title00"
+                        android:tag="BTN_ARTICLE_MAIN" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <View
+                        android:id="@+id/sidemenu00_category_current1"
+                        android:layout_width="28dp"
+                        android:layout_height="4dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="14dp"
+                        android:background="#3fb4ff"
+                        android:foregroundGravity="center" />
+                    <ImageView
+                        android:id="@+id/BTN_ARTICLE_TRAVEL"
+                        android:layout_width="193dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/sidemenu_article_title01"
+                        android:tag="BTN_ARTICLE_TRAVEL" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <View
+                        android:id="@+id/sidemenu00_category_current2"
+                        android:layout_width="28dp"
+                        android:layout_height="4dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="14dp"
+                        android:background="#8851ff"
+                        android:foregroundGravity="center" />
+                    <ImageView
+                        android:id="@+id/BTN_ARTICLE_LIFESTYLE"
+                        android:layout_width="220dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/sidemenu_article_title02"
+                        android:tag="BTN_ARTICLE_LIFESTYLE" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <View
+                        android:id="@+id/sidemenu00_category_current3"
+                        android:layout_width="28dp"
+                        android:layout_height="4dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="14dp"
+                        android:background="#ff9d00"
+                        android:foregroundGravity="center" />
+                    <ImageView
+                        android:id="@+id/BTN_ARTICLE_FOOD"
+                        android:layout_width="171dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/sidemenu_article_title03"
+                        android:tag="BTN_ARTICLE_FOOD" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp"
+                    android:keepScreenOn="true" />
+
+                <ImageView
+                    android:id="@+id/NONE"
+                    android:layout_marginLeft="40dp"
+                    android:layout_width="200dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/sidemenu_article_title04"
+                    android:tag="NONE" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/sidemenu_article_footer"
+                android:layout_width="183dp"
+                android:layout_height="42dp"
+                android:layout_marginLeft="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/linearLayout2"
+                android:layout_marginBottom="41dp"
+                android:background="@drawable/sidemenu_article_footer" />
+        </RelativeLayout>
+
+        <include layout="@layout/sidemenu00_sidemenu_icon" />
+
+        <ImageView
+            android:id="@+id/sidemenu00_category_logo"
+            android:layout_width="100dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="15dp"
+            app:srcCompat="@drawable/sidemenu_article_logo" />
+
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.naver.naver_iso.and_dev.ParallaxVP00_PagerFragment">
+
+    <View
+        android:id="@+id/vp00_dimmed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000" />
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/vp00_vpLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/vp00_ImgView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_black_gradient" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/vp00_textRl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="false"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="80dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:clipChildren="false"
+            android:gravity="left|center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/vp00_titleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:lineSpacingExtra="12sp"
+                android:text="TextView"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/vp00_subTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:lineSpacingExtra="24sp"
+                android:text="TextView"
+                android:textColor="#B2FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+    android:id="@+id/lst_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:fontFamily="NotoSans"
+    android:gravity="center|center"
+    android:lineSpacingExtra="4sp"
+    android:maxLines="1"
+    android:text="INTERACTION LIST"
+    android:textColor="#000000"
+    android:textSize="16sp"
+    android:textStyle="bold" />
+
+    <View
+    android:id="@+id/listLine"
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:background="#dedede" />
+    </LinearLayout>
+
+
+    <ListView
+    android:id="@+id/list_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f8f8f8"
+    android:divider="#7F707782"
+    android:dividerHeight="0dp"
+    android:scrollbars="none"
+    android:transcriptMode="alwaysScroll" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f8f8f8" />
+
+</LinearLayout>

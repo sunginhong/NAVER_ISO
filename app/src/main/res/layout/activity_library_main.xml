@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/detailBgColor">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/lib_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="top">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_lib_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="center_vertical"
+            app:expandedTitleMarginBottom="0dp"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="30dp"
+            app:expandedTitleMarginTop="0dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/lib_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/detailHeaderColor"
+                app:titleMarginStart="15dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+
+            <RelativeLayout
+                android:id="@+id/lib_toolbar_rl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:background="@color/detailHeaderColor"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:id="@+id/lib_toolbar_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/lib_toolbar_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="0dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center"
+                        android:inputType="textMultiLine"
+                        android:singleLine="true"
+                        android:text="Interaction."
+                        android:textAlignment="center"
+                        android:textColor="@color/detailHeaderTitleColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/lib_toolbar_backbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="top">
+
+                    <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/backbtn"
+                        android:clickable="false" />
+                </FrameLayout>
+
+            </RelativeLayout>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="-1dp"
+            android:alpha="0.3"
+            android:background="@color/black" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/lib_nestedscrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-1dp"
+        android:clipChildren="false"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/main_lib_recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <include layout="@layout/recyclerview_footer_blink" />
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
+

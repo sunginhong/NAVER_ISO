@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <color name="travel">#3fb4ff</color>
+    <color name="lifestyle_sub">#654ed1</color>
+    <color name="food">#ff9d00</color>
+    <color name="food_sub">#ef9533</color>
+    <color name="footer_bg">#262626</color>
+    <color name="btn_bg">#242424</color>
+    <color name="grey_2">#666666</color>
+    <color name="grey_1">#a3a3a3</color>
+    <color name="sub_point">#d1af7a</color>
+    <color name="black_two">#333333</color>
+    <color name="tangerine">#ff8e00</color>
+    <color name="point_green">#23ce5b</color>
+    <color name="grey_3">#999999</color>
+    <color name="black">#000000</color>
+    <color name="dark">#111216</color>
+    <color name="dodger_blue">#4490ff</color>
+    <color name="black_three">#141414</color>
+    <color name="black_30">#4c000000</color>
+    <color name="main_bg">#1e1e1e</color>
+    <color name="algae_green">#32dc50</color>
+    <color name="lighter_purple">#8851ff</color>
+    <color name="topcolor_01">#634fc7</color>
+    <color name="topcolor_02">#eeebfe</color>
+    <color name="theme_color">#D8540D</color>
+    <color name="toolbar_title_color">#E66800</color>
+    <color name="grey">#d3d3d3</color>
+    <color name="maroon">#7f0000</color>
+    <color name="color_textual">#8D5020</color>
+    <color name="chef_bg_color">#82ffffff</color>
+    <color name="line_color">#dddddd</color>
+    <color name="naverGreen">#00c73c</color>
+
+    <color name="splashBgColor">#F6F3EF</color>
+    <color name="mainBgColor">#F6F3EF</color>
+    <color name="detailBgColor">#ffffff</color>
+    <color name="detailHeaderColor">#634FC7</color>
+    <color name="detailHeaderTitleColor">#ffffff</color>
+    <color name="endHeaderColor">#634FC7</color>
+    <color name="endHeaderTitleColor">#ffffff</color>
+
+    <color name="toptitleColor">#634FC7</color>
+    <color name="topsubtitleColor">#000000</color>
+    <color name="topbgColor">#000000</color>
+    <color name="topheader_bgColor">#666666</color>
+
+    <color name="footerFontColor">#000000</color>
+    <color name="footerColor">#ffffff</color>
+
+    <color name="cardBgColor">#32333a</color>
+    <color name="card_titleColor">#ffffff</color>
+    <color name="card_subtitleColor">#ffffff</color>
+
+    <color name="fregment_titleColor">#000000</color>
+    <color name="fregment_subtitleColor">#a3a3a3</color>
+    <color name="fregment_lineColor">#eeeeee</color>
+</resources>

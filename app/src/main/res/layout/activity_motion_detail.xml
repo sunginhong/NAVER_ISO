@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/detailBgColor"
+    android:orientation="vertical">
+
+    <WebView
+        android:id="@+id/motion_detailWebview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </WebView>
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/collapsing_motion_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:contentScrim="?attr/colorPrimary"
+        app:expandedTitleGravity="center_vertical"
+        app:expandedTitleMarginBottom="0dp"
+        app:expandedTitleMarginEnd="64dp"
+        app:expandedTitleMarginStart="30dp"
+        app:expandedTitleMarginTop="0dp"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+        <RelativeLayout
+            android:id="@+id/motion_detail_toolbar_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:background="@color/endHeaderColor"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/motion_detail_toolbar_backbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="top">
+
+                    <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/backbtn"
+                        android:clickable="false" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/motion_detail_toolbar_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/motion_detail_toolbar_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center_vertical"
+                        android:inputType="textMultiLine"
+                        android:singleLine="true"
+                        android:text="Motion."
+                        android:textColor="@color/endHeaderTitleColor"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="-1dp"
+                android:layout_weight="1"
+                android:alpha="0.3"
+                android:background="@color/black" />
+
+        </RelativeLayout>
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+
+
+</FrameLayout>
