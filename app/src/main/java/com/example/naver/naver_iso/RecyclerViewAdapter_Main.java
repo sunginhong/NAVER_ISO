@@ -41,6 +41,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
     MediaController mediaController;
     public static MediaPlayer mMediaPlayer;
     public static int mainViewItemN = 0;
+    public static View view_d;
 
     static VideoView vieoViewArray[] = new VideoView[mainViewItemN];
     static List<VideoView> vieoViewArray_List = new ArrayList<VideoView>();
@@ -155,8 +156,14 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(view.getContext(), classMainItemArray[view.getId()]);
-        view.getContext().startActivity(intent);
+        view_d = view;
+        Utils.delayMin(2, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
+                view_d.getContext().startActivity(intent);
+            }
+        });
     }
 
 
