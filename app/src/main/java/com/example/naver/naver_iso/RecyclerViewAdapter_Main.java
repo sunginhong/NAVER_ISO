@@ -1,6 +1,7 @@
 package com.example.naver.naver_iso;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -154,8 +155,8 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 
     @Override
     public void onClick(View view) {
-//        Intent intent = new Intent(view.getContext(), classMainItemArray[view.getId()]);
-//        view.getContext().startActivity(intent);
+        Intent intent = new Intent(view.getContext(), classMainItemArray[view.getId()]);
+        view.getContext().startActivity(intent);
     }
 
 
