@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -36,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
         MediaController ctrl = new MediaController(this);
         ctrl.setVisibility(View.GONE);
         splash_videoView.setMediaController(ctrl);
-        splash_videoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videosplash ));
+//        splash_videoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videosplash ));
         splash_videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
@@ -45,7 +44,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
 
-        Utils.delay(20, new Utils.DelayCallback() {
+        Utils.delay(10, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {
             Intent intent=new Intent(SplashActivity.this, MainActivity.class);
