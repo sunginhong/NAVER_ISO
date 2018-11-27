@@ -129,6 +129,7 @@ public class Utils {
         view.setAnimation(setAnim);
     }
 
+
     public static void ModulateAlphaAnim(View view, float value, float rangeA, float rangeB, float rangeC, float rangeD){
         float fromHigh = 0;
         float fromLow = 0;

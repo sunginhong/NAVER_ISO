@@ -1,149 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/detailBgColor"
-    android:transitionName="@string/transition_maincard"
-    android:clipChildren="false">
+    android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/motion_appbar"
+    <android.support.v7.widget.CardView
+        android:id="@+id/motion_contain_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:clipChildren="true"
-        android:gravity="top">
+        android:layout_height="match_parent"
+        android:transitionName="@string/transition_maincard"
+        android:background="@color/detailBgColor"
+        app:cardCornerRadius="12dp">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_motion_toolbar"
+        <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleGravity="center_vertical"
-            app:expandedTitleMarginBottom="0dp"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="30dp"
-            app:expandedTitleMarginTop="0dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            android:layout_height="match_parent"
+            android:clipChildren="true">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/motion_toolbar"
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/motion_appbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/detailHeaderColor"
-                app:titleMarginStart="15dp">
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:clipChildren="true"
+                android:gravity="top">
 
-                <RelativeLayout
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_motion_toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="56dp"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:expandedTitleGravity="center_vertical"
+                    app:expandedTitleMarginBottom="0dp"
+                    app:expandedTitleMarginEnd="64dp"
+                    app:expandedTitleMarginStart="30dp"
+                    app:expandedTitleMarginTop="0dp"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-                </RelativeLayout>
-            </android.support.v7.widget.Toolbar>
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/motion_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/detailHeaderColor"
+                        app:titleMarginStart="15dp">
 
-            <RelativeLayout
-                android:id="@+id/motion_toolbar_rl"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp"
-                android:background="@color/detailHeaderColor"
-                android:gravity="center_vertical">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
+                        </RelativeLayout>
+                    </android.support.v7.widget.Toolbar>
 
-                <LinearLayout
-                    android:id="@+id/motion_toolbar_ll"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/motion_toolbar_title"
+                    <RelativeLayout
+                        android:id="@+id/motion_toolbar_rl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="0dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:gravity="center"
-                        android:inputType="textMultiLine"
-                        android:singleLine="true"
-                        android:text="Motion."
-                        android:textAlignment="center"
-                        android:textColor="@color/detailHeaderTitleColor"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:layout_marginBottom="0dp"
+                        android:background="@color/detailHeaderColor"
+                        android:gravity="center_vertical">
 
-                </LinearLayout>
 
-                <FrameLayout
-                    android:id="@+id/motion_toolbar_backbtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="56dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp"
-                    android:gravity="top">
+                        <LinearLayout
+                            android:id="@+id/motion_toolbar_ll"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:orientation="horizontal">
 
-                    <ImageButton
-                        android:layout_width="24dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@drawable/backbtn"
-                        android:clickable="false" />
-                </FrameLayout>
+                            <TextView
+                                android:id="@+id/motion_toolbar_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="0dp"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:gravity="center"
+                                android:inputType="textMultiLine"
+                                android:singleLine="true"
+                                android:text="Motion."
+                                android:textAlignment="center"
+                                android:textColor="@color/detailHeaderTitleColor"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
-                <View
-                    android:id="@+id/view6"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="-1dp"
-                    android:layout_weight="1"
-                    android:alpha="0.3"
-                    android:background="@color/black" />
+                        </LinearLayout>
 
-            </RelativeLayout>
+                        <FrameLayout
+                            android:id="@+id/motion_toolbar_backbtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:gravity="top">
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+                            <ImageButton
+                                android:layout_width="24dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/backbtn"
+                                android:clickable="false" />
+                        </FrameLayout>
 
-    </android.support.design.widget.AppBarLayout>
+                        <View
+                            android:id="@+id/view6"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="-1dp"
+                            android:layout_weight="1"
+                            android:alpha="0.3"
+                            android:background="@color/black" />
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/motion_nestedscrollview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="-1dp"
-        android:clipChildren="false"
-        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+                    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                </android.support.design.widget.CollapsingToolbarLayout>
+
+            </android.support.design.widget.AppBarLayout>
 
             <android.support.v4.widget.NestedScrollView
+                android:id="@+id/motion_nestedscrollview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="-1dp"
+                android:clipChildren="false"
+                app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="0dp"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent">
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/main_motion_recyclerview"
+                    <android.support.v4.widget.NestedScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent">
 
-                    <include layout="@layout/recyclerview_footer_blink" />
-                </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="0dp"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/main_motion_recyclerview"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                            <include layout="@layout/recyclerview_footer_blink" />
+                        </LinearLayout>
+                    </android.support.v4.widget.NestedScrollView>
+
+                </RelativeLayout>
             </android.support.v4.widget.NestedScrollView>
 
-        </RelativeLayout>
-    </android.support.v4.widget.NestedScrollView>
+        </android.support.design.widget.CoordinatorLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+    </android.support.v7.widget.CardView>
 
+</RelativeLayout>

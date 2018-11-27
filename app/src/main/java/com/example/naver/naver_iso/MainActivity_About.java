@@ -1,5 +1,6 @@
 package com.example.naver.naver_iso;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.transition.ChangeBounds;
 import android.view.Display;
 import android.view.View;
@@ -26,6 +28,8 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     TextView about_toolbar_title;
     CollapsingToolbarLayout collapsing_about_toolbar;
     WebView aboutWebview;
+    CardView about_contain_card;
+    float cardRound_result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,9 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         collapsing_about_toolbar.bringToFront();
         headerAnim("IN");
         Utils.TransAnim(collapsing_about_toolbar, 0, 0, -collapsing_about_toolbar.getHeight(), 0, 400);
+
+        about_contain_card = (CardView) findViewById(R.id.about_contain_card);
+        about_contain_card.setRadius(0.0f);
     }
 
     private class WebViewClientClass extends WebViewClient {
@@ -113,6 +120,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     private void outAnim(){
         headerAnim("OUT");
         Utils.AlphaAnim(aboutWebview, 1, 0, 200);
+        card_round_animator(500, 0f, 25f);
     }
 
     private void headerAnim(String status) {
@@ -133,5 +141,18 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
                 public void afterDelay() { Utils.TransAnim(collapsing_about_toolbar, 0, 0, -collapsing_about_toolbar.getHeight(), 0, 400); }
             });
         }
+    }
+
+    private void card_round_animator(int duration, float radiusStart, float radiusEnd) {
+        ValueAnimator animator = ValueAnimator.ofFloat(radiusStart, radiusEnd);
+        animator.setDuration(duration);
+        animator.setInterpolator(new DecelerateInterpolator(Float.valueOf(String.valueOf(1.5))));
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                cardRound_result = (float) animation.getAnimatedValue();
+                about_contain_card.setRadius(cardRound_result);
+            }
+        });
+        animator.start();
     }
 }

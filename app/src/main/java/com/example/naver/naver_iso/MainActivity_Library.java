@@ -1,5 +1,6 @@
 package com.example.naver.naver_iso;
 
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -40,7 +42,9 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     NestedScrollView lib_nestedscrollview;
     TextView lib_toolbar_Title;
     FrameLayout lib_toolbar_Backbtn;
+    CardView lib_contain_card;
 
+    float cardRound_result;
     boolean lib_getSet = false;
     int lib_toolbarDistance;
 
@@ -63,6 +67,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_nestedscrollview = (NestedScrollView) findViewById(R.id.lib_nestedscrollview);
         lib_toolbar_Title = (TextView) findViewById(R.id.lib_toolbar_title);
         lib_toolbar_Backbtn = (FrameLayout) findViewById(R.id.lib_toolbar_backbtn);
+        lib_contain_card = (CardView) findViewById(R.id.lib_contain_card);
 
         // URL 설정.
         values_LibMain.removeAll(values_LibMain);
@@ -118,6 +123,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         });
 
         lib_appbar.bringToFront();
+        lib_contain_card.setRadius(0.0f);
         headerAnim("IN");
         Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), 0, 400);
     }
@@ -203,6 +209,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     private void outAnim(){
         headerAnim("OUT");
         Utils.AlphaAnim(lib_nestedscrollview, 1, 0, 200);
+        card_round_animator(500, 0f, 25f);
     }
 
     private void headerAnim(String status) {
@@ -223,6 +230,19 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                 public void afterDelay() { Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), 0, 400); }
             });
         }
+    }
+
+    private void card_round_animator(int duration, float radiusStart, float radiusEnd) {
+        ValueAnimator animator = ValueAnimator.ofFloat(radiusStart, radiusEnd);
+        animator.setDuration(duration);
+        animator.setInterpolator(new DecelerateInterpolator(Float.valueOf(String.valueOf(1.5))));
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                cardRound_result = (float) animation.getAnimatedValue();
+                lib_contain_card.setRadius(cardRound_result);
+            }
+        });
+        animator.start();
     }
 
 }

@@ -6,6 +6,17 @@
     android:background="@color/splashBgColor"
     android:orientation="vertical">
 
+    <com.example.naver.naver_iso.MyVideoView
+        android:id="@+id/splash_videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.4"
+        android:background="@color/black" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,12 +48,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="false"
-                android:alpha="0.7"
+                android:alpha="1"
                 android:fontFamily="@font/montserrat_regular"
                 android:inputType="textMultiLine"
                 android:text="Naver Interactive Studio"
                 android:textAlignment="center"
-                android:textColor="@color/topsubtitleColor"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

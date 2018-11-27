@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         collapsing_toolbar_title = (TextView) findViewById(R.id.collapsing_toolbar_title);
         collapsing_toolbar_subTitle = (TextView) findViewById(R.id.collapsing_toolbar_subTitle);
 
+
         if(valuesMain.size() == 0){
             valuesMain.add(new String[]{"0", "Interaction.", "Interaction Library", String.valueOf("#ffffff")});
             callValMain.add(new Class<?>[]{MainActivity_Library.class});
@@ -135,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     @Override
@@ -151,8 +154,5 @@ public class MainActivity extends AppCompatActivity {
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
-    public static void MainActivityonDimmed() {
-
-    }
 
 }
