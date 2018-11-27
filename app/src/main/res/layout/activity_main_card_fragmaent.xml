@@ -16,7 +16,8 @@
     app:cardPreventCornerOverlap="false"
     card_view:cardCornerRadius="12dp"
     card_view:cardElevation="12dp"
-    card_view:cardUseCompatPadding="true">
+    card_view:cardUseCompatPadding="true"
+    android:transitionName="@string/transition_maincard">
 
 
     <RelativeLayout
@@ -28,15 +29,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <VideoView
-                android:id="@+id/rv_mainVideoView"
+            <!--<VideoView-->
+                <!--android:id="@+id/rv_mainVideoView"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:alpha="1"-->
+                <!--android:scaleX="1.3"-->
+                <!--android:scaleY="1.3"-->
+                <!--android:soundEffectsEnabled="false" />-->
+
+            <ImageView
+                android:id="@+id/rv_mainImageView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
                 android:alpha="1"
+                android:background="@drawable/thumb_naveriso"
                 android:scaleX="1.3"
-                android:scaleY="1.3"
-                android:soundEffectsEnabled="false" />
+                android:scaleY="1.3" />
+
 
             <View
                 android:id="@+id/rv_mainView"

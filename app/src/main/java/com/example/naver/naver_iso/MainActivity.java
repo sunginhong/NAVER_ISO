@@ -11,8 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.transition.ChangeBounds;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     static ListView lv;
-    protected Context context;
+    static Context context;
     AssetManager assetManager;
     Toolbar toolbar;
     AppBarLayout main_appbar;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     View collapsing_toolbar_line;
 
     public static final int ITEM_COUNT = 100;
+    public static final int MAIN_CARD_TRANS_DURATION = 400;
+
     static RelativeLayout lstMainRlArray[] = new RelativeLayout[ITEM_COUNT];
     static LinearLayout lstMainItemArray[] = new LinearLayout[ITEM_COUNT];
     static Class<?>  classMainItemArray[] = new Class<?> [ITEM_COUNT];
@@ -60,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
+
+        ChangeBounds bounds = new ChangeBounds();
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
+        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
+        getWindow().setSharedElementEnterTransition(bounds);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
         this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
@@ -123,16 +132,14 @@ public class MainActivity extends AppCompatActivity {
         main_nestedscrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                Log.v("ssssssss", ""+String.valueOf(scrollY));
+
             }
         });
-
     }
 
     @Override
     protected void onResume() {
 //        this.overridePendingTransition(R.anim.activity_alpha_in, R.anim.activity_alpha_out);
-//        RecyclerViewAdapter_Main.mainVideoPlay(getSet);
         super.onResume();
     }
 

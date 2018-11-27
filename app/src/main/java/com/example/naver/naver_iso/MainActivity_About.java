@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.ChangeBounds;
 import android.view.Display;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -21,6 +24,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     float screenScale;
     FrameLayout about_toolbar_backbtn;
     TextView about_toolbar_title;
+    CollapsingToolbarLayout collapsing_about_toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,13 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_about_main);
+
+        ChangeBounds bounds = new ChangeBounds();
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
+        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
+        getWindow().setSharedElementEnterTransition(bounds);
+
+        collapsing_about_toolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_about_toolbar);
 
         about_toolbar_backbtn = (FrameLayout)findViewById(R.id.about_toolbar_backbtn);
         about_toolbar_backbtn.setOnClickListener(this);
@@ -48,6 +59,9 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         height = size.y;
         about_toolbar_title = (TextView)findViewById(R.id.about_toolbar_title);
         about_toolbar_title.setText("About us.");
+
+        headerAnim("IN");
+        Utils.TransAnim(collapsing_about_toolbar, 0, 0, -collapsing_about_toolbar.getHeight(), 0, 400);
     }
 
     private class WebViewClientClass extends WebViewClient {
@@ -74,14 +88,13 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
 
     @Override
     protected void onResume() {
-        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+//        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
         super.onResume();
     }
 
     @Override
     public void onBackPressed() {
-        ActivityCompat.finishAfterTransition(this);
-        this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
+        headerAnim("OUT");
     }
 
     @Override
@@ -92,7 +105,30 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
-        ActivityCompat.finishAfterTransition(this);
-        this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
+        headerAnim("OUT");
+    }
+
+    private void outAnim(){
+        headerAnim("OUT");
+    }
+
+    private void headerAnim(String status) {
+        if (status == "OUT") {
+            Utils.TransAnim(collapsing_about_toolbar, 0, 0, 0, -collapsing_about_toolbar.getHeight(), 200);
+            Utils.delayMin(10, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() { ActivityCompat.finishAfterTransition(MainActivity_About.this); }
+            });
+        }
+        if (status == "IN"){
+            Utils.delayMin(2, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() { Utils.TransAnim(collapsing_about_toolbar, 0, 0, -collapsing_about_toolbar.getHeight(), -collapsing_about_toolbar.getHeight(), 0); }
+            });
+            Utils.delayMin(42, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() { Utils.TransAnim(collapsing_about_toolbar, 0, 0, -collapsing_about_toolbar.getHeight(), 0, 400); }
+            });
+        }
     }
 }

@@ -12,7 +12,9 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.ChangeBounds;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -48,7 +50,11 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_motion_main);
-        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+//        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+        ChangeBounds bounds = new ChangeBounds();
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
+        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
+        getWindow().setSharedElementEnterTransition(bounds);
 
         motion_toolbar = (Toolbar) findViewById(R.id.motion_toolbar);
         motion_appbar = (AppBarLayout) findViewById(R.id.motion_appbar);
@@ -88,6 +94,9 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
             }
         });
+
+        headerAnim("IN");
+        Utils.TransAnim(motion_appbar, 0, 0, -motion_appbar.getHeight(), 0, 400);
     }
 
     public class NetworkTask extends AsyncTask<Void, Void, String> {
@@ -153,8 +162,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
 
     @Override
     public void onBackPressed() {
-        ActivityCompat.finishAfterTransition(this);
-        this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
+        outAnim();
     }
 
     @Override
@@ -164,8 +172,31 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        ActivityCompat.finishAfterTransition(this);
-        this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
+        outAnim();
+    }
+
+    private void outAnim(){
+        headerAnim("OUT");
+    }
+
+    private void headerAnim(String status) {
+        if (status == "OUT") {
+            Utils.TransAnim(motion_appbar, 0, 0, 0, -motion_appbar.getHeight(), 200);
+            Utils.delayMin(10, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() { ActivityCompat.finishAfterTransition(MainActivity_Motion.this); }
+            });
+        }
+        if (status == "IN"){
+            Utils.delayMin(2, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() { Utils.TransAnim(motion_appbar, 0, 0, -motion_appbar.getHeight(), -motion_appbar.getHeight(), 0); }
+            });
+            Utils.delayMin(42, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() { Utils.TransAnim(motion_appbar, 0, 0, -motion_appbar.getHeight(), 0, 400); }
+            });
+        }
     }
 
 }

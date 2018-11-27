@@ -1,11 +1,12 @@
 package com.example.naver.naver_iso;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,7 +28,7 @@ import static java.lang.Integer.parseInt;
  * Created by Naver on 2018. 8. 7..
  */
 
-public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewAdapter_Main.MyViewHolder> implements View.OnClickListener  {
+public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewAdapter_Main.MyViewHolder> implements View.OnClickListener {
     ArrayList<String[]> arrayList1;
     ArrayList<Class<?>[]> arrayList2;
     static Context context;
@@ -59,7 +60,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         Resources res = holder.itemView.getContext().getResources();
         MyViewHolder myViewHolder = holder;
 
@@ -85,40 +86,30 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         holder.rv_mainLL.setId(parseInt(detail[0]));
         holder.rv_mainLL.setOnClickListener(this);
 
-        MediaController ctrl = new MediaController(context);
-        ctrl.setVisibility(View.GONE);
-        holder.rv_mainVideoView.setMediaController(ctrl);
-        if (position == 0){
-            holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videointeraction ));
-        }
-        if (position == 1){
-            holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videomotion ));
-        }
-        if (position == 2){
-            holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videoabout ));
-        }
-        if (position == 3){
-            holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videoabout ));
-        }
-
-
-//        holder.rv_mainVideoView.start();
-        vieoViewArray_List.add(holder.rv_mainVideoView);
-
-        holder.rv_mainVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mMediaPlayer = mp;
-                mMediaPlayer.setLooping(true);
-                mMediaPlayer.start();
-            }
-        });
-
-        holder.rv_mainVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            public void onCompletion(MediaPlayer mp) {
-
-            }
-        });
+//        MediaController ctrl = new MediaController(context);
+//        ctrl.setVisibility(View.GONE);
+//        holder.rv_mainVideoView.setMediaController(ctrl);
+//        if (position == 0){ holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videointeraction )); }
+//        if (position == 1){ holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videomotion )); }
+//        if (position == 2){ holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videoabout )); }
+//        if (position == 3){ holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videoabout )); }
+//
+////        holder.rv_mainVideoView.start();
+//        vieoViewArray_List.add(holder.rv_mainVideoView);
+//
+//        holder.rv_mainVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//            @Override
+//            public void onPrepared(MediaPlayer mp) {
+//                mMediaPlayer = mp;
+//                mMediaPlayer.setLooping(true);
+//                mMediaPlayer.start();
+//            }
+//        });
+//
+//        holder.rv_mainVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//            public void onCompletion(MediaPlayer mp) {
+//            }
+//        });
     }
 
     @Override
@@ -136,7 +127,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         private TextView rv_mainSubTextView;
 //        private LottieAnimationView rv_mainLottieView;
         private View rv_mainCaseLineView;
-        private VideoView rv_mainVideoView;
+//        private VideoView rv_mainVideoView;
 //        private WebView rv_mainWebview;
 
         public MyViewHolder(View itemView) {
@@ -150,21 +141,17 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
             rv_mainSubTextView = (TextView)itemView.findViewById(R.id.rv_mainSubTextView);
 //            rv_mainLottieView = (LottieAnimationView)itemView.findViewById(R.id.rv_mainLottieView);
             rv_mainCaseLineView = (View) itemView.findViewById(R.id.rv_mainCaseLineView);
-            rv_mainVideoView = (VideoView) itemView.findViewById(R.id.rv_mainVideoView);
+//            rv_mainVideoView = (VideoView) itemView.findViewById(R.id.rv_mainVideoView);
         }
     }
 
     @Override
     public void onClick(View view) {
         view_d = view;
-        Utils.delay(10, new Utils.DelayCallback() {
-            @Override
-            public void afterDelay() {
-                Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
-                view_d.getContext().startActivity(intent);
-
-            }
-        });
+        ActivityOptions options = null;
+        options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, view_d, context.getString(R.string.transition_maincard));
+        Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
+        view_d.getContext().startActivity(intent, options.toBundle());
     }
 
 

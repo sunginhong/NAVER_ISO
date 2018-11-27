@@ -10,7 +10,9 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.ChangeBounds;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -44,7 +46,12 @@ public class MainActivity_AndDev_Private extends Activity implements View.OnClic
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_devprivate_main);
-        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+//        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+
+        ChangeBounds bounds = new ChangeBounds();
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
+        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
+        getWindow().setSharedElementEnterTransition(bounds);
 
         dev_private_toolbar = (Toolbar) findViewById(R.id.dev_private_toolbar);
         dev_private_appbar = (AppBarLayout) findViewById(R.id.dev_private_appbar);

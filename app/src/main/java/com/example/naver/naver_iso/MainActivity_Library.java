@@ -12,7 +12,9 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.ChangeBounds;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -46,7 +48,12 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_library_main);
-        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+//        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+
+        ChangeBounds bounds = new ChangeBounds();
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
+        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
+        getWindow().setSharedElementEnterTransition(bounds);
 
         lib_toolbar = (Toolbar) findViewById(R.id.lib_toolbar);
         lib_appbar = (AppBarLayout) findViewById(R.id.lib_appbar);
@@ -56,7 +63,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
         // URL 설정.
         values_LibMain.removeAll(values_LibMain);
-        if(values_LibMain.size() == 0) {
+        if (values_LibMain.size() == 0) {
             String url = "http://10.113.183.52/naverISO/json/data_library.json";
             NetworkTask networkTask = new NetworkTask(url, null);
             networkTask.execute();
@@ -106,6 +113,9 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
             }
         });
+
+        headerAnim("IN");
+        Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), 0, 400);
     }
 
     public class NetworkTask extends AsyncTask<Void, Void, String> {
@@ -134,12 +144,12 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         }
     }
 
-    void doJSONParser(String s){
+    void doJSONParser(String s) {
         StringBuffer sb = new StringBuffer();
         String str = s;
         try {
             JSONArray jarray = new JSONArray(str);   // JSONArray 생성
-            for(int i=0; i < jarray.length(); i++){
+            for (int i = 0; i < jarray.length(); i++) {
                 JSONObject jObject = jarray.getJSONObject(i);  // JSONObject 추출
                 String num = jObject.getString("num");
                 String title = jObject.getString("title");
@@ -150,7 +160,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                 values_LibMain.add(new String[]{num, title, subtitle, thumbImg, url});
 
                 RecyclerViewAdapter_Lib adapter = new RecyclerViewAdapter_Lib(this, values_LibMain);
-                RecyclerView libView =  (RecyclerView)findViewById(R.id.main_lib_recyclerview);
+                RecyclerView libView = (RecyclerView) findViewById(R.id.main_lib_recyclerview);
 
                 libView.setAdapter(adapter);
                 LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -171,8 +181,9 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
     @Override
     public void onBackPressed() {
-        ActivityCompat.finishAfterTransition(this);
-        this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
+        outAnim();
+//        ActivityCompat.finishAfterTransition(this);
+//        this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
     }
 
     @Override
@@ -182,8 +193,31 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        ActivityCompat.finishAfterTransition(this);
-        this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
+        outAnim();
+    }
+
+    private void outAnim(){
+        headerAnim("OUT");
+    }
+
+    private void headerAnim(String status) {
+        if (status == "OUT") {
+            Utils.TransAnim(lib_appbar, 0, 0, 0, -lib_appbar.getHeight(), 200);
+            Utils.delayMin(10, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() { ActivityCompat.finishAfterTransition(MainActivity_Library.this); }
+            });
+        }
+        if (status == "IN"){
+            Utils.delayMin(2, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() { Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), -lib_appbar.getHeight(), 0); }
+            });
+            Utils.delayMin(42, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() { Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), 0, 400); }
+            });
+        }
     }
 
 }
