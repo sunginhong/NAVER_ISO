@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,6 +36,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
     Toolbar lib_toolbar;
     AppBarLayout lib_appbar;
+    CoordinatorLayout lib_contain;
     NestedScrollView lib_nestedscrollview;
     TextView lib_toolbar_Title;
     FrameLayout lib_toolbar_Backbtn;
@@ -55,6 +57,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 
+        lib_contain = (CoordinatorLayout) findViewById(R.id.lib_contain);
         lib_toolbar = (Toolbar) findViewById(R.id.lib_toolbar);
         lib_appbar = (AppBarLayout) findViewById(R.id.lib_appbar);
         lib_nestedscrollview = (NestedScrollView) findViewById(R.id.lib_nestedscrollview);
@@ -114,6 +117,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
             }
         });
 
+        lib_appbar.bringToFront();
         headerAnim("IN");
         Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), 0, 400);
     }
@@ -198,6 +202,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
     private void outAnim(){
         headerAnim("OUT");
+        Utils.AlphaAnim(lib_nestedscrollview, 1, 0, 200);
     }
 
     private void headerAnim(String status) {

@@ -25,6 +25,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     FrameLayout about_toolbar_backbtn;
     TextView about_toolbar_title;
     CollapsingToolbarLayout collapsing_about_toolbar;
+    WebView aboutWebview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +46,13 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
 
         Intent intent = getIntent();
 
-        WebView webView = (WebView)findViewById(R.id.aboutWebview);
+        aboutWebview = (WebView)findViewById(R.id.aboutWebview);
 
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://jjangik.com/");
-        webView.setWebViewClient(new MainActivity_About.WebViewClientClass());
+        aboutWebview.getSettings().setJavaScriptEnabled(true);
+        aboutWebview.loadUrl("http://jjangik.com/");
+        aboutWebview.setWebViewClient(new MainActivity_About.WebViewClientClass());
 
-        settingWebview(webView);
+        settingWebview(aboutWebview);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -60,6 +61,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         about_toolbar_title = (TextView)findViewById(R.id.about_toolbar_title);
         about_toolbar_title.setText("About us.");
 
+        collapsing_about_toolbar.bringToFront();
         headerAnim("IN");
         Utils.TransAnim(collapsing_about_toolbar, 0, 0, -collapsing_about_toolbar.getHeight(), 0, 400);
     }
@@ -94,7 +96,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onBackPressed() {
-        headerAnim("OUT");
+        outAnim();
     }
 
     @Override
@@ -105,11 +107,12 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
-        headerAnim("OUT");
+        outAnim();
     }
 
     private void outAnim(){
         headerAnim("OUT");
+        Utils.AlphaAnim(aboutWebview, 1, 0, 200);
     }
 
     private void headerAnim(String status) {

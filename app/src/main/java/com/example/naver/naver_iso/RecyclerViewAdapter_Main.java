@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.RelativeLayout;
@@ -110,6 +111,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 //            public void onCompletion(MediaPlayer mp) {
 //            }
 //        });
+
     }
 
     @Override
@@ -127,6 +129,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         private TextView rv_mainSubTextView;
 //        private LottieAnimationView rv_mainLottieView;
         private View rv_mainCaseLineView;
+        private ImageView rv_mainImageView;
 //        private VideoView rv_mainVideoView;
 //        private WebView rv_mainWebview;
 
@@ -141,6 +144,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
             rv_mainSubTextView = (TextView)itemView.findViewById(R.id.rv_mainSubTextView);
 //            rv_mainLottieView = (LottieAnimationView)itemView.findViewById(R.id.rv_mainLottieView);
             rv_mainCaseLineView = (View) itemView.findViewById(R.id.rv_mainCaseLineView);
+            rv_mainImageView = (ImageView) itemView.findViewById(R.id.rv_mainImageView);
 //            rv_mainVideoView = (VideoView) itemView.findViewById(R.id.rv_mainVideoView);
         }
     }
@@ -148,12 +152,18 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
     @Override
     public void onClick(View view) {
         view_d = view;
+        Utils.AlphaAnim(view_d, 1, 0, 200);
+
+        view_d.bringToFront();
+
         ActivityOptions options = null;
         options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, view_d, context.getString(R.string.transition_maincard));
         Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
         view_d.getContext().startActivity(intent, options.toBundle());
     }
 
-
+    public static void reset() {
+        Utils.AlphaAnim(view_d, 0, 1, 400);
+    }
 }
 

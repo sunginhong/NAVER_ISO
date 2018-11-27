@@ -95,6 +95,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
             }
         });
 
+        motion_appbar.bringToFront();
         headerAnim("IN");
         Utils.TransAnim(motion_appbar, 0, 0, -motion_appbar.getHeight(), 0, 400);
     }
@@ -177,6 +178,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
 
     private void outAnim(){
         headerAnim("OUT");
+        Utils.AlphaAnim(motion_nestedscrollview, 1, 0, 200);
     }
 
     private void headerAnim(String status) {

@@ -37,10 +37,12 @@
     <color name="line_color">#dddddd</color>
     <color name="naverGreen">#00c73c</color>
 
-    <color name="statusbar_color">#634FC7</color>
+    <color name="statusbar_color">#332582</color>
     <color name="splashBgColor">#F6F3EF</color>
+
     <color name="mainBgColor">#F6F3EF</color>
-    <color name="detailBgColor">#ffffff</color>
+    <color name="detailBgColor">#F6F3EF</color>
+
     <color name="detailHeaderColor">#634FC7</color>
     <color name="detailHeaderTitleColor">#ffffff</color>
     <color name="endHeaderColor">#634FC7</color>

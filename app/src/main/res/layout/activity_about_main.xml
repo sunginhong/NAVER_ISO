@@ -20,6 +20,7 @@
         android:id="@+id/collapsing_about_toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:clipChildren="true"
         app:contentScrim="?attr/colorPrimary"
         app:expandedTitleGravity="center_vertical"
         app:expandedTitleMarginBottom="0dp"
