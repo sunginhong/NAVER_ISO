@@ -60,7 +60,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
 
         ChangeBounds bounds = new ChangeBounds();
-        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_IN);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 
@@ -199,12 +199,17 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
 //        Utils.AlphaAnim(motion_nestedscrollview, 1, 0, 200);
         Utils.AlphaAnim(motion_contain, 1, 0, 400);
         card_round_animator(500, 0f, Utils.dpToPx(12));
+
+        ChangeBounds bounds = new ChangeBounds();
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
+        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
+        getWindow().setSharedElementEnterTransition(bounds);
     }
 
     private void headerAnim(String status) {
         if (status == "OUT") {
             Utils.TransAnim(motion_appbar, 0, 0, 0, -motion_appbar.getHeight(), 200);
-            Utils.delayMin(10, new Utils.DelayCallback() {
+            Utils.delayMin(4, new Utils.DelayCallback() {
                 @Override
                 public void afterDelay() { ActivityCompat.finishAfterTransition(MainActivity_Motion.this); }
             });

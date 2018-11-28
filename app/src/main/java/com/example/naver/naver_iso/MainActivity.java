@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
     View collapsing_toolbar_line;
 
     public static final int ITEM_COUNT = 100;
-    public static final int MAIN_CARD_TRANS_DURATION = 400;
+    public static final int MAIN_CARD_TRANS_DURATION_IN = 500;
+    public static final int MAIN_CARD_TRANS_DURATION_OUT = 400;
 
     static RelativeLayout lstMainRlArray[] = new RelativeLayout[ITEM_COUNT];
     static LinearLayout lstMainItemArray[] = new LinearLayout[ITEM_COUNT];
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
 
         ChangeBounds bounds = new ChangeBounds();
-        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_IN);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 

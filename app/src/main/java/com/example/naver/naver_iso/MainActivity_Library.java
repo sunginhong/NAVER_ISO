@@ -59,7 +59,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 //        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
 
         ChangeBounds bounds = new ChangeBounds();
-        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_IN);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 
@@ -219,12 +219,17 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 //        Utils.AlphaAnim(lib_nestedscrollview, 1, 0, 200);
         Utils.AlphaAnim(lib_contain, 1, 0, 400);
         card_round_animator(500, 0f, Utils.dpToPx(12));
+
+        ChangeBounds bounds = new ChangeBounds();
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
+        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
+        getWindow().setSharedElementEnterTransition(bounds);
     }
 
     private void headerAnim(String status) {
         if (status == "OUT") {
             Utils.TransAnim(lib_appbar, 0, 0, 0, -lib_appbar.getHeight(), 200);
-            Utils.delayMin(10, new Utils.DelayCallback() {
+            Utils.delayMin(4, new Utils.DelayCallback() {
                 @Override
                 public void afterDelay() { ActivityCompat.finishAfterTransition(MainActivity_Library.this); }
             });

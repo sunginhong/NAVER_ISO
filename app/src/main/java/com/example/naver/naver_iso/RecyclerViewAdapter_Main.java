@@ -178,11 +178,14 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
             view_d.bringToFront();
             selectIndex = view_d.getId();
 
-            Utils.TransAnim(view_d, 0, 0, 0, mainCardHeight, 200);
+//            Utils.TransAnim(view_d, 0, 0, 0, mainCardHeight, 200);
+            Utils.AlphaAnim(view_d, 1, 0, 100);
+
             cardImageIn = AnimationUtils.loadAnimation(context, R.anim.main_card_anim_in);
+//            Utils.SclaeAnim(mainCardImgArray.get(selectIndex), 1, 1.5f, 1, 1.5f, 0.5f, 0.5f, 400);
             mainCardImgArray.get(selectIndex).startAnimation(cardImageIn);
 
-            Utils.delayMin(15, new Utils.DelayCallback() {
+            Utils.delayMin(1, new Utils.DelayCallback() {
                 @Override
                 public void afterDelay() {
                     ActivityOptions options = null;
@@ -207,6 +210,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
             public void afterDelay() {
                 cardImageOut = AnimationUtils.loadAnimation(context, R.anim.main_card_anim_out);
                 mainCardImgArray.get(selectIndex).startAnimation(cardImageOut);
+//                Utils.SclaeAnim(mainCardImgArray.get(selectIndex), 1.5f, 1, 1.5f, 1, 0.5f, 0.5f, 300);
             }
         });
     }

@@ -43,7 +43,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
 
         ChangeBounds bounds = new ChangeBounds();
-        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_IN);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 
@@ -134,12 +134,17 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
 //        Utils.AlphaAnim(aboutWebview, 1, 0, 200);
         Utils.AlphaAnim(about_contain, 1, 0, 400);
         card_round_animator(500, 0f, Utils.dpToPx(12));
+
+        ChangeBounds bounds = new ChangeBounds();
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
+        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
+        getWindow().setSharedElementEnterTransition(bounds);
     }
 
     private void headerAnim(String status) {
         if (status == "OUT") {
             Utils.TransAnim(collapsing_about_toolbar, 0, 0, 0, -collapsing_about_toolbar.getHeight(), 200);
-            Utils.delayMin(10, new Utils.DelayCallback() {
+            Utils.delayMin(4, new Utils.DelayCallback() {
                 @Override
                 public void afterDelay() { ActivityCompat.finishAfterTransition(MainActivity_About.this); }
             });

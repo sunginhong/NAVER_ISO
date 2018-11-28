@@ -49,7 +49,7 @@ public class MainActivity_AndDev_Private extends Activity implements View.OnClic
 //        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
 
         ChangeBounds bounds = new ChangeBounds();
-        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
+        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_IN);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 
