@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
+        Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
+
         ChangeBounds bounds = new ChangeBounds();
         bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
@@ -91,13 +93,13 @@ public class MainActivity extends AppCompatActivity {
         mainHeaderTrans.setAlpha(0);
 
         if(valuesMain.size() == 0){
-            valuesMain.add(new String[]{"0", "Interaction.", "Interaction Library", String.valueOf("#3D80FE")});
+            valuesMain.add(new String[]{"0", "Interaction.", "Interaction Library", String.valueOf("#F9F9F9")});
             callValMain.add(new Class<?>[]{MainActivity_Library.class});
-            valuesMain.add(new String[]{"1", "Motion.", "MotionGraphic Library", String.valueOf("#28DA8C")});
+            valuesMain.add(new String[]{"1", "Motion.", "MotionGraphic Library", String.valueOf("#F9F9F9")});
             callValMain.add(new Class<?>[]{MainActivity_Motion.class});
 //            valuesMain.add(new String[]{"2", "AndDev.", "Android Prototype Library", String.valueOf("#ffffff")});
 //            callValMain.add(new Class<?>[]{MainActivity_AndDev_Private.class});
-            valuesMain.add(new String[]{"3", "About us.", "Naver Interactive Studio", String.valueOf("#FEDA02")});
+            valuesMain.add(new String[]{"2", "About us.", "Naver Interactive Studio", String.valueOf("#F9F9F9")});
             callValMain.add(new Class<?>[]{MainActivity_About.class});
         }
 

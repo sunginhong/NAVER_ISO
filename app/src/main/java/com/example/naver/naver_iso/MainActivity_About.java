@@ -40,6 +40,8 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_about_main);
 
+        Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
+
         ChangeBounds bounds = new ChangeBounds();
         bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));

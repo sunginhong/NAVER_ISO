@@ -57,6 +57,8 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_motion_main);
 //        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+        Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
+
         ChangeBounds bounds = new ChangeBounds();
         bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));

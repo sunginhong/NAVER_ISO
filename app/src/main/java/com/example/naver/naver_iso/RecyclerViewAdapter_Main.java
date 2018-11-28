@@ -12,12 +12,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +38,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
     ArrayList<Class<?>[]> arrayList2;
     static Context context;
     public static boolean mainclick = false;
+    static Animation cardImageIn, cardImageOut;
 
     public static View itemView_view;
     public static List<View> itemView_view_items = new ArrayList<View>();
@@ -46,8 +51,13 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
     public static int mainViewItemN = 0;
     public static View view_d;
     public static int mainCardHeight = 0;
+    public static int selectIndex = 0;
 
     static VideoView vieoViewArray[] = new VideoView[mainViewItemN];
+
+//    static List<ImageView> mainCardImgArray = new ArrayList<ImageView>();
+    static final ArrayList<ImageView> mainCardImgArray = new ArrayList<ImageView>();
+
     static List<VideoView> vieoViewArray_List = new ArrayList<VideoView>();
 
     public RecyclerViewAdapter_Main (Context context, ArrayList<String[]> list, ArrayList<Class<?>[]> className) {
@@ -114,6 +124,10 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 //            }
 //        });
 
+        if (position == 0){ Picasso.with(context).load(R.drawable.thumb_00).into(holder.rv_mainImageView); }
+        if (position == 1){ Picasso.with(context).load(R.drawable.thumb_01).into(holder.rv_mainImageView); }
+        if (position == 2){ Picasso.with(context).load(R.drawable.thumb_02).into(holder.rv_mainImageView); }
+
     }
 
     @Override
@@ -150,6 +164,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
             rv_mainCaseLineView = (View) itemView.findViewById(R.id.rv_mainCaseLineView);
             rv_mainImageView = (ImageView) itemView.findViewById(R.id.rv_mainImageView);
 //            rv_mainVideoView = (VideoView) itemView.findViewById(R.id.rv_mainVideoView);
+            mainCardImgArray.add(rv_mainImageView);
         }
     }
 
@@ -158,13 +173,16 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         if (!mainclick){
             mainclick = true;
             mainCardHeight = Utils.dpToPx(85);;
-
             view_d = view;
     //        Utils.AlphaAnim(view_d, 1, 0, 200);
             view_d.bringToFront();
-    //        Utils.AlphaAnim(view_d, 1, 0, 200);
+            selectIndex = view_d.getId();
+
             Utils.TransAnim(view_d, 0, 0, 0, mainCardHeight, 200);
-            Utils.delayMin(20, new Utils.DelayCallback() {
+            cardImageIn = AnimationUtils.loadAnimation(context, R.anim.main_card_anim_in);
+            mainCardImgArray.get(selectIndex).startAnimation(cardImageIn);
+
+            Utils.delayMin(15, new Utils.DelayCallback() {
                 @Override
                 public void afterDelay() {
                     ActivityOptions options = null;
@@ -177,10 +195,20 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         }
     }
 
+
+
     public static void reset() {
         Utils.TransAnim(view_d, 0, 0, mainCardHeight, 0, 400);
         view_d.setAlpha(1);
         mainclick = false;
+
+        Utils.delayMin(15, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                cardImageOut = AnimationUtils.loadAnimation(context, R.anim.main_card_anim_out);
+                mainCardImgArray.get(selectIndex).startAnimation(cardImageOut);
+            }
+        });
     }
 }
 

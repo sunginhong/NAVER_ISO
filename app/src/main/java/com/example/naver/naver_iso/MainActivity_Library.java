@@ -54,6 +54,8 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_library_main);
+
+        Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
 //        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
 
         ChangeBounds bounds = new ChangeBounds();

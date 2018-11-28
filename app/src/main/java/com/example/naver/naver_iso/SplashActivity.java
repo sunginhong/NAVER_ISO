@@ -30,6 +30,8 @@ public class SplashActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_splash);
 
+        Utils.updateStatusBarColor_string(this, R.color.statusbar_color_splash);
+
         splash_videoView = (VideoView) findViewById(R.id.splash_videoView);
 
         MediaController ctrl = new MediaController(this);
@@ -73,6 +75,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
+
 
 
 
