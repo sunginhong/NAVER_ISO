@@ -21,6 +21,7 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
     float screenScale;
     FrameLayout lib_detail_toolbar_backbtn;
     TextView lib_detail_toolbar_title;
+    WebView library_detailWebview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +37,13 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
         String libraryeUrl = intent.getStringExtra("libraryeUrl");
         String libraryeTitle = intent.getStringExtra("libraryeTitle");
 
-        WebView webView = (WebView)findViewById(R.id.library_detailWebview);
+        library_detailWebview = (WebView)findViewById(R.id.library_detailWebview);
 
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(libraryeUrl);
-        webView.setWebViewClient(new DetailActivity_Library.WebViewClientClass());
+        library_detailWebview.getSettings().setJavaScriptEnabled(true);
+        library_detailWebview.loadUrl(libraryeUrl);
+        library_detailWebview.setWebViewClient(new DetailActivity_Library.WebViewClientClass());
 
-        settingWebview(webView);
+        settingWebview(library_detailWebview);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -82,6 +83,7 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
 
     @Override
     public void onBackPressed() {
+        library_detailWebview.stopLoading();
         ActivityCompat.finishAfterTransition(this);
         this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
     }
@@ -94,6 +96,7 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
+        library_detailWebview.stopLoading();
         ActivityCompat.finishAfterTransition(this);
         this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
     }

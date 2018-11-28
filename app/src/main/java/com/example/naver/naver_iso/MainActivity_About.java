@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -24,6 +25,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     int width;
     int height;
     float screenScale;
+    CoordinatorLayout about_contain;
     FrameLayout about_toolbar_backbtn;
     TextView about_toolbar_title;
     CollapsingToolbarLayout collapsing_about_toolbar;
@@ -43,8 +45,8 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 
+        about_contain = (CoordinatorLayout) findViewById(R.id.about_contain);
         collapsing_about_toolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_about_toolbar);
-
         about_toolbar_backbtn = (FrameLayout)findViewById(R.id.about_toolbar_backbtn);
         about_toolbar_backbtn.setOnClickListener(this);
 
@@ -66,11 +68,18 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         about_toolbar_title.setText("About us.");
 
         collapsing_about_toolbar.bringToFront();
-        headerAnim("IN");
-        Utils.TransAnim(collapsing_about_toolbar, 0, 0, -collapsing_about_toolbar.getHeight(), 0, 400);
 
         about_contain_card = (CardView) findViewById(R.id.about_contain_card);
         about_contain_card.setRadius(0.0f);
+
+        headerAnim("IN");
+        Utils.TransAnim(collapsing_about_toolbar, 0, 0, -collapsing_about_toolbar.getHeight(), 0, 400);
+
+        Utils.AlphaAnim(about_contain, 0, 0, 0);
+        Utils.delayMin(2, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() { Utils.AlphaAnim(about_contain, 0, 1, 400); }
+        });
     }
 
     private class WebViewClientClass extends WebViewClient {
@@ -118,9 +127,11 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     }
 
     private void outAnim(){
+        aboutWebview.stopLoading();
         headerAnim("OUT");
-        Utils.AlphaAnim(aboutWebview, 1, 0, 200);
-        card_round_animator(500, 0f, 25f);
+//        Utils.AlphaAnim(aboutWebview, 1, 0, 200);
+        Utils.AlphaAnim(about_contain, 1, 0, 400);
+        card_round_animator(500, 0f, Utils.dpToPx(12));
     }
 
     private void headerAnim(String status) {

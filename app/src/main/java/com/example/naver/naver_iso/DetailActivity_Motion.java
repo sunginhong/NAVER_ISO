@@ -22,6 +22,7 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
     float screenScale;
     FrameLayout motion_detail_toolbar_backbtn;
     TextView motion_detail_toolbar_title;
+    WebView motion_detailWebview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +38,13 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
         String motionUrl = intent.getStringExtra("motionUrl");
         String motionTitle = intent.getStringExtra("motionTitle");
 
-        WebView webView = (WebView)findViewById(R.id.motion_detailWebview);
+        motion_detailWebview = (WebView)findViewById(R.id.motion_detailWebview);
 
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(motionUrl);
-        webView.setWebViewClient(new DetailActivity_Motion.WebViewClientClass());
+        motion_detailWebview.getSettings().setJavaScriptEnabled(true);
+        motion_detailWebview.loadUrl(motionUrl);
+        motion_detailWebview.setWebViewClient(new DetailActivity_Motion.WebViewClientClass());
 
-        settingWebview(webView);
+        settingWebview(motion_detailWebview);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -83,6 +84,7 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
 
     @Override
     public void onBackPressed() {
+        motion_detailWebview.stopLoading();
         ActivityCompat.finishAfterTransition(this);
         this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
     }
@@ -95,6 +97,7 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View view) {
+        motion_detailWebview.stopLoading();
         ActivityCompat.finishAfterTransition(this);
         this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
     }

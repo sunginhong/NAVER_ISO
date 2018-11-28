@@ -6,6 +6,12 @@
     android:background="@color/splashBgColor"
     android:orientation="vertical">
 
+    <View
+        android:id="@+id/view8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/splashBgColor" />
+
     <com.example.naver.naver_iso.MyVideoView
         android:id="@+id/splash_videoView"
         android:layout_width="match_parent"
@@ -14,7 +20,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.4"
+        android:alpha="0"
         android:background="@color/black" />
 
     <LinearLayout
@@ -22,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:alpha="0"
         android:orientation="vertical"
         android:weightSum="1">
 

@@ -126,6 +126,12 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_contain_card.setRadius(0.0f);
         headerAnim("IN");
         Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), 0, 400);
+
+        Utils.AlphaAnim(lib_contain, 0, 0, 0);
+        Utils.delayMin(2, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() { Utils.AlphaAnim(lib_contain, 0, 1, 400); }
+        });
     }
 
     public class NetworkTask extends AsyncTask<Void, Void, String> {
@@ -208,8 +214,9 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
     private void outAnim(){
         headerAnim("OUT");
-        Utils.AlphaAnim(lib_nestedscrollview, 1, 0, 200);
-        card_round_animator(500, 0f, 25f);
+//        Utils.AlphaAnim(lib_nestedscrollview, 1, 0, 200);
+        Utils.AlphaAnim(lib_contain, 1, 0, 400);
+        card_round_animator(500, 0f, Utils.dpToPx(12));
     }
 
     private void headerAnim(String status) {

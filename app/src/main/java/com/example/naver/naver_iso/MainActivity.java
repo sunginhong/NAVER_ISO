@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.transition.ChangeBounds;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbar;
     RelativeLayout toolbar_rl;
     LinearLayout collapsing_toolbar_titlell;
+    FrameLayout mainHeaderTrans;
 
     float collapsing_toolbar_titlell_TransX;
     boolean getSet = false;
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
-        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+        this.overridePendingTransition(R.anim.splash_activity_in, R.anim.splash_activity_out);
 
         toolbar_rl = (RelativeLayout) findViewById(R.id.toolbar_rl);
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -85,15 +87,17 @@ public class MainActivity extends AppCompatActivity {
         collapsing_toolbar_title = (TextView) findViewById(R.id.collapsing_toolbar_title);
         collapsing_toolbar_subTitle = (TextView) findViewById(R.id.collapsing_toolbar_subTitle);
 
+        mainHeaderTrans = (FrameLayout) findViewById(R.id.mainHeaderTrans);
+        mainHeaderTrans.setAlpha(0);
 
         if(valuesMain.size() == 0){
-            valuesMain.add(new String[]{"0", "Interaction.", "Interaction Library", String.valueOf("#ffffff")});
+            valuesMain.add(new String[]{"0", "Interaction.", "Interaction Library", String.valueOf("#3D80FE")});
             callValMain.add(new Class<?>[]{MainActivity_Library.class});
-            valuesMain.add(new String[]{"1", "Motion.", "MotionGraphic Library", String.valueOf("#ffffff")});
+            valuesMain.add(new String[]{"1", "Motion.", "MotionGraphic Library", String.valueOf("#28DA8C")});
             callValMain.add(new Class<?>[]{MainActivity_Motion.class});
 //            valuesMain.add(new String[]{"2", "AndDev.", "Android Prototype Library", String.valueOf("#ffffff")});
 //            callValMain.add(new Class<?>[]{MainActivity_AndDev_Private.class});
-            valuesMain.add(new String[]{"3", "About us.", "Naver Interactive Studio", String.valueOf("#ffffff")});
+            valuesMain.add(new String[]{"3", "About us.", "Naver Interactive Studio", String.valueOf("#FEDA02")});
             callValMain.add(new Class<?>[]{MainActivity_About.class});
         }
 
@@ -125,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 scrollY = -verticalOffset;
                 if(scrollY<=toolbarDistance && getSet){
                     Utils.ModulateAlphaAnim(collapsing_toolbar_title, scrollY, 0, toolbarDistance, 1, 0);
+                    Utils.ModulateAlphaAnim(mainHeaderTrans, scrollY, 0, toolbarDistance/2, 0, 1);
 //                    Utils.ModulateAlphaAnim(collapsing_toolbar_line, scrollY, 0, toolbarDistance/2, 1, 0);
                 }
             }
@@ -145,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
 //        this.overridePendingTransition(R.anim.activity_alpha_in, R.anim.activity_alpha_out);
         if (getSet){
             RecyclerViewAdapter_Main.reset();
+        } else {
+            mainHeaderTrans.setAlpha(0);
         }
         super.onResume();
     }

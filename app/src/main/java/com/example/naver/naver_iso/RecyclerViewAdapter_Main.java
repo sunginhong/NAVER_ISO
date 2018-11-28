@@ -33,6 +33,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
     ArrayList<String[]> arrayList1;
     ArrayList<Class<?>[]> arrayList2;
     static Context context;
+    public static boolean mainclick = false;
 
     public static View itemView_view;
     public static List<View> itemView_view_items = new ArrayList<View>();
@@ -44,6 +45,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
     public static MediaPlayer mMediaPlayer;
     public static int mainViewItemN = 0;
     public static View view_d;
+    public static int mainCardHeight = 0;
 
     static VideoView vieoViewArray[] = new VideoView[mainViewItemN];
     static List<VideoView> vieoViewArray_List = new ArrayList<VideoView>();
@@ -124,6 +126,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         private CardView rv_cardView;
         private RelativeLayout rv_mainRl;
         private LinearLayout rv_mainLL;
+        private LinearLayout rv_mainLL_item;
         private View rv_mainView;
         private TextView rv_mainTextView;
         private TextView rv_mainSubTextView;
@@ -139,6 +142,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
             rv_cardView = (CardView)itemView.findViewById(R.id.rv_cardView);
             rv_mainRl = (RelativeLayout)itemView.findViewById(R.id.rv_mainRl);
             rv_mainLL = (LinearLayout)itemView.findViewById(R.id.rv_mainLL);
+            rv_mainLL_item = (LinearLayout) itemView.findViewById(R.id.rv_mainLL_item);
             rv_mainView = (View) itemView.findViewById(R.id.rv_mainView);
             rv_mainTextView = (TextView)itemView.findViewById(R.id.rv_mainTextView);
             rv_mainSubTextView = (TextView)itemView.findViewById(R.id.rv_mainSubTextView);
@@ -151,19 +155,32 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 
     @Override
     public void onClick(View view) {
-        view_d = view;
-        Utils.AlphaAnim(view_d, 1, 0, 200);
+        if (!mainclick){
+            mainclick = true;
+            mainCardHeight = Utils.dpToPx(85);;
 
-        view_d.bringToFront();
-
-        ActivityOptions options = null;
-        options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, view_d, context.getString(R.string.transition_maincard));
-        Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
-        view_d.getContext().startActivity(intent, options.toBundle());
+            view_d = view;
+    //        Utils.AlphaAnim(view_d, 1, 0, 200);
+            view_d.bringToFront();
+    //        Utils.AlphaAnim(view_d, 1, 0, 200);
+            Utils.TransAnim(view_d, 0, 0, 0, mainCardHeight, 200);
+            Utils.delayMin(20, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() {
+                    ActivityOptions options = null;
+                    options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, view_d, context.getString(R.string.transition_maincard));
+                    Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
+                    view_d.getContext().startActivity(intent, options.toBundle());
+                    view_d.setAlpha(0);
+                }
+            });
+        }
     }
 
     public static void reset() {
-        Utils.AlphaAnim(view_d, 0, 1, 400);
+        Utils.TransAnim(view_d, 0, 0, mainCardHeight, 0, 400);
+        view_d.setAlpha(1);
+        mainclick = false;
     }
 }
 

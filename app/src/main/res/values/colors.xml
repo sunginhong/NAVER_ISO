@@ -37,30 +37,36 @@
     <color name="line_color">#dddddd</color>
     <color name="naverGreen">#00c73c</color>
 
-    <color name="statusbar_color">#332582</color>
-    <color name="splashBgColor">#F6F3EF</color>
+    <color name="statusbar_color">#00B457</color>
+    <color name="splashBgColor">#000000</color>
 
-    <color name="mainBgColor">#F6F3EF</color>
-    <color name="detailBgColor">#F6F3EF</color>
+    <color name="mainBgColor">#ffffff</color>
+    <color name="detailBgColor">#ffffff</color>
 
-    <color name="detailHeaderColor">#634FC7</color>
+    <color name="mainHeaderColor">#1ADC6C</color>
+    <color name="detailHeaderColor">#1ADC6C</color>
     <color name="detailHeaderTitleColor">#ffffff</color>
-    <color name="endHeaderColor">#634FC7</color>
+    <color name="endHeaderColor">#1ADC6C</color>
     <color name="endHeaderTitleColor">#ffffff</color>
 
-    <color name="toptitleColor">#634FC7</color>
+    <color name="toptitleColor">#000000</color>
     <color name="topsubtitleColor">#000000</color>
     <color name="topbgColor">#000000</color>
     <color name="topheader_bgColor">#666666</color>
 
     <color name="footerFontColor">#000000</color>
-    <color name="footerColor">#ffffff</color>
+    <color name="footerColor">#F9F9F9</color>
 
-    <color name="cardBgColor">#32333a</color>
-    <color name="card_titleColor">#ffffff</color>
-    <color name="card_subtitleColor">#ffffff</color>
+    <color name="cardBgColor">#f9f9f9</color>
+    <color name="card_titleColor">#000000</color>
+    <color name="card_subtitleColor">#000000</color>
 
     <color name="fregment_titleColor">#000000</color>
     <color name="fregment_subtitleColor">#a3a3a3</color>
     <color name="fregment_lineColor">#eeeeee</color>
+
+    <color name="card_listColor0">#3D80FE</color>
+    <color name="card_listColor1">#28DA8C</color>
+    <color name="card_listColor2">#FEDA02</color>
+
 </resources>

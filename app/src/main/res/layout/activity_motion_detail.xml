@@ -91,7 +91,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="-1dp"
                 android:layout_weight="1"
-                android:alpha="0.3"
+                android:alpha="0.1"
                 android:background="@color/black" />
 
         </RelativeLayout>

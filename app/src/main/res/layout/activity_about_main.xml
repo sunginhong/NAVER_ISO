@@ -9,22 +9,26 @@
         android:id="@+id/about_contain_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipChildren="true"
         android:transitionName="@string/transition_maincard"
-        android:background="@color/detailBgColor"
+        app:cardBackgroundColor="@color/card_listColor2"
         app:cardCornerRadius="12dp">
 
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.design.widget.CoordinatorLayout
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/about_contain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:clipChildren="false">
+            android:background="@color/detailBgColor"
+            android:clipChildren="false"
+            android:orientation="vertical">
 
             <WebView
                 android:id="@+id/aboutWebview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/detailBgColor">
 
             </WebView>
 
@@ -105,13 +109,13 @@
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
                         android:layout_marginTop="-1dp"
-                        android:alpha="0.3"
+                        android:alpha="0.1"
                         android:background="@color/black" />
 
                 </RelativeLayout>
 
             </android.support.design.widget.CollapsingToolbarLayout>
-        </FrameLayout>
+        </android.support.design.widget.CoordinatorLayout>
 
     </android.support.v7.widget.CardView>
 

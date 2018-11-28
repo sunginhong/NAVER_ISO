@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.CardView;
@@ -39,6 +40,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
 
     Toolbar motion_toolbar;
     AppBarLayout motion_appbar;
+    CoordinatorLayout motion_contain;
     NestedScrollView motion_nestedscrollview;
     TextView motion_toolbar_title;
     FrameLayout motion_toolbar_Backbtn;
@@ -60,6 +62,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 
+        motion_contain = (CoordinatorLayout) findViewById(R.id.motion_contain);
         motion_toolbar = (Toolbar) findViewById(R.id.motion_toolbar);
         motion_appbar = (AppBarLayout) findViewById(R.id.motion_appbar);
         motion_nestedscrollview = (NestedScrollView) findViewById(R.id.motion_nestedscrollview);
@@ -105,6 +108,12 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         motion_contain_card.setRadius(0.0f);
         headerAnim("IN");
         Utils.TransAnim(motion_appbar, 0, 0, -motion_appbar.getHeight(), 0, 400);
+
+        Utils.AlphaAnim(motion_contain, 0, 0, 0);
+        Utils.delayMin(2, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() { Utils.AlphaAnim(motion_contain, 0, 1, 400); }
+        });
     }
 
     public class NetworkTask extends AsyncTask<Void, Void, String> {
@@ -185,8 +194,9 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
 
     private void outAnim(){
         headerAnim("OUT");
-        Utils.AlphaAnim(motion_nestedscrollview, 1, 0, 200);
-        card_round_animator(500, 0f, 25f);
+//        Utils.AlphaAnim(motion_nestedscrollview, 1, 0, 200);
+        Utils.AlphaAnim(motion_contain, 1, 0, 400);
+        card_round_animator(500, 0f, Utils.dpToPx(12));
     }
 
     private void headerAnim(String status) {
