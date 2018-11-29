@@ -2,6 +2,7 @@ package com.example.naver.naver_iso;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -29,7 +30,7 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_motion_detail);
 
         motion_detail_toolbar_backbtn = (FrameLayout)findViewById(R.id.motion_detail_toolbar_backbtn);
@@ -46,6 +47,9 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
         motion_detailWebview.getSettings().setJavaScriptEnabled(true);
         motion_detailWebview.loadUrl(motionUrl);
         motion_detailWebview.setWebViewClient(new DetailActivity_Motion.WebViewClientClass());
+
+        motion_detailWebview.getSettings().setJavaScriptEnabled(true);
+        motion_detailWebview.getSettings().setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.36 (KHTML, like Gecko) Chrome/13.0.766.0 Safari/534.36");
         motion_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
 
         settingWebview(motion_detailWebview);
