@@ -60,8 +60,14 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         aboutWebview = (WebView)findViewById(R.id.aboutWebview);
 
         aboutWebview.getSettings().setJavaScriptEnabled(true);
-        aboutWebview.loadUrl("http://jjangik.com/");
+
         aboutWebview.setWebViewClient(new MainActivity_About.WebViewClientClass());
+        Utils.delayMin(30, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                aboutWebview.loadUrl("http://jjangik.com/");
+            }
+        });
 
         settingWebview(aboutWebview);
         Display display = getWindowManager().getDefaultDisplay();

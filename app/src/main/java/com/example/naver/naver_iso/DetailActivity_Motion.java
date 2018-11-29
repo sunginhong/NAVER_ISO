@@ -1,7 +1,7 @@
 package com.example.naver.naver_iso;
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -20,6 +20,7 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
     int width;
     int height;
     float screenScale;
+    static Context context;
     FrameLayout motion_detail_toolbar_backbtn;
     TextView motion_detail_toolbar_title;
     WebView motion_detailWebview;
@@ -28,7 +29,7 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_motion_detail);
 
         motion_detail_toolbar_backbtn = (FrameLayout)findViewById(R.id.motion_detail_toolbar_backbtn);
@@ -45,6 +46,7 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
         motion_detailWebview.getSettings().setJavaScriptEnabled(true);
         motion_detailWebview.loadUrl(motionUrl);
         motion_detailWebview.setWebViewClient(new DetailActivity_Motion.WebViewClientClass());
+        motion_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
 
         settingWebview(motion_detailWebview);
         Display display = getWindowManager().getDefaultDisplay();
