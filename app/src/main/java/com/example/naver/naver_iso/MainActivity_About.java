@@ -19,6 +19,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity_About extends AppCompatActivity implements View.OnClickListener{
@@ -31,6 +32,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     CollapsingToolbarLayout collapsing_about_toolbar;
     WebView aboutWebview;
     CardView about_contain_card;
+    ImageView about_imageview;
     float cardRound_result;
 
     @Override
@@ -39,6 +41,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_about_main);
+        about_imageview = (ImageView) findViewById(R.id.about_imageview);
 
         Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
 
@@ -75,12 +78,13 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         about_contain_card.setRadius(0.0f);
 
         headerAnim("IN");
-        Utils.TransAnim(collapsing_about_toolbar, 0, 0, -collapsing_about_toolbar.getHeight(), 0, 400);
+        Utils.TransAnim(collapsing_about_toolbar, 0, 0, -collapsing_about_toolbar.getHeight(), 0, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
 
         Utils.AlphaAnim(about_contain, 0, 0, 0);
+        Utils.AlphaAnim(about_imageview, 1, 0, MainActivity.MAIN_CARD_TRANS_DURATION_IN/2);
         Utils.delayMin(2, new Utils.DelayCallback() {
             @Override
-            public void afterDelay() { Utils.AlphaAnim(about_contain, 0, 1, 400); }
+            public void afterDelay() { Utils.AlphaAnim(about_contain, 0, 1, MainActivity.MAIN_CARD_TRANS_DURATION_IN); }
         });
     }
 
@@ -139,6 +143,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
+//        finish();
     }
 
     private void headerAnim(String status) {

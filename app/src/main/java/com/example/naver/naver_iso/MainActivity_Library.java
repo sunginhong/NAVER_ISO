@@ -19,6 +19,7 @@ import android.transition.ChangeBounds;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tsengvn.typekit.TypekitContextWrapper;
@@ -43,9 +44,11 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     TextView lib_toolbar_Title;
     FrameLayout lib_toolbar_Backbtn;
     CardView lib_contain_card;
+    ImageView lib_imageview;
 
     float cardRound_result;
     boolean lib_getSet = false;
+    boolean scrollHeader = false;
     int lib_toolbarDistance;
 
     @Override
@@ -70,6 +73,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_toolbar_Title = (TextView) findViewById(R.id.lib_toolbar_title);
         lib_toolbar_Backbtn = (FrameLayout) findViewById(R.id.lib_toolbar_backbtn);
         lib_contain_card = (CardView) findViewById(R.id.lib_contain_card);
+        lib_imageview = (ImageView) findViewById(R.id.lib_imageview);
 
         // URL 설정.
         values_LibMain.removeAll(values_LibMain);
@@ -118,21 +122,37 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
             }
         });
 
+        scrollHeader = false;
+
         lib_nestedscrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                if (scrollY > 0 ){
+//                    if (scrollY > oldScrollY){
+//                        if (!scrollHeader){
+//                            Utils.TransAnim(lib_appbar, 0, 0, 0, -lib_appbar.getHeight(), 400);
+//                            scrollHeader = true;
+//                        }
+//                    } else {
+//                        if (scrollHeader){
+//                            Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), 0, 400);
+//                            scrollHeader = false;
+//                        }
+//                    }
+//                }
             }
         });
+
 
         lib_appbar.bringToFront();
         lib_contain_card.setRadius(0.0f);
         headerAnim("IN");
-        Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), 0, 400);
-
+        Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), 0, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
         Utils.AlphaAnim(lib_contain, 0, 0, 0);
+        Utils.AlphaAnim(lib_imageview, 1, 0, MainActivity.MAIN_CARD_TRANS_DURATION_IN/2);
         Utils.delayMin(2, new Utils.DelayCallback() {
             @Override
-            public void afterDelay() { Utils.AlphaAnim(lib_contain, 0, 1, 400); }
+            public void afterDelay() { Utils.AlphaAnim(lib_contain, 0, 1, MainActivity.MAIN_CARD_TRANS_DURATION_IN); }
         });
     }
 
@@ -224,6 +244,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
+//        finish();
     }
 
     private void headerAnim(String status) {

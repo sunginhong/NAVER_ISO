@@ -9,11 +9,11 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -91,7 +91,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 //        holder.rv_mainLottieView.playAnimation();
 
         holder.rv_mainView.setBackgroundColor(Color.parseColor(detail[3]));
-        holder.rv_mainCaseLineView.setBackgroundColor(Color.parseColor(detail[3]));
+//        holder.rv_mainCaseLineView.setBackgroundColor(Color.parseColor(detail[3]));
 
         Class<?> classNameF = className[0];
         classMainItemArray[parseInt(detail[0])] = classNameF;
@@ -175,24 +175,29 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
             mainCardHeight = Utils.dpToPx(85);;
             view_d = view;
     //        Utils.AlphaAnim(view_d, 1, 0, 200);
-            view_d.bringToFront();
+//            view_d.bringToFront();
             selectIndex = view_d.getId();
 
-//            Utils.TransAnim(view_d, 0, 0, 0, mainCardHeight, 200);
+//            Utils.TransAnim(view_d, 0, 0, 0, mainCardHeight, 150);
             Utils.AlphaAnim(view_d, 1, 0, 100);
 
-            cardImageIn = AnimationUtils.loadAnimation(context, R.anim.main_card_anim_in);
+//            cardImageIn = AnimationUtils.loadAnimation(context, R.anim.main_card_anim_in);
 //            Utils.SclaeAnim(mainCardImgArray.get(selectIndex), 1, 1.5f, 1, 1.5f, 0.5f, 0.5f, 400);
-            mainCardImgArray.get(selectIndex).startAnimation(cardImageIn);
+//            mainCardImgArray.get(selectIndex).startAnimation(cardImageIn);
 
-            Utils.delayMin(1, new Utils.DelayCallback() {
+            Utils.delayMin(0, new Utils.DelayCallback() {
                 @Override
                 public void afterDelay() {
-                    ActivityOptions options = null;
-                    options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, view_d, context.getString(R.string.transition_maincard));
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
+                            Pair.create((View)view_d, context.getString(R.string.transition_maincard)) );
+
                     Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
                     view_d.getContext().startActivity(intent, options.toBundle());
-                    view_d.setAlpha(0);
+//                    ActivityOptions options = null;
+//                    options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, view_d, context.getString(R.string.transition_maincard));
+//                    Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
+//                    view_d.getContext().startActivity(intent, options.toBundle());
+//                    view_d.setAlpha(0);
                 }
             });
         }
@@ -201,15 +206,16 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 
 
     public static void reset() {
-        Utils.TransAnim(view_d, 0, 0, mainCardHeight, 0, 400);
+//        Utils.TransAnim(view_d, 0, 0, mainCardHeight, 0, 400);
+        Utils.AlphaAnim(view_d, 0, 1, 400);
         view_d.setAlpha(1);
         mainclick = false;
 
         Utils.delayMin(15, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {
-                cardImageOut = AnimationUtils.loadAnimation(context, R.anim.main_card_anim_out);
-                mainCardImgArray.get(selectIndex).startAnimation(cardImageOut);
+//                cardImageOut = AnimationUtils.loadAnimation(context, R.anim.main_card_anim_out);
+//                mainCardImgArray.get(selectIndex).startAnimation(cardImageOut);
 //                Utils.SclaeAnim(mainCardImgArray.get(selectIndex), 1.5f, 1, 1.5f, 1, 0.5f, 0.5f, 300);
             }
         });

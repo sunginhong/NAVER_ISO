@@ -34,6 +34,8 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
         motion_detail_toolbar_backbtn = (FrameLayout)findViewById(R.id.motion_detail_toolbar_backbtn);
         motion_detail_toolbar_backbtn.setOnClickListener(this);
 
+        Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
+
         Intent intent = getIntent();
         String motionUrl = intent.getStringExtra("motionUrl");
         String motionTitle = intent.getStringExtra("motionTitle");

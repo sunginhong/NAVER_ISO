@@ -94,13 +94,13 @@ public class MainActivity extends AppCompatActivity {
         mainHeaderTrans.setAlpha(0);
 
         if(valuesMain.size() == 0){
-            valuesMain.add(new String[]{"0", "Interaction.", "Interaction Library", String.valueOf("#F9F9F9")});
+            valuesMain.add(new String[]{"0", "Interaction.", "Interaction Library", String.valueOf("#0055F8")});
             callValMain.add(new Class<?>[]{MainActivity_Library.class});
-            valuesMain.add(new String[]{"1", "Motion.", "MotionGraphic Library", String.valueOf("#F9F9F9")});
+            valuesMain.add(new String[]{"1", "Motion.", "MotionGraphic Library", String.valueOf("#0055F8")});
             callValMain.add(new Class<?>[]{MainActivity_Motion.class});
 //            valuesMain.add(new String[]{"2", "AndDev.", "Android Prototype Library", String.valueOf("#ffffff")});
 //            callValMain.add(new Class<?>[]{MainActivity_AndDev_Private.class});
-            valuesMain.add(new String[]{"2", "About us.", "Naver Interactive Studio", String.valueOf("#F9F9F9")});
+            valuesMain.add(new String[]{"2", "About us.", "Naver Interactive Studio", String.valueOf("#0055F8")});
             callValMain.add(new Class<?>[]{MainActivity_About.class});
         }
 
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
 //        this.overridePendingTransition(R.anim.activity_alpha_in, R.anim.activity_alpha_out);
-        
+
         if (getSet){
             RecyclerViewAdapter_Main.reset();
         } else {

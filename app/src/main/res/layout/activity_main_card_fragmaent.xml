@@ -38,18 +38,19 @@
                 android:layout_marginEnd="0dp"
                 android:alpha="1" />
 
-            <ImageView
-                android:id="@+id/rv_mainImageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="0dp"
-                android:alpha="1"
-                android:scaleX="1.3"
-                android:scaleY="1.3" />
-
 
         </RelativeLayout>
 
+
+        <ImageView
+            android:id="@+id/rv_mainImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:alpha="@string/maincard_alpha"
+            android:scaleX="1.3"
+            android:scaleY="1.3"
+            android:transitionName="@string/transition_maincard_image" />
 
         <LinearLayout
             android:id="@+id/rv_mainLL"
@@ -66,42 +67,53 @@
             <LinearLayout
                 android:id="@+id/rv_mainLL_item"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:background="@color/white"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <View
-                    android:id="@+id/rv_mainCaseLineView"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
                     android:orientation="vertical"
-                    android:paddingLeft="15dp">
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp">
 
-                    <TextView
-                        android:id="@+id/rv_mainTextView"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="0dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:gravity="center_horizontal"
-                        android:singleLine="true"
-                        android:text="title_"
-                        android:textAlignment="viewStart"
-                        android:textAllCaps="false"
-                        android:textColor="@color/card_titleColor"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:typeface="normal" />
+                        android:layout_marginBottom="1dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/rv_mainTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginBottom="0dp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="center_horizontal"
+                            android:singleLine="true"
+                            android:text="title_"
+                            android:textAlignment="viewStart"
+                            android:textAllCaps="false"
+                            android:textColor="@color/card_titleColor"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:typeface="normal" />
+
+                        <View
+                            android:id="@+id/rv_mainCaseLineView"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="-2dp"
+                            android:background="@color/white" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/rv_mainSubTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:alpha="0.7"
                         android:fontFamily="@font/montserrat_medium"
                         android:lineSpacingExtra="5sp"
                         android:maxLines="2"
@@ -109,6 +121,7 @@
                         android:textAlignment="viewStart"
                         android:textColor="@color/card_subtitleColor"
                         android:textSize="14sp"
+                        android:textStyle="bold"
                         android:typeface="normal" />
                 </LinearLayout>
 

@@ -19,6 +19,7 @@ import android.transition.ChangeBounds;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tsengvn.typekit.TypekitContextWrapper;
@@ -45,6 +46,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
     TextView motion_toolbar_title;
     FrameLayout motion_toolbar_Backbtn;
     CardView motion_contain_card;
+    ImageView motion_imageview;
 
     float cardRound_result;
     boolean motion_getSet = false;
@@ -74,6 +76,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         motion_toolbar_Backbtn.setOnClickListener(this);
 
         motion_contain_card = (CardView) findViewById(R.id.motion_contain_card);
+        motion_imageview = (ImageView) findViewById(R.id.motion_imageview);
 
         // URL 설정.
         values_MotionMain.removeAll(values_MotionMain);
@@ -109,12 +112,13 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         motion_appbar.bringToFront();
         motion_contain_card.setRadius(0.0f);
         headerAnim("IN");
-        Utils.TransAnim(motion_appbar, 0, 0, -motion_appbar.getHeight(), 0, 400);
+        Utils.TransAnim(motion_appbar, 0, 0, -motion_appbar.getHeight(), 0, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
 
         Utils.AlphaAnim(motion_contain, 0, 0, 0);
+        Utils.AlphaAnim(motion_imageview, 1, 0, MainActivity.MAIN_CARD_TRANS_DURATION_IN/2);
         Utils.delayMin(2, new Utils.DelayCallback() {
             @Override
-            public void afterDelay() { Utils.AlphaAnim(motion_contain, 0, 1, 400); }
+            public void afterDelay() { Utils.AlphaAnim(motion_contain, 0, 1, MainActivity.MAIN_CARD_TRANS_DURATION_IN); }
         });
     }
 
@@ -204,6 +208,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
+//        finish();
     }
 
     private void headerAnim(String status) {

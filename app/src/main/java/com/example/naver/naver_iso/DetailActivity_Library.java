@@ -33,6 +33,8 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
         lib_detail_toolbar_backbtn = (FrameLayout)findViewById(R.id.lib_detail_toolbar_backbtn);
         lib_detail_toolbar_backbtn.setOnClickListener(this);
 
+        Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
+
         Intent intent = getIntent();
         String libraryeUrl = intent.getStringExtra("libraryeUrl");
         String libraryeTitle = intent.getStringExtra("libraryeTitle");
