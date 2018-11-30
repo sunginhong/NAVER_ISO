@@ -27,7 +27,7 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_library_detail);
 
         lib_detail_toolbar_backbtn = (FrameLayout)findViewById(R.id.lib_detail_toolbar_backbtn);

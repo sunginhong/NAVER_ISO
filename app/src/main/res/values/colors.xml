@@ -37,9 +37,9 @@
     <color name="line_color">#dddddd</color>
     <color name="naverGreen">#00c73c</color>
 
-    <color name="statusbar_color_splash">#000000</color>
+    <color name="statusbar_color_splash">#0055F8</color>
     <color name="statusbar_color_main">#00B457</color>
-    <color name="splashBgColor">#000000</color>
+    <color name="splashBgColor">#0055F8</color>
 
     <color name="mainBgColor">#ffffff</color>
     <color name="detailBgColor">#ffffff</color>
@@ -55,19 +55,21 @@
     <color name="topbgColor">#000000</color>
     <color name="topheader_bgColor">#666666</color>
 
-    <color name="footerFontColor">#000000</color>
+    <color name="footerFontColor">#444444</color>
     <color name="footerColor">#F9F9F9</color>
 
     <color name="cardBgColor">#f9f9f9</color>
-    <color name="card_titleColor">#000000</color>
-    <color name="card_subtitleColor">#000000</color>
+    <color name="card_titleColor">#ffffff</color>
+    <color name="card_subtitleColor">#ffffff</color>
+
+    <color name="card_listColor0">#0055F8</color>
+    <color name="card_listColor1">#0055F8</color>
+    <color name="card_listColor2">#0055F8</color>
 
     <color name="fregment_titleColor">#000000</color>
     <color name="fregment_subtitleColor">#a3a3a3</color>
     <color name="fregment_lineColor">#eeeeee</color>
 
-    <color name="card_listColor0">#F9F9F9</color>
-    <color name="card_listColor1">#F9F9F9</color>
-    <color name="card_listColor2">#F9F9F9</color>
+    <color name="detailBgColor_dimmed">#646465</color>
 
 </resources>

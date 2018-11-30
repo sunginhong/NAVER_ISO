@@ -1,12 +1,12 @@
 package com.example.naver.naver_iso;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -17,7 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 
-public class DetailActivity_Motion extends AppCompatActivity implements View.OnClickListener{
+public class DetailActivity_Motion extends Activity implements View.OnClickListener{
     int width;
     int height;
     float screenScale;
@@ -25,13 +25,17 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
     FrameLayout motion_detail_toolbar_backbtn;
     TextView motion_detail_toolbar_title;
     WebView motion_detailWebview;
+    int deviceRotate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_motion_detail);
+
+        deviceRotate = getResources().getConfiguration().orientation;
 
         motion_detail_toolbar_backbtn = (FrameLayout)findViewById(R.id.motion_detail_toolbar_backbtn);
         motion_detail_toolbar_backbtn.setOnClickListener(this);
@@ -43,16 +47,17 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
         String motionTitle = intent.getStringExtra("motionTitle");
 
         motion_detailWebview = (WebView)findViewById(R.id.motion_detailWebview);
-
-        motion_detailWebview.getSettings().setJavaScriptEnabled(true);
         motion_detailWebview.loadUrl(motionUrl);
         motion_detailWebview.setWebViewClient(new DetailActivity_Motion.WebViewClientClass());
 
         motion_detailWebview.getSettings().setJavaScriptEnabled(true);
         motion_detailWebview.getSettings().setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.36 (KHTML, like Gecko) Chrome/13.0.766.0 Safari/534.36");
+//        motion_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
+
         motion_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
 
-        settingWebview(motion_detailWebview);
+//        settingWebview(motion_detailWebview);
+
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -60,6 +65,7 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
         height = size.y;
         motion_detail_toolbar_title = (TextView)findViewById(R.id.motion_detail_toolbar_title);
         motion_detail_toolbar_title.setText(motionTitle);
+        Log.v("ssssssss", ""+String.valueOf("C"));
         }
 
     private class WebViewClientClass extends WebViewClient {
@@ -109,6 +115,19 @@ public class DetailActivity_Motion extends AppCompatActivity implements View.OnC
         ActivityCompat.finishAfterTransition(this);
         this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
     }
+
+
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        }else if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//        }
+//    }
+
+
 }
 
 //public class DetailActivity_Motion extends Activity {
