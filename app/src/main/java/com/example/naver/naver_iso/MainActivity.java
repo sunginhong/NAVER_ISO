@@ -176,9 +176,6 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.NetworkTask networkTask = new MainActivity.NetworkTask(url, null);
             networkTask.execute();
         }
-
-
-
     }
 
     @Override
