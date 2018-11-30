@@ -44,7 +44,7 @@
     <color name="mainBgColor">#ffffff</color>
     <color name="detailBgColor">#ffffff</color>
 
-    <color name="mainHeaderColor">#1ADC6C</color>
+    <color name="mainHeaderColor">#1adc6c</color>
     <color name="detailHeaderColor">#1ADC6C</color>
     <color name="detailHeaderTitleColor">#ffffff</color>
     <color name="endHeaderColor">#1ADC6C</color>
@@ -62,7 +62,7 @@
     <color name="card_titleColor">#ffffff</color>
     <color name="card_subtitleColor">#ffffff</color>
 
-    <color name="card_listColor0">#0055F8</color>
+    <color name="card_listColor0">#0055f8</color>
     <color name="card_listColor1">#0055F8</color>
     <color name="card_listColor2">#0055F8</color>
 

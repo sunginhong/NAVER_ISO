@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBgColor">
@@ -22,12 +23,28 @@
             <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="20dp">
+                android:paddingTop="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="235dp"
+                        android:layout_marginBottom="25dp">
+
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/mainvp_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true" />
+
+                        <include layout="@layout/activity_main_pager" />
+
+                    </FrameLayout>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/main_recyclerview"
@@ -46,163 +63,5 @@
 
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/main_appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/topbgColor">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleGravity="center_vertical"
-            app:expandedTitleMarginBottom="0dp"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="30dp"
-            app:expandedTitleMarginTop="0dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_main"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/mainBgColor"
-                app:titleMarginStart="15dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </RelativeLayout>
-            </android.support.v7.widget.Toolbar>
-
-            <RelativeLayout
-                android:id="@+id/toolbar_rl"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="0dp"
-                android:background="@color/mainBgColor"
-                android:gravity="center_vertical">
-
-                <LinearLayout
-                    android:id="@+id/collapsing_toolbar_ll"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:id="@+id/collapsing_toolbar_line"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginBottom="0dp"
-                        android:background="@color/black"
-                        android:translationY="0dp" />
-
-                    <LinearLayout
-                        android:id="@+id/collapsing_toolbar_titlell"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="vertical"
-                        android:translationX="0dp">
-
-                        <TextView
-                            android:id="@+id/collapsing_toolbar_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="false"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:inputType="textMultiLine"
-                            android:textAllCaps="false"
-                            android:textColor="@color/toptitleColor"
-                            android:textSize="50sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/collapsing_toolbar_subTitle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="false"
-                            android:layout_marginTop="-10sp"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:inputType="textMultiLine"
-                            android:text="Interactive Studio"
-                            android:textColor="@color/topsubtitleColor"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <FrameLayout
-                android:id="@+id/mainHeaderTrans"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alpha="0">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/mainHeaderColor" />
-
-                <LinearLayout
-                    android:id="@+id/collapsing_toolbar_titlell"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="vertical"
-                    android:translationX="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="false"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:inputType="textMultiLine"
-                        android:textAllCaps="false"
-                        android:textColor="@color/toptitleColor"
-                        android:textSize="50sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="false"
-                        android:layout_marginTop="-10sp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:inputType="textMultiLine"
-                        android:text="Interactive Studio"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/view10"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="-1dp"
-                    android:alpha="0.1"
-                    android:background="@color/black" />
-            </FrameLayout>
-
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
 
 </android.support.design.widget.CoordinatorLayout>

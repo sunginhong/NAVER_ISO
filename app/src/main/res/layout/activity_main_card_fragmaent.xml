@@ -116,7 +116,7 @@
                         android:alpha="0.7"
                         android:fontFamily="@font/montserrat_medium"
                         android:lineSpacingExtra="5sp"
-                        android:maxLines="2"
+                        android:maxLines="1"
                         android:text="subtitle"
                         android:textAlignment="viewStart"
                         android:textColor="@color/card_subtitleColor"
