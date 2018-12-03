@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.util.Pools;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,7 @@ import java.util.List;
 import static java.lang.Integer.parseInt;
 
 
-public class MainVp_MyPagerAdapter extends PagerAdapter {
+public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickListener {
     List<String> items = new ArrayList<String>();
     List<View> scrappedView = new ArrayList<View>();
     ArrayList<String[]> arrayList;
@@ -53,7 +55,7 @@ public class MainVp_MyPagerAdapter extends PagerAdapter {
 
     @Override
     public float getPageWidth(int position) {
-        return 1.0f;
+        return MainActivity.MAIN_PAGE_WIDTH_RATE;
     }
 
     @Override
@@ -67,7 +69,7 @@ public class MainVp_MyPagerAdapter extends PagerAdapter {
 
         RelativeLayout vpLayout = (RelativeLayout) view.findViewById(R.id.main_vp_vpLayout);
 
-
+        CardView main_vp_cardcotain = (CardView) view.findViewById(R.id.main_vp_cardcotain);
         TextView titleTv = (TextView) view.findViewById(R.id.main_vp_titleTv);
         titleTv.setText(detail[1]);
         TextView subTitleTv = (TextView) view.findViewById(R.id.main_vp_subTitleTv);
@@ -77,8 +79,14 @@ public class MainVp_MyPagerAdapter extends PagerAdapter {
 
         MainActivity.pvArray[parseInt(detail[0])] = vpLayout;
         MainActivity.bgImgArray[parseInt(detail[0])] = ImgView;
+        MainActivity.main_vp_cardcotainArray[parseInt(detail[0])] = main_vp_cardcotain;
+
+        MainActivity.urlMainRecentArray[parseInt(detail[0])] = detail[4];
 
         ((ViewPager)container).addView(view, position);
+        main_vp_cardcotain.setOnClickListener(this);
+        main_vp_cardcotain.setId(position);
+
 
         return view;
     }
@@ -92,4 +100,13 @@ public class MainVp_MyPagerAdapter extends PagerAdapter {
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
+
+
+    @Override
+    public void onClick(View view) {
+        if (!MainVp_PagerInteraction.scrollBool){
+            Log.v("ssssssss", ""+String.valueOf(MainActivity.urlMainRecentArray[view.getId()]));
+        }
+    }
+
 }

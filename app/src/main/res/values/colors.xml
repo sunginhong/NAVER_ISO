@@ -39,7 +39,7 @@
 
     <color name="statusbar_color_splash">#0055F8</color>
     <color name="statusbar_color_main">#00B457</color>
-    <color name="splashBgColor">#0055F8</color>
+    <color name="splashBgColor">#0055f8</color>
 
     <color name="mainBgColor">#ffffff</color>
     <color name="detailBgColor">#ffffff</color>
@@ -70,6 +70,7 @@
     <color name="fregment_subtitleColor">#a3a3a3</color>
     <color name="fregment_lineColor">#eeeeee</color>
 
+    <color name="mainPagerBgColor">#F9F9F9</color>
     <color name="detailBgColor_dimmed">#646465</color>
 
 </resources>

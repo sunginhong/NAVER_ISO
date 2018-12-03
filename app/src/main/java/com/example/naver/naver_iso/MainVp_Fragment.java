@@ -47,4 +47,5 @@ public class MainVp_Fragment extends Fragment {
             getActivity().setTitle("count : " + mCount);
         }
     }
+
 }

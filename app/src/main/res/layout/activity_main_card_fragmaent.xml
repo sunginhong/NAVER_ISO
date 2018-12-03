@@ -9,7 +9,7 @@
     android:layout_marginLeft="25dp"
     android:layout_marginTop="0dp"
     android:layout_marginRight="25dp"
-    android:layout_marginBottom="-15dp"
+    android:layout_marginBottom="0dp"
     android:clipChildren="true"
     android:clipToPadding="true"
     android:divider="@android:color/transparent"
@@ -17,7 +17,7 @@
     android:transitionName="@string/transition_maincard"
     app:cardPreventCornerOverlap="false"
     card_view:cardCornerRadius="12dp"
-    card_view:cardElevation="12dp"
+    card_view:cardElevation="6dp"
     card_view:cardUseCompatPadding="true">
 
 
@@ -91,6 +91,9 @@
                             android:layout_marginBottom="0dp"
                             android:fontFamily="@font/montserrat_bold"
                             android:gravity="center_horizontal"
+                            android:shadowColor="#33000000"
+                            android:shadowDy="4"
+                            android:shadowRadius="12"
                             android:singleLine="true"
                             android:text="title_"
                             android:textAlignment="viewStart"

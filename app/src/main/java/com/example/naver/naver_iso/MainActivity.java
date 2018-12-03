@@ -11,6 +11,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -69,12 +70,15 @@ public class MainActivity extends AppCompatActivity {
     ViewPager vp;
     private MainVp_PagerInteraction mainVp_PagerInteraction;
     static View pageNav_current;
-    public static final int PAGE_ITEM_COUNT = 4;
+    public static final int PAGE_ITEM_COUNT = 5;
     public static final int ITEM_MARGIN = 0;
+    public static final float MAIN_PAGE_WIDTH_RATE = 1.0f;
 
     static final ArrayList<String[]> values_MainActivity = new ArrayList<String[]>();
     static RelativeLayout pvArray[] = new RelativeLayout[PAGE_ITEM_COUNT];
     static ImageView bgImgArray[] = new ImageView[PAGE_ITEM_COUNT];
+    static CardView main_vp_cardcotainArray[] = new CardView[PAGE_ITEM_COUNT];
+    static String urlMainRecentArray[] = new String[PAGE_ITEM_COUNT];
 
 //    static final ArrayList<String> mainJson_Arr0 = new ArrayList<String>();
     public String mainJson_Arr0[] = new String[ITEM_COUNT];
@@ -163,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        
+
         main_nestedscrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
@@ -235,12 +239,12 @@ public class MainActivity extends AppCompatActivity {
                 String thumbImg = jObject.getString("img");
                 String url = jObject.getString("url");
 
-                values_MainActivity.add(new String[]{num, title, subtitle, "http://10.113.183.52/naverISO/json/thumbImg/"+thumbImg, "http://jjangik.com/"+url});
+                values_MainActivity.add(new String[]{num, title, subtitle, "http://10.113.183.52/naverISO/json/thumbImg/"+thumbImg, url});
                 mainJson_Arr0[i] = num;
                 mainJson_Arr1[i] = title;
                 mainJson_Arr2[i] = subtitle;
                 mainJson_Arr3[i] = "http://10.113.183.52/naverISO/json/thumbImg/"+thumbImg;
-                mainJson_Arr4[i] = url;
+                mainJson_Arr4[i] = "http://jjangik.com/"+url;
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -248,26 +252,24 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < PAGE_ITEM_COUNT; i++) {
             final ArrayList<String[]> values = new ArrayList<String[]>();
             if(values.size() == 0) {
-                values.add(new String[]{mainJson_Arr0[0], mainJson_Arr1[0], mainJson_Arr2[0], mainJson_Arr3[0]});
-                values.add(new String[]{mainJson_Arr0[1], mainJson_Arr1[1], mainJson_Arr2[1], mainJson_Arr3[1]});
-                values.add(new String[]{mainJson_Arr0[2], mainJson_Arr1[2], mainJson_Arr2[2], mainJson_Arr3[2]});
-                values.add(new String[]{mainJson_Arr0[3], mainJson_Arr1[3], mainJson_Arr2[3], mainJson_Arr3[3]});
-                values.add(new String[]{mainJson_Arr0[4], mainJson_Arr1[4], mainJson_Arr2[4], mainJson_Arr3[4]});
+                values.add(new String[]{mainJson_Arr0[0], mainJson_Arr1[0], mainJson_Arr2[0], mainJson_Arr3[0], mainJson_Arr4[0]});
+                values.add(new String[]{mainJson_Arr0[1], mainJson_Arr1[1], mainJson_Arr2[1], mainJson_Arr3[1], mainJson_Arr4[1]});
+                values.add(new String[]{mainJson_Arr0[2], mainJson_Arr1[2], mainJson_Arr2[2], mainJson_Arr3[2], mainJson_Arr4[2]});
+                values.add(new String[]{mainJson_Arr0[3], mainJson_Arr1[3], mainJson_Arr2[3], mainJson_Arr3[3], mainJson_Arr4[3]});
+                values.add(new String[]{mainJson_Arr0[4], mainJson_Arr1[4], mainJson_Arr2[4], mainJson_Arr3[4], mainJson_Arr4[4]});
             }
-
-            MainVp_MyPagerAdapter mAdapter = new MainVp_MyPagerAdapter(this, values);
             vp = (ViewPager)findViewById(R.id.mainvp_pager);
+            MainVp_MyPagerAdapter mAdapter = new MainVp_MyPagerAdapter(this, values);;
+
             vp.setAdapter(mAdapter);
             vp.setClipToPadding(false);
-            vp.setPageMargin(ITEM_MARGIN);
+//            vp.setPageMargin(ITEM_MARGIN);
             vp.setOffscreenPageLimit(PAGE_ITEM_COUNT);
-
+            vp.setPadding(vp.getWidth()/15, 0, vp.getWidth()/15, vp.getWidth()/30);
+            vp.setPageMargin(-80);
             vp.setCurrentItem(0);
             pageNav_current = (View)findViewById(R.id.mainvp_pageNav_current);
-
             mainVp_PagerInteraction = new MainVp_PagerInteraction(vp);
         }
     }
-
-
 }
