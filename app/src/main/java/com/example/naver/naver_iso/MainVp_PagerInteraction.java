@@ -197,7 +197,7 @@ public class MainVp_PagerInteraction implements ViewPager.OnPageChangeListener, 
 
     @Override
     public void onPageScrollStateChanged(int state) {
-        
+
     }
 
 

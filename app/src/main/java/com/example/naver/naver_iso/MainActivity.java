@@ -263,13 +263,13 @@ public class MainActivity extends AppCompatActivity {
 
             vp.setAdapter(mAdapter);
             vp.setClipToPadding(false);
-//            vp.setPageMargin(ITEM_MARGIN);
             vp.setOffscreenPageLimit(PAGE_ITEM_COUNT);
             vp.setPadding(vp.getWidth()/15, 0, vp.getWidth()/15, vp.getWidth()/30);
             vp.setPageMargin(-80);
             vp.setCurrentItem(0);
             pageNav_current = (View)findViewById(R.id.mainvp_pageNav_current);
             mainVp_PagerInteraction = new MainVp_PagerInteraction(vp);
+
         }
     }
 }
