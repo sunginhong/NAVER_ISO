@@ -83,7 +83,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_imageview = (ImageView) findViewById(R.id.lib_imageview);
 
         // URL 설정.
-        Utils.delayMin(40, new Utils.DelayCallback() {
+        Utils.delayMin(0, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {
                 values_LibMain.removeAll(values_LibMain);
@@ -241,17 +241,20 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     }
 
     private void outAnim(){
-        headerAnim("OUT");
-//        Utils.AlphaAnim(lib_nestedscrollview, 1, 0, 200);
-        Utils.AlphaAnim(lib_imageview, 0, 1, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
-        Utils.AlphaAnim(lib_contain, 1, 0, 400);
-        card_round_animator(500, 0f, Utils.dpToPx(12));
+        ActivityCompat.finishAfterTransition(this);
 
+////        values_LibMain.removeAll(values_LibMain);
+//        headerAnim("OUT");
+////        Utils.AlphaAnim(lib_nestedscrollview, 1, 0, 200);
+//        Utils.AlphaAnim(lib_imageview, 0, 1, 500);
+//        Utils.AlphaAnim(lib_contain, 1, 0, 400);
+//        card_round_animator(500, 0f, Utils.dpToPx(12));
+//
         ChangeBounds bounds = new ChangeBounds();
         bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
-//        finish();
+        finish();
     }
 
     private void headerAnim(String status) {

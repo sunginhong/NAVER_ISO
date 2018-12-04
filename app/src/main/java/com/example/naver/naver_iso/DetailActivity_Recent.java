@@ -72,16 +72,10 @@ public class DetailActivity_Recent extends AppCompatActivity implements View.OnC
         recent_Webview = (WebView)findViewById(R.id.recent_detailWebview);
 
         recent_Webview.getSettings().setJavaScriptEnabled(true);
-//        recent_Webview.loadUrl(recentUrl);
+        recent_Webview.loadUrl(recentUrl);
         recent_Webview.setWebViewClient(new DetailActivity_Recent.WebViewClientClass());
-        Utils.delayMin(0, new Utils.DelayCallback() {
-            @Override
-            public void afterDelay() {
-                Intent intent = getIntent();
-                String recentUrl = intent.getStringExtra("recentUrl");
-                recent_Webview.loadUrl(recentUrl); }
-        });
-
+        recent_Webview.setWebChromeClient(new FullscreenableChromeClient(this));
+      
         recent_imageview = (ImageView)findViewById(R.id.recent_imageview);
         Picasso.with(context).load(recentImg).into(recent_imageview);
 

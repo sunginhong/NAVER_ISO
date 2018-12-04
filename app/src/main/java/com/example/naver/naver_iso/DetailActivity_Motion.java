@@ -58,11 +58,6 @@ public class DetailActivity_Motion extends Activity implements View.OnClickListe
         motion_detailWebview = (WebView)findViewById(R.id.motion_detailWebview);
         motion_detailWebview.loadUrl(motionUrl);
         motion_detailWebview.setWebViewClient(new DetailActivity_Motion.WebViewClientClass());
-
-        motion_detailWebview.getSettings().setJavaScriptEnabled(true);
-        motion_detailWebview.getSettings().setUserAgentString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.36 (KHTML, like Gecko) Chrome/13.0.766.0 Safari/534.36");
-//        motion_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
-
         motion_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
 
 //        settingWebview(motion_detailWebview);

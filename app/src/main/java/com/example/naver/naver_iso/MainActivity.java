@@ -119,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
         main_nestedscrollview = (NestedScrollView) findViewById(R.id.main_nestedscrollview);
         main_appbar_contain = (FrameLayout) findViewById(R.id.main_appbar_contain);
 
-//        this.overridePendingTransition(R.anim.splash_activity_in, R.anim.splash_activity_out);
-
 //        toolbar_rl = (RelativeLayout) findViewById(R.id.toolbar_rl);
 //        collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
 //        collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);

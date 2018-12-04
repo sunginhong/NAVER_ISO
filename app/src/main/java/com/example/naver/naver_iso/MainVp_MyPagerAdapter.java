@@ -109,7 +109,7 @@ public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if (!MainVp_PagerInteraction.scrollBool){
+//        if (!MainVp_PagerInteraction.scrollBool){
             view_d = view;
             selectIndex = view_d.getId();
 
@@ -132,7 +132,7 @@ public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickL
 //                    view_d.getContext().startActivity(intent, options.toBundle());
 //                }
 //            });
-        }
+//        }
     }
 
 }

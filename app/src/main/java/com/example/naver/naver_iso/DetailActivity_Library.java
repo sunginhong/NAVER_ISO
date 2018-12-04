@@ -49,10 +49,9 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
         String libraryeTitle = intent.getStringExtra("libraryeTitle");
 
         library_detailWebview = (WebView)findViewById(R.id.library_detailWebview);
-
-        library_detailWebview.getSettings().setJavaScriptEnabled(true);
         library_detailWebview.loadUrl(libraryeUrl);
         library_detailWebview.setWebViewClient(new DetailActivity_Library.WebViewClientClass());
+        library_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
 
         settingWebview(library_detailWebview);
         Display display = getWindowManager().getDefaultDisplay();

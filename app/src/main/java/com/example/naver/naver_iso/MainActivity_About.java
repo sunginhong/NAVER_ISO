@@ -145,18 +145,20 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     }
 
     private void outAnim(){
-        aboutWebview.stopLoading();
-        headerAnim("OUT");
-//        Utils.AlphaAnim(aboutWebview, 1, 0, 200);
-        Utils.AlphaAnim(about_imageview, 0, 1, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
-        Utils.AlphaAnim(about_contain, 1, 0, 400);
-        card_round_animator(500, 0f, Utils.dpToPx(12));
-
-        ChangeBounds bounds = new ChangeBounds();
-        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
-        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
-        getWindow().setSharedElementEnterTransition(bounds);
-//        finish();
+        ActivityCompat.finishAfterTransition(this);
+        this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
+//        aboutWebview.stopLoading();
+//        headerAnim("OUT");
+////        Utils.AlphaAnim(aboutWebview, 1, 0, 200);
+//        Utils.AlphaAnim(about_imageview, 0, 1, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
+//        Utils.AlphaAnim(about_contain, 1, 0, 400);
+//        card_round_animator(500, 0f, Utils.dpToPx(12));
+//
+//        ChangeBounds bounds = new ChangeBounds();
+//        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
+//        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
+//        getWindow().setSharedElementEnterTransition(bounds);
+        finish();
     }
 
     private void headerAnim(String status) {
