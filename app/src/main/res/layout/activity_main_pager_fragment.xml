@@ -12,7 +12,7 @@
     android:dividerHeight="0.0px"
     android:scaleX="0.8"
     android:scaleY="0.8"
-    android:transitionName="@string/transition_maincard"
+    android:transitionName="@string/transition_pagecard"
     app:cardPreventCornerOverlap="false"
     card_view:cardCornerRadius="12dp"
     card_view:cardElevation="6dp"
@@ -36,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
+            android:transitionName="@string/transition_pagecard_image"
             android:scaleX="1.4"
             android:scaleY="1.4" />
 

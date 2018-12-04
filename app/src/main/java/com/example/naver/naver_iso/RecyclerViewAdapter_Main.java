@@ -207,10 +207,12 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 
     public static void reset() {
 //        Utils.TransAnim(view_d, 0, 0, mainCardHeight, 0, 400);
-        Utils.AlphaAnim(view_d, 0, 1, 400);
-        view_d.setAlpha(1);
-        mainclick = false;
+        if (mainclick){
+            Utils.AlphaAnim(view_d, 0, 1, 400);
+            view_d.setAlpha(1);
+            mainclick = false;
 
+        }
         Utils.delayMin(15, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {

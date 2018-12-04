@@ -1,12 +1,12 @@
 package com.example.naver.naver_iso;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pools;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +30,9 @@ public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickL
     private LayoutInflater mInflater;
     private Pools.SimplePool< View > mMyViewPool;
     private static final int MAX_POOL_SIZE = 10;
+
+    public View view_d;
+    private int selectIndex;
 
 
     public MainVp_MyPagerAdapter(Context c, ArrayList<String[]> list) {
@@ -81,6 +84,8 @@ public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickL
         MainActivity.bgImgArray[parseInt(detail[0])] = ImgView;
         MainActivity.main_vp_cardcotainArray[parseInt(detail[0])] = main_vp_cardcotain;
 
+        MainActivity.titleMainRecentArray[parseInt(detail[0])] = detail[1];
+        MainActivity.imgMainRecentArray[parseInt(detail[0])] = detail[3];
         MainActivity.urlMainRecentArray[parseInt(detail[0])] = detail[4];
 
         ((ViewPager)container).addView(view, position);
@@ -105,7 +110,28 @@ public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickL
     @Override
     public void onClick(View view) {
         if (!MainVp_PagerInteraction.scrollBool){
-            Log.v("ssssssss", ""+String.valueOf(MainActivity.urlMainRecentArray[view.getId()]));
+            view_d = view;
+            selectIndex = view_d.getId();
+
+            Intent intent = new Intent(view_d.getContext(), DetailActivity_Recent.class);
+            intent.putExtra("recentTitle" ,MainActivity.titleMainRecentArray[view_d.getId()]);
+            intent.putExtra("recentImg" ,MainActivity.imgMainRecentArray[view_d.getId()]);
+            intent.putExtra("recentUrl" ,MainActivity.urlMainRecentArray[view_d.getId()]);
+            view.getContext().startActivity(intent);
+
+//            Utils.delayMin(0, new Utils.DelayCallback() {
+//                @Override
+//                public void afterDelay() {
+//                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) c,
+//                            Pair.create((View)view_d, c.getString(R.string.transition_pagecard)) );
+//
+//                    Intent intent = new Intent(view_d.getContext(), DetailActivity_Recent.class);
+//                    intent.putExtra("recentTitle" ,MainActivity.titleMainRecentArray[view_d.getId()]);
+//                    intent.putExtra("recentImg" ,MainActivity.imgMainRecentArray[view_d.getId()]);
+//                    intent.putExtra("recentUrl" ,MainActivity.urlMainRecentArray[view_d.getId()]);
+//                    view_d.getContext().startActivity(intent, options.toBundle());
+//                }
+//            });
         }
     }
 

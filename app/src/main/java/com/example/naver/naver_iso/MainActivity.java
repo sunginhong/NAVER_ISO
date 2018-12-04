@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     static final ArrayList<String[]> valuesMain = new ArrayList<String[]>();
     static final ArrayList<Class<?>[]> callValMain = new ArrayList<Class<?>[]>();
 
-    ViewPager vp;
+    static ViewPager vp;
     private MainVp_PagerInteraction mainVp_PagerInteraction;
     static View pageNav_current;
     public static final int PAGE_ITEM_COUNT = 5;
@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
     static ImageView bgImgArray[] = new ImageView[PAGE_ITEM_COUNT];
     static CardView main_vp_cardcotainArray[] = new CardView[PAGE_ITEM_COUNT];
     static String urlMainRecentArray[] = new String[PAGE_ITEM_COUNT];
+    static String titleMainRecentArray[] = new String[PAGE_ITEM_COUNT];
+    static String imgMainRecentArray[] = new String[PAGE_ITEM_COUNT];
 
 //    static final ArrayList<String> mainJson_Arr0 = new ArrayList<String>();
     public String mainJson_Arr0[] = new String[ITEM_COUNT];

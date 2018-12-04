@@ -46,6 +46,9 @@
         <activity android:name=".DetailActivity_Motion"
             android:configChanges="screenSize|orientation">
         </activity>
+        <activity android:name=".DetailActivity_Recent"
+            android:configChanges="screenSize|orientation">
+        </activity>
 
 
     </application>

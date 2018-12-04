@@ -83,33 +83,19 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_imageview = (ImageView) findViewById(R.id.lib_imageview);
 
         // URL 설정.
-        values_LibMain.removeAll(values_LibMain);
-        if (values_LibMain.size() == 0) {
-            String url = "http://10.113.183.52/naverISO/json/data_library.json";
-            NetworkTask networkTask = new NetworkTask(url, null);
-            networkTask.execute();
-        }
+        Utils.delayMin(40, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                values_LibMain.removeAll(values_LibMain);
+                if (values_LibMain.size() == 0) {
+                    String url = "http://10.113.183.52/naverISO/json/data_library.json";
+                    NetworkTask networkTask = new NetworkTask(url, null);
+                    networkTask.execute();
+                }
+            }
+        });
 
         Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_00.png").into(lib_imageview);
-
-//        if(values_LibMain.size() == 0){
-//            values_LibMain.add(new String[]{"0", "2018 러시아 월드컵 특집", "2018 러시아 월드컵 특집", Integer.toString(R.drawable.lib_thumb__worldcup), "http://jjangik.com/?p=849"});
-//            values_LibMain.add(new String[]{"1", "6.13 지방선거", "제7회 전국동시지방선거 특집페이지 3차 투·개표 오픈", Integer.toString(R.drawable.lib_thumb__vote), "http://jjangik.com/?p=851"});
-//            values_LibMain.add(new String[]{"2", "모바일 이미지검색 뷰어 개편", "편리한 이미지 뷰어로 개편", Integer.toString(R.drawable.lib_thumb__mo_search), "http://jjangik.com/?p=853"});
-//            values_LibMain.add(new String[]{"3", "VLIVE APP 개편", "VLIVE의 인터랙션을 개편한 작업", Integer.toString(R.drawable.lib_thumb__vlive), "http://jjangik.com/?p=859"});
-//            values_LibMain.add(new String[]{"4", "Focusbot", "스마트폰의 방해에서 벗어날 수 있도록 도와주는 방해 금지 앱", Integer.toString(R.drawable.lib_thumb__focusbot), "http://jjangik.com/?p=857"});
-//        }
-//
-//        RecyclerViewAdapter_Lib adapter = new RecyclerViewAdapter_Lib(this, values_LibMain);
-//        RecyclerView libView =  (RecyclerView)findViewById(R.id.main_lib_recyclerview);
-//
-//        libView.setHasFixedSize(true);
-//        libView.setAdapter(adapter);
-//        LinearLayoutManager llm = new LinearLayoutManager(this);
-//        llm.setOrientation(LinearLayoutManager.VERTICAL);
-//        libView.setLayoutManager(llm);
-//        libView.setNestedScrollingEnabled(false);
-//        libView.setHasFixedSize(false);
 
         lib_toolbar_Backbtn.setOnClickListener(this);
 

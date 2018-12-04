@@ -68,7 +68,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         aboutWebview.getSettings().setJavaScriptEnabled(true);
 
         aboutWebview.setWebViewClient(new MainActivity_About.WebViewClientClass());
-        Utils.delayMin(30, new Utils.DelayCallback() {
+        Utils.delayMin(40, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {
                 aboutWebview.loadUrl("http://jjangik.com/");

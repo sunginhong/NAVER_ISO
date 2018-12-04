@@ -86,12 +86,17 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         motion_imageview = (ImageView) findViewById(R.id.motion_imageview);
 
         // URL 설정.
-        values_MotionMain.removeAll(values_MotionMain);
-        if(values_MotionMain.size() == 0) {
-            String url = "http://10.113.183.52/naverISO/json/data_motion.json";
-            NetworkTask networkTask = new NetworkTask(url, null);
-            networkTask.execute();
-        }
+        Utils.delayMin(40, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                values_MotionMain.removeAll(values_MotionMain);
+                if(values_MotionMain.size() == 0) {
+                    String url = "http://10.113.183.52/naverISO/json/data_motion.json";
+                    NetworkTask networkTask = new NetworkTask(url, null);
+                    networkTask.execute();
+                }
+            }
+        });
 
         Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_01.png").into(motion_imageview);
 
