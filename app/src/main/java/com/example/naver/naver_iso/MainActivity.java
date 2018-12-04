@@ -38,8 +38,8 @@ import java.util.ArrayList;
  */
 
 public class MainActivity extends AppCompatActivity {
-    static ListView lv;
-    static Context context;
+    public ListView lv;
+    public Context context;
     AssetManager assetManager;
     Toolbar toolbar;
     AppBarLayout main_appbar;
@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
     private int scrolledDistance = 0;
     private boolean appbarVisible = false;
 
+    private String scrollDirection = "none";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -114,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         main_nestedscrollview = (NestedScrollView) findViewById(R.id.main_nestedscrollview);
         main_appbar_contain = (FrameLayout) findViewById(R.id.main_appbar_contain);
-        HIDE_THRESHOLD = Utils.dpToPx(56);
 
 //        this.overridePendingTransition(R.anim.splash_activity_in, R.anim.splash_activity_out);
 
@@ -161,39 +162,30 @@ public class MainActivity extends AppCompatActivity {
 //                toolbarDistance = main_appbar.getHeight() - toolbar.getHeight();
 //                collapsing_toolbar_titlell_TransX = collapsing_toolbar_titlell.getTranslationX() + collapsing_toolbar_line.getWidth();
                 getSet = true;
+                HIDE_THRESHOLD = main_appbar_contain.getHeight();
             }
         });
 
-//        main_appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-//            int scrollY;
-//
-//            @Override
-//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//                scrollY = -verticalOffset;
-//                if(scrollY<=toolbarDistance && getSet){
-////                    Utils.ModulateAlphaAnim(collapsing_toolbar_title, scrollY, 0, toolbarDistance, 1, 0);
-////                    Utils.ModulateAlphaAnim(mainHeaderTrans, scrollY, 0, toolbarDistance/2, 0, 1);
-////                    Utils.ModulateAlphaAnim(collapsing_toolbar_line, scrollY, 0, toolbarDistance/2, 1, 0);
-//                }
-//            }
-//        });
 
         main_nestedscrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 scrolledDistance = scrollY;
                 if (scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
-                    ScrollHederAnim.HeaderShow(main_appbar_contain, Utils.dpToPx(56), Utils.dpToPx(0));
+                    ScrollHederAnim.HeaderShow(main_appbar_contain, main_appbar_contain.getHeight(), Utils.dpToPx(0), 300);
                     appbarVisible = false;
                     scrolledDistance = 0;
                 } else if (scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
-                    ScrollHederAnim.HeaderHide(main_appbar_contain, Utils.dpToPx(0), Utils.dpToPx(56));
+                    ScrollHederAnim.HeaderHide(main_appbar_contain, Utils.dpToPx(0), main_appbar_contain.getHeight(), 300);
                     appbarVisible = true;
                     scrolledDistance = 0;
                 }
                 if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
                     scrolledDistance += scrollY;
                 }
+
+                if ((scrollY > oldScrollY) && (scrollY - oldScrollY) > 10) { scrollDirection = "DOWN"; }
+                else if((scrollY < oldScrollY) && (oldScrollY - scrollY) > 10) { scrollDirection = "UP"; }
             }
         });
 

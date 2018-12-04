@@ -57,6 +57,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
     private int HIDE_THRESHOLD = 20;
     private int scrolledDistance = 0;
     private boolean appbarVisible = false;
+    private String scrollDirection = "none";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,6 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
 
         motion_contain_card = (CardView) findViewById(R.id.motion_contain_card);
         motion_imageview = (ImageView) findViewById(R.id.motion_imageview);
-        HIDE_THRESHOLD = Utils.dpToPx(56);
 
         // URL 설정.
         values_MotionMain.removeAll(values_MotionMain);
@@ -100,6 +100,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
             public void afterDelay() {
                 motion_toolbarDistance = motion_appbar.getHeight() - motion_toolbar.getHeight();
                 motion_getSet = true;
+                HIDE_THRESHOLD = motion_appbar.getHeight();
             }
         });
 
@@ -115,19 +116,24 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         motion_nestedscrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//                scrolledDistance = scrollY;
-//                if (scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
-//                    ScrollHederAnim.HeaderHide(motion_appbar, Utils.dpToPx(-56), Utils.dpToPx(0));
-//                    appbarVisible = false;
-//                    scrolledDistance = 0;
-//                } else if (scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
-//                    ScrollHederAnim.HeaderShow(motion_appbar, Utils.dpToPx(0), Utils.dpToPx(-56));
-//                    appbarVisible = true;
-//                    scrolledDistance = 0;
-//                }
-//                if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
-//                    scrolledDistance += scrollY;
-//                }
+                scrolledDistance = scrollY;
+                if ((scrollY > oldScrollY) && (scrollY - oldScrollY) > 10) { scrollDirection = "UP"; }
+                else if((scrollY < oldScrollY) && (oldScrollY - scrollY) > 10) { scrollDirection = "DOWN"; }
+
+                if (scrollDirection == "DOWN" && scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
+                    ScrollHederAnim.HeaderHide(motion_appbar, -motion_appbar.getHeight(), Utils.dpToPx(0), 300);
+                    appbarVisible = false;
+                    scrolledDistance = 0;
+                } else if (scrollDirection == "UP" && scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
+                    ScrollHederAnim.HeaderShow(motion_appbar, Utils.dpToPx(0), -motion_appbar.getHeight(), 300);
+                    appbarVisible = true;
+                    scrolledDistance = 0;
+                }
+                if (scrollDirection == "DOWN" && scrolledDistance > HIDE_THRESHOLD && appbarVisible){
+                    ScrollHederAnim.HeaderHide(motion_appbar, -motion_appbar.getHeight(), Utils.dpToPx(0), 300);
+                    appbarVisible = false;
+                    scrolledDistance = 0;
+                }
             }
         });
 
@@ -217,7 +223,9 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        outAnim();
+        if (!appbarVisible){
+            outAnim();
+        }
     }
 
     private void outAnim(){

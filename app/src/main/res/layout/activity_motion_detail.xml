@@ -14,8 +14,8 @@
 
     </WebView>
 
-    <android.support.design.widget.CollapsingToolbarLayout
-        android:id="@+id/collapsing_motion_toolbar"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/motion_Detail_appbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         app:contentScrim="?attr/colorPrimary"
@@ -24,7 +24,8 @@
         app:expandedTitleMarginEnd="64dp"
         app:expandedTitleMarginStart="30dp"
         app:expandedTitleMarginTop="0dp"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+        app:elevation="0dp">
 
         <RelativeLayout
             android:id="@+id/motion_detail_toolbar_rl"
@@ -96,7 +97,7 @@
 
         </RelativeLayout>
 
-    </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
 
 </FrameLayout>

@@ -10,11 +10,11 @@ public class ScrollHederAnim {
 
     }
 
-    public static void HeaderShow(View item, int HeaderPosY1, int HeaderPosY2) {
-        Utils.TransAnim(item, 0, 0, HeaderPosY1, HeaderPosY2, 300 );
+    public static void HeaderShow(View item, int HeaderPosY1, int HeaderPosY2, int duration) {
+        Utils.TransAnim(item, 0, 0, HeaderPosY1, HeaderPosY2, duration );
     }
-    public static void HeaderHide(View item, int HeaderPosY1, int HeaderPosY2) {
-        Utils.TransAnim(item, 0, 0, HeaderPosY1, HeaderPosY2, 300 );
+    public static void HeaderHide(View item, int HeaderPosY1, int HeaderPosY2, int duration) {
+        Utils.TransAnim(item, 0, 0, HeaderPosY1, HeaderPosY2, duration );
     }
 }
 

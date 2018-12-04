@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -27,6 +27,13 @@ public class DetailActivity_Motion extends Activity implements View.OnClickListe
     WebView motion_detailWebview;
     int deviceRotate;
 
+    private AppBarLayout motion_Detail_appbar;
+
+    private int HIDE_THRESHOLD = 20;
+    private int scrolledDistance = 0;
+    private boolean appbarVisible = false;
+    private String scrollDirection = "none";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -39,6 +46,8 @@ public class DetailActivity_Motion extends Activity implements View.OnClickListe
 
         motion_detail_toolbar_backbtn = (FrameLayout)findViewById(R.id.motion_detail_toolbar_backbtn);
         motion_detail_toolbar_backbtn.setOnClickListener(this);
+
+        motion_Detail_appbar = (AppBarLayout)findViewById(R.id.motion_Detail_appbar);
 
         Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
 
@@ -65,8 +74,32 @@ public class DetailActivity_Motion extends Activity implements View.OnClickListe
         height = size.y;
         motion_detail_toolbar_title = (TextView)findViewById(R.id.motion_detail_toolbar_title);
         motion_detail_toolbar_title.setText(motionTitle);
-        Log.v("ssssssss", ""+String.valueOf("C"));
-        }
+
+        motion_detailWebview.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                scrolledDistance = scrollY;
+                if ((scrollY > oldScrollY) && (scrollY - oldScrollY) > 10) { scrollDirection = "UP"; }
+                else if((scrollY < oldScrollY) && (oldScrollY - scrollY) > 10) { scrollDirection = "DOWN"; }
+
+                if (scrollDirection == "DOWN" && scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
+                    ScrollHederAnim.HeaderHide(motion_Detail_appbar, -motion_Detail_appbar.getHeight(), Utils.dpToPx(0), 300);
+                    appbarVisible = false;
+                    scrolledDistance = 0;
+                } else if (scrollDirection == "UP" && scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
+                    ScrollHederAnim.HeaderShow(motion_Detail_appbar, Utils.dpToPx(0), -motion_Detail_appbar.getHeight(), 300);
+                    appbarVisible = true;
+                    scrolledDistance = 0;
+                }
+                if (scrollDirection == "DOWN" && scrolledDistance > HIDE_THRESHOLD && appbarVisible){
+                    ScrollHederAnim.HeaderHide(motion_Detail_appbar, -motion_Detail_appbar.getHeight(), Utils.dpToPx(0), 300);
+                    appbarVisible = false;
+                    scrolledDistance = 0;
+                }
+            }
+        });
+
+    }
 
     private class WebViewClientClass extends WebViewClient {
         @Override
@@ -111,9 +144,11 @@ public class DetailActivity_Motion extends Activity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        motion_detailWebview.stopLoading();
-        ActivityCompat.finishAfterTransition(this);
-        this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
+        if (!appbarVisible){
+            motion_detailWebview.stopLoading();
+            ActivityCompat.finishAfterTransition(this);
+            this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
+        }
     }
 
 
