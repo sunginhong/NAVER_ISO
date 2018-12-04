@@ -219,11 +219,18 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
     @Override
     public void onBackPressed() {
         outAnim();
+//        ActivityCompat.finishAfterTransition(this);
+//        this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
     }
 
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     @Override
@@ -234,8 +241,9 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
     }
 
     private void outAnim(){
-        ActivityCompat.finishAfterTransition(this);
-
+        finish();
+        this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
+//        ActivityCompat.finishAfterTransition(this);
 ////        values_MotionMain.removeAll(values_MotionMain);
 //        headerAnim("OUT");
 ////        Utils.AlphaAnim(motion_nestedscrollview, 1, 0, 200);
@@ -243,11 +251,10 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
 //        Utils.AlphaAnim(motion_contain, 1, 0, 400);
 //        card_round_animator(500, 0f, Utils.dpToPx(12));
 //
-        ChangeBounds bounds = new ChangeBounds();
-        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
-        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
-        getWindow().setSharedElementEnterTransition(bounds);
-        finish();
+//        ChangeBounds bounds = new ChangeBounds();
+//        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
+//        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
+//        getWindow().setSharedElementEnterTransition(bounds);
     }
 
     private void headerAnim(String status) {

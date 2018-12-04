@@ -136,7 +136,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
+//        finish();
     }
 
     @Override
@@ -145,8 +145,9 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     }
 
     private void outAnim(){
-        ActivityCompat.finishAfterTransition(this);
+        finish();
         this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
+//        ActivityCompat.finishAfterTransition(this);
 //        aboutWebview.stopLoading();
 //        headerAnim("OUT");
 ////        Utils.AlphaAnim(aboutWebview, 1, 0, 200);
@@ -158,7 +159,6 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
 //        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
 //        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
 //        getWindow().setSharedElementEnterTransition(bounds);
-        finish();
     }
 
     private void headerAnim(String status) {

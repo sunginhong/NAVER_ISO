@@ -234,6 +234,12 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
     public void onClick(View view) {
         if (!appbarVisible){
             outAnim();
@@ -241,8 +247,9 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     }
 
     private void outAnim(){
-        ActivityCompat.finishAfterTransition(this);
-
+        finish();
+        this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
+//        ActivityCompat.finishAfterTransition(this);
 ////        values_LibMain.removeAll(values_LibMain);
 //        headerAnim("OUT");
 ////        Utils.AlphaAnim(lib_nestedscrollview, 1, 0, 200);
@@ -250,11 +257,10 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 //        Utils.AlphaAnim(lib_contain, 1, 0, 400);
 //        card_round_animator(500, 0f, Utils.dpToPx(12));
 //
-        ChangeBounds bounds = new ChangeBounds();
-        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
-        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
-        getWindow().setSharedElementEnterTransition(bounds);
-        finish();
+//        ChangeBounds bounds = new ChangeBounds();
+//        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
+//        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
+//        getWindow().setSharedElementEnterTransition(bounds);
     }
 
     private void headerAnim(String status) {
