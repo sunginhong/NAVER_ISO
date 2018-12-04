@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
-        this.overridePendingTransition(R.anim.splash_activity_in, R.anim.splash_activity_out);
+//        this.overridePendingTransition(R.anim.splash_activity_in, R.anim.splash_activity_out);
 
 //        toolbar_rl = (RelativeLayout) findViewById(R.id.toolbar_rl);
 //        collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
