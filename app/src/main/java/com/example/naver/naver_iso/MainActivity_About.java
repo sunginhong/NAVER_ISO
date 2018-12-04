@@ -147,6 +147,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     private void outAnim(){
         finish();
         this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
+        
 //        ActivityCompat.finishAfterTransition(this);
 //        aboutWebview.stopLoading();
 //        headerAnim("OUT");
