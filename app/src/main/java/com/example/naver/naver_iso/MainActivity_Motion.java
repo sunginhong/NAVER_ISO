@@ -54,6 +54,10 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
     boolean motion_getSet = false;
     int motion_toolbarDistance;
 
+    private int HIDE_THRESHOLD = 20;
+    private int scrolledDistance = 0;
+    private boolean appbarVisible = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -79,6 +83,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
 
         motion_contain_card = (CardView) findViewById(R.id.motion_contain_card);
         motion_imageview = (ImageView) findViewById(R.id.motion_imageview);
+        HIDE_THRESHOLD = Utils.dpToPx(56);
 
         // URL 설정.
         values_MotionMain.removeAll(values_MotionMain);
@@ -110,6 +115,19 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         motion_nestedscrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                scrolledDistance = scrollY;
+//                if (scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
+//                    ScrollHederAnim.HeaderHide(motion_appbar, Utils.dpToPx(-56), Utils.dpToPx(0));
+//                    appbarVisible = false;
+//                    scrolledDistance = 0;
+//                } else if (scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
+//                    ScrollHederAnim.HeaderShow(motion_appbar, Utils.dpToPx(0), Utils.dpToPx(-56));
+//                    appbarVisible = true;
+//                    scrolledDistance = 0;
+//                }
+//                if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
+//                    scrolledDistance += scrollY;
+//                }
             }
         });
 

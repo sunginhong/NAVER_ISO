@@ -53,6 +53,10 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     boolean scrollHeader = false;
     int lib_toolbarDistance;
 
+    private int HIDE_THRESHOLD = 20;
+    private int scrolledDistance = 0;
+    private boolean appbarVisible = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -76,6 +80,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_toolbar_Backbtn = (FrameLayout) findViewById(R.id.lib_toolbar_backbtn);
         lib_contain_card = (CardView) findViewById(R.id.lib_contain_card);
         lib_imageview = (ImageView) findViewById(R.id.lib_imageview);
+        HIDE_THRESHOLD = Utils.dpToPx(56);
 
         // URL 설정.
         values_LibMain.removeAll(values_LibMain);
@@ -131,18 +136,18 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_nestedscrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//                if (scrollY > 0 ){
-//                    if (scrollY > oldScrollY){
-//                        if (!scrollHeader){
-//                            Utils.TransAnim(lib_appbar, 0, 0, 0, -lib_appbar.getHeight(), 400);
-//                            scrollHeader = true;
-//                        }
-//                    } else {
-//                        if (scrollHeader){
-//                            Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), 0, 400);
-//                            scrollHeader = false;
-//                        }
-//                    }
+//                scrolledDistance = scrollY;
+//                if (scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
+//                    ScrollHederAnim.HeaderHide(lib_appbar, Utils.dpToPx(-56), Utils.dpToPx(0));
+//                    appbarVisible = false;
+//                    scrolledDistance = 0;
+//                } else if (scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
+//                    ScrollHederAnim.HeaderShow(lib_appbar, Utils.dpToPx(0), Utils.dpToPx(-56));
+//                    appbarVisible = true;
+//                    scrolledDistance = 0;
+//                }
+//                if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
+//                    scrolledDistance += scrollY;
 //                }
             }
         });

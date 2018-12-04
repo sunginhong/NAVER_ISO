@@ -32,8 +32,8 @@
 
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:background="@color/mainHeaderColor">
+                        android:layout_height="28dp"
+                        android:background="@color/mainPagerBgColor">
 
                     </FrameLayout>
 
@@ -41,8 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="375dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@color/mainPagerBgColor"
-                        android:paddingTop="0dp">
+                        android:background="@color/mainPagerBgColor">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -55,7 +54,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="25dp"
                                 android:layout_marginTop="19dp"
-                                android:layout_marginBottom="15dp"
+                                android:layout_marginBottom="0dp"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -140,5 +139,93 @@
 
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/main_appbar_contain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:translationY="-56dp">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/main_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:clipChildren="true"
+            android:gravity="top">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleGravity="center_vertical"
+                app:expandedTitleMarginBottom="0dp"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="30dp"
+                app:expandedTitleMarginTop="0dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/detailHeaderColor"
+                    app:titleMarginStart="15dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </RelativeLayout>
+                </android.support.v7.widget.Toolbar>
+
+                <RelativeLayout
+                    android:id="@+id/motion_toolbar_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@color/detailHeaderColor"
+                    android:gravity="center_vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="0dp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="center"
+                            android:inputType="textMultiLine"
+                            android:singleLine="true"
+                            android:text="ISO WORKS."
+                            android:textAlignment="textStart"
+                            android:textColor="@color/detailHeaderTitleColor"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="-1dp"
+                        android:layout_weight="1"
+                        android:alpha="0.1"
+                        android:background="@color/black" />
+
+                </RelativeLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+    </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

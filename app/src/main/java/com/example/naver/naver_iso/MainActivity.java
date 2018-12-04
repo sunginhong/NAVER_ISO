@@ -91,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
     public static String URL_THUMB_IMG = "http://10.113.183.52/naverISO/json/thumbImg/";
     public static String URL_LINK = "http://jjangik.com/";
 
+    public FrameLayout main_appbar_contain;
+    private int HIDE_THRESHOLD = 20;
+    private int scrolledDistance = 0;
+    private boolean appbarVisible = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -107,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
 
 //        toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
+        main_nestedscrollview = (NestedScrollView) findViewById(R.id.main_nestedscrollview);
+        main_appbar_contain = (FrameLayout) findViewById(R.id.main_appbar_contain);
+        HIDE_THRESHOLD = Utils.dpToPx(56);
+
 //        this.overridePendingTransition(R.anim.splash_activity_in, R.anim.splash_activity_out);
 
 //        toolbar_rl = (RelativeLayout) findViewById(R.id.toolbar_rl);
@@ -116,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 //        collapsing_toolbar_line = (View) findViewById(R.id.collapsing_toolbar_line);
 
 //        main_appbar = (AppBarLayout) findViewById(R.id.main_appbar);
-        main_nestedscrollview = (NestedScrollView) findViewById(R.id.main_nestedscrollview);
+
 //        collapsing_toolbar_titlell = (LinearLayout) findViewById(R.id.collapsing_toolbar_titlell);
 //        collapsing_toolbar_title = (TextView) findViewById(R.id.collapsing_toolbar_title);
 //        collapsing_toolbar_subTitle = (TextView) findViewById(R.id.collapsing_toolbar_subTitle);
@@ -169,11 +178,22 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-
         main_nestedscrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-
+                scrolledDistance = scrollY;
+                if (scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
+                    ScrollHederAnim.HeaderShow(main_appbar_contain, Utils.dpToPx(56), Utils.dpToPx(0));
+                    appbarVisible = false;
+                    scrolledDistance = 0;
+                } else if (scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
+                    ScrollHederAnim.HeaderHide(main_appbar_contain, Utils.dpToPx(0), Utils.dpToPx(56));
+                    appbarVisible = true;
+                    scrolledDistance = 0;
+                }
+                if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
+                    scrolledDistance += scrollY;
+                }
             }
         });
 
@@ -183,7 +203,9 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.NetworkTask networkTask = new MainActivity.NetworkTask(url, null);
             networkTask.execute();
         }
+
     }
+
 
     @Override
     protected void onResume() {
@@ -266,8 +288,8 @@ public class MainActivity extends AppCompatActivity {
             vp.setAdapter(mAdapter);
             vp.setClipToPadding(false);
             vp.setOffscreenPageLimit(PAGE_ITEM_COUNT);
-            vp.setPadding(vp.getWidth()/15, 0, vp.getWidth()/15, vp.getWidth()/30);
-            vp.setPageMargin(-80);
+            vp.setPadding(vp.getWidth()/15, 0, vp.getWidth()/15, vp.getWidth()/20);
+            vp.setPageMargin(-vp.getWidth()/12);
             vp.setCurrentItem(0);
             pageNav_current = (View)findViewById(R.id.mainvp_pageNav_current);
             mainVp_PagerInteraction = new MainVp_PagerInteraction(vp);
