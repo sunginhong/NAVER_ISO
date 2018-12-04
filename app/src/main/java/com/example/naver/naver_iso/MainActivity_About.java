@@ -1,6 +1,7 @@
 package com.example.naver.naver_iso;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
@@ -22,6 +23,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class MainActivity_About extends AppCompatActivity implements View.OnClickListener{
     int width;
     int height;
@@ -34,6 +37,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     CardView about_contain_card;
     ImageView about_imageview;
     float cardRound_result;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,8 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         collapsing_about_toolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_about_toolbar);
         about_toolbar_backbtn = (FrameLayout)findViewById(R.id.about_toolbar_backbtn);
         about_toolbar_backbtn.setOnClickListener(this);
+
+        Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_02.png").into(about_imageview);
 
         Intent intent = getIntent();
 
@@ -142,6 +148,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         aboutWebview.stopLoading();
         headerAnim("OUT");
 //        Utils.AlphaAnim(aboutWebview, 1, 0, 200);
+        Utils.AlphaAnim(about_imageview, 0, 1, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
         Utils.AlphaAnim(about_contain, 1, 0, 400);
         card_round_animator(500, 0f, Utils.dpToPx(12));
 

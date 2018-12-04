@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
     public String mainJson_Arr4[] = new String[ITEM_COUNT];
 
     public static String json = null;
+    public static String URL_THUMB_IMG = "http://10.113.183.52/naverISO/json/thumbImg/";
+    public static String URL_LINK = "http://jjangik.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -239,12 +241,12 @@ public class MainActivity extends AppCompatActivity {
                 String thumbImg = jObject.getString("img");
                 String url = jObject.getString("url");
 
-                values_MainActivity.add(new String[]{num, title, subtitle, "http://10.113.183.52/naverISO/json/thumbImg/"+thumbImg, url});
+                values_MainActivity.add(new String[]{num, title, subtitle, URL_THUMB_IMG+thumbImg, url});
                 mainJson_Arr0[i] = num;
                 mainJson_Arr1[i] = title;
                 mainJson_Arr2[i] = subtitle;
-                mainJson_Arr3[i] = "http://10.113.183.52/naverISO/json/thumbImg/"+thumbImg;
-                mainJson_Arr4[i] = "http://jjangik.com/"+url;
+                mainJson_Arr3[i] = URL_THUMB_IMG+thumbImg;
+                mainJson_Arr4[i] = URL_LINK+url;
             }
         } catch (JSONException e) {
             e.printStackTrace();

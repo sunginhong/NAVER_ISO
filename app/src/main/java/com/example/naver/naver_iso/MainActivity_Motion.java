@@ -22,6 +22,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.tsengvn.typekit.TypekitContextWrapper;
 
 import org.json.JSONArray;
@@ -47,6 +48,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
     FrameLayout motion_toolbar_Backbtn;
     CardView motion_contain_card;
     ImageView motion_imageview;
+    Context context;
 
     float cardRound_result;
     boolean motion_getSet = false;
@@ -85,6 +87,8 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
             NetworkTask networkTask = new NetworkTask(url, null);
             networkTask.execute();
         }
+
+        Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_01.png").into(motion_imageview);
 
         Utils.delayMin(1, new Utils.DelayCallback() {
             @Override
@@ -161,7 +165,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
                 String thumbImg = jObject.getString("img");
                 String url = jObject.getString("url");
 
-                values_MotionMain.add(new String[]{num, title, subtitle, "http://10.113.183.52/naverISO/json/thumbImg/"+thumbImg, "http://jjangik.com/"+url});
+                values_MotionMain.add(new String[]{num, title, subtitle, MainActivity.URL_THUMB_IMG+thumbImg, MainActivity.URL_LINK+url});
 
                 RecyclerViewAdapter_Motion adapter = new RecyclerViewAdapter_Motion(this, values_MotionMain);
                 RecyclerView motion_View =  (RecyclerView)findViewById(R.id.main_motion_recyclerview);
@@ -201,6 +205,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
     private void outAnim(){
         headerAnim("OUT");
 //        Utils.AlphaAnim(motion_nestedscrollview, 1, 0, 200);
+        Utils.AlphaAnim(motion_imageview, 0, 1, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
         Utils.AlphaAnim(motion_contain, 1, 0, 400);
         card_round_animator(500, 0f, Utils.dpToPx(12));
 

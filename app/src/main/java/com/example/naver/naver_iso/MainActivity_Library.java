@@ -22,6 +22,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.tsengvn.typekit.TypekitContextWrapper;
 
 import org.json.JSONArray;
@@ -45,6 +46,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     FrameLayout lib_toolbar_Backbtn;
     CardView lib_contain_card;
     ImageView lib_imageview;
+    Context context;
 
     float cardRound_result;
     boolean lib_getSet = false;
@@ -82,6 +84,8 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
             NetworkTask networkTask = new NetworkTask(url, null);
             networkTask.execute();
         }
+
+        Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_00.png").into(lib_imageview);
 
 //        if(values_LibMain.size() == 0){
 //            values_LibMain.add(new String[]{"0", "2018 러시아 월드컵 특집", "2018 러시아 월드컵 특집", Integer.toString(R.drawable.lib_thumb__worldcup), "http://jjangik.com/?p=849"});
@@ -195,7 +199,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                 String thumbImg = jObject.getString("img");
                 String url = jObject.getString("url");
 
-                values_LibMain.add(new String[]{num, title, subtitle, "http://10.113.183.52/naverISO/json/thumbImg/"+thumbImg, "http://jjangik.com/"+url});
+                values_LibMain.add(new String[]{num, title, subtitle, MainActivity.URL_THUMB_IMG+thumbImg, MainActivity.URL_LINK+url});
 
                 RecyclerViewAdapter_Lib adapter = new RecyclerViewAdapter_Lib(this, values_LibMain);
                 RecyclerView libView = (RecyclerView) findViewById(R.id.main_lib_recyclerview);
@@ -237,6 +241,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     private void outAnim(){
         headerAnim("OUT");
 //        Utils.AlphaAnim(lib_nestedscrollview, 1, 0, 200);
+        Utils.AlphaAnim(lib_imageview, 0, 1, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
         Utils.AlphaAnim(lib_contain, 1, 0, 400);
         card_round_animator(500, 0f, Utils.dpToPx(12));
 
