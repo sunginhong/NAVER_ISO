@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     boolean getSet = false;
 
-    public static final String CONNECTION_CONFIRM_CLIENT_URL = "http://clients3.google.com/generate_204";
+    public static final String CONNECTION_CONFIRM_CLIENT_URL = "http://naver.com";
     public static final String WIFE_STATE = "WIFE";
     public static final String MOBILE_STATE = "MOBILE";
     public static final String NONE_STATE = "NONE";
