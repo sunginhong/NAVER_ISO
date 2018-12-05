@@ -178,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+
             values_MainActivity.removeAll(values_MainActivity);
             if(values_MainActivity.size() == 0) {
                 String url = "http://10.113.183.52/naverISO/json/data_main.json";
