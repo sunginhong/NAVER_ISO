@@ -2,6 +2,7 @@ package com.example.naver.naver_iso;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -35,7 +36,7 @@ public class ViewMainCustom extends View {
                     case MotionEvent.ACTION_MOVE:
                         dragMove_point_x = event.getX()*1.0f - dragStart_point_x;
                         dragMove_point_y = event.getY()*1.0f - dragStart_point_y;
-//                        Log.v("ssssssss", ""+String.valueOf(dragMove_point_y));
+                        Log.v("ssssssss", ""+String.valueOf(dragMove_point_y));
                         break;
                 }
                 return false;
