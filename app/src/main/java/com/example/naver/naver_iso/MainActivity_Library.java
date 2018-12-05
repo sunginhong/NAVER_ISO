@@ -77,7 +77,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_toolbar = (Toolbar) findViewById(R.id.lib_toolbar);
         lib_appbar = (AppBarLayout) findViewById(R.id.lib_appbar);
         lib_nestedscrollview = (NestedScrollView) findViewById(R.id.lib_nestedscrollview);
-        lib_nestedscrollview.setSmoothScrollingEnabled(true);
+//        lib_nestedscrollview.setSmoothScrollingEnabled(true);
         lib_toolbar_Title = (TextView) findViewById(R.id.lib_toolbar_title);
         lib_toolbar_Backbtn = (FrameLayout) findViewById(R.id.lib_toolbar_backbtn);
         lib_contain_card = (CardView) findViewById(R.id.lib_contain_card);

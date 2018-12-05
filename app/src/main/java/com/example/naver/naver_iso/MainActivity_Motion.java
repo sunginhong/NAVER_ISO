@@ -77,7 +77,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         motion_toolbar = (Toolbar) findViewById(R.id.motion_toolbar);
         motion_appbar = (AppBarLayout) findViewById(R.id.motion_appbar);
         motion_nestedscrollview = (NestedScrollView) findViewById(R.id.motion_nestedscrollview);
-        motion_nestedscrollview.setSmoothScrollingEnabled(true);
+//        motion_nestedscrollview.setSmoothScrollingEnabled(true);
         motion_toolbar_title = (TextView) findViewById(R.id.motion_toolbar_title);
         motion_toolbar_Backbtn = (FrameLayout) findViewById(R.id.motion_toolbar_backbtn);
 
