@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     AppBarLayout main_appbar;
     NestedScrollView main_nestedscrollview;
+    CoordinatorLayout main_contain;
 
     boolean getSet = false;
 
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     static String titleMainRecentArray[] = new String[PAGE_ITEM_COUNT];
     static String imgMainRecentArray[] = new String[PAGE_ITEM_COUNT];
 
-//    static final ArrayList<String> mainJson_Arr0 = new ArrayList<String>();
+    //    static final ArrayList<String> mainJson_Arr0 = new ArrayList<String>();
     public String mainJson_Arr0[] = new String[ITEM_COUNT];
     public String mainJson_Arr1[] = new String[ITEM_COUNT];
     public String mainJson_Arr2[] = new String[ITEM_COUNT];
@@ -117,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 
+        main_contain = (CoordinatorLayout) findViewById(R.id.main_contain);
+
         if (newtwork){
             setSupportActionBar(toolbar);
             main_nestedscrollview = (NestedScrollView) findViewById(R.id.main_nestedscrollview);
@@ -127,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
                 callValMain.add(new Class<?>[]{MainActivity_Library.class});
                 valuesMain.add(new String[]{"1", "Motion.", "MotionGraphic Library", String.valueOf("#0055F8")});
                 callValMain.add(new Class<?>[]{MainActivity_Motion.class});
-    //            valuesMain.add(new String[]{"2", "AndDev.", "Android Prototype Library", String.valueOf("#ffffff")});
-    //            callValMain.add(new Class<?>[]{MainActivity_AndDev_Private.class});
+                //            valuesMain.add(new String[]{"2", "AndDev.", "Android Prototype Library", String.valueOf("#ffffff")});
+                //            callValMain.add(new Class<?>[]{MainActivity_AndDev_Private.class});
                 valuesMain.add(new String[]{"2", "About us.", "Naver Interactive Studio", String.valueOf("#0055F8")});
                 callValMain.add(new Class<?>[]{MainActivity_About.class});
             }
@@ -151,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
                     HIDE_THRESHOLD = main_appbar_contain.getHeight();
                 }
             });
-
 
             main_nestedscrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
                 @Override
@@ -183,7 +186,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 
     @Override
     protected void onResume() {
