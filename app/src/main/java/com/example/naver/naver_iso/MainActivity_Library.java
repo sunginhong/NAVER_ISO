@@ -82,6 +82,8 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_contain_card = (CardView) findViewById(R.id.lib_contain_card);
         lib_imageview = (ImageView) findViewById(R.id.lib_imageview);
 
+//        setActivityBackgroundColor(R.color.detailBgColor_dimmed2);
+
         // URL 설정.
         Utils.delayMin(0, new Utils.DelayCallback() {
             @Override
@@ -149,7 +151,13 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
 
         lib_appbar.bringToFront();
-        lib_contain_card.setRadius(0.0f);
+        lib_contain_card.setRadius(Utils.dpToPx(12));
+        Utils.delayMin(20, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                lib_contain_card.setRadius(Utils.dpToPx(0));
+            }
+        });
         headerAnim("IN");
         Utils.TransAnim(lib_appbar, 0, 0, -lib_appbar.getHeight(), 0, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
         Utils.AlphaAnim(lib_contain, 0, 0, 0);
@@ -224,8 +232,6 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     @Override
     public void onBackPressed() {
         outAnim();
-//        ActivityCompat.finishAfterTransition(this);
-//        this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
     }
 
     @Override
@@ -294,6 +300,11 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
             }
         });
         animator.start();
+    }
+
+    private void setActivityBackgroundColor(int color) {
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(color);
     }
 
 }

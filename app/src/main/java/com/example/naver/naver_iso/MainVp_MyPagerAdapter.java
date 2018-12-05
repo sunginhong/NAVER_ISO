@@ -1,5 +1,7 @@
 package com.example.naver.naver_iso;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -11,9 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import android.util.Pair;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -71,6 +74,7 @@ public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickL
         View rootView = inflater.inflate(R.layout.activity_main_pager_fragment, container, false);
 
         RelativeLayout vpLayout = (RelativeLayout) view.findViewById(R.id.main_vp_vpLayout);
+        LinearLayout main_vp_textll = (LinearLayout) view.findViewById(R.id.main_vp_textll);
 
         CardView main_vp_cardcotain = (CardView) view.findViewById(R.id.main_vp_cardcotain);
         TextView titleTv = (TextView) view.findViewById(R.id.main_vp_titleTv);
@@ -87,11 +91,11 @@ public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickL
         MainActivity.titleMainRecentArray[parseInt(detail[0])] = detail[1];
         MainActivity.imgMainRecentArray[parseInt(detail[0])] = detail[3];
         MainActivity.urlMainRecentArray[parseInt(detail[0])] = detail[4];
+        MainActivity.main_vp_textllArray[parseInt(detail[0])] = main_vp_textll;
 
         ((ViewPager)container).addView(view, position);
         main_vp_cardcotain.setOnClickListener(this);
         main_vp_cardcotain.setId(position);
-
 
         return view;
     }
@@ -109,30 +113,23 @@ public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-//        if (!MainVp_PagerInteraction.scrollBool){
-            view_d = view;
-            selectIndex = view_d.getId();
+        view_d = view;
+        selectIndex = view_d.getId();
 
-            Intent intent = new Intent(view_d.getContext(), DetailActivity_Recent.class);
-            intent.putExtra("recentTitle" ,MainActivity.titleMainRecentArray[view_d.getId()]);
-            intent.putExtra("recentImg" ,MainActivity.imgMainRecentArray[view_d.getId()]);
-            intent.putExtra("recentUrl" ,MainActivity.urlMainRecentArray[view_d.getId()]);
-            view.getContext().startActivity(intent);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) c,
+                Pair.create((View)view_d, c.getString(R.string.transition_pagecard)) );
+        Intent intent = new Intent(view_d.getContext(), DetailActivity_Recent.class);
+        intent.putExtra("recentTitle" ,MainActivity.titleMainRecentArray[view_d.getId()]);
+        intent.putExtra("recentImg" ,MainActivity.imgMainRecentArray[view_d.getId()]);
+        intent.putExtra("recentUrl" ,MainActivity.urlMainRecentArray[view_d.getId()]);
+        view_d.getContext().startActivity(intent, options.toBundle());
 
-//            Utils.delayMin(0, new Utils.DelayCallback() {
-//                @Override
-//                public void afterDelay() {
-//                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) c,
-//                            Pair.create((View)view_d, c.getString(R.string.transition_pagecard)) );
-//
-//                    Intent intent = new Intent(view_d.getContext(), DetailActivity_Recent.class);
-//                    intent.putExtra("recentTitle" ,MainActivity.titleMainRecentArray[view_d.getId()]);
-//                    intent.putExtra("recentImg" ,MainActivity.imgMainRecentArray[view_d.getId()]);
-//                    intent.putExtra("recentUrl" ,MainActivity.urlMainRecentArray[view_d.getId()]);
-//                    view_d.getContext().startActivity(intent, options.toBundle());
-//                }
-//            });
-//        }
+//            Intent intent = new Intent(view_d.getContext(), DetailActivity_Recent.class);
+//            intent.putExtra("recentTitle" ,MainActivity.titleMainRecentArray[view_d.getId()]);
+//            intent.putExtra("recentImg" ,MainActivity.imgMainRecentArray[view_d.getId()]);
+//            intent.putExtra("recentUrl" ,MainActivity.urlMainRecentArray[view_d.getId()]);
+//            view.getContext().startActivity(intent);
+
     }
 
 }

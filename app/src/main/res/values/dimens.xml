@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="maximum">100</dimen>
+    <dimen name="main_pagecard_posY">25dp</dimen>
+</resources>

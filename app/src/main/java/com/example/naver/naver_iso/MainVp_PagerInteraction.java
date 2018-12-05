@@ -98,12 +98,18 @@ public class MainVp_PagerInteraction implements ViewPager.OnPageChangeListener, 
 //                Utils.ModulatetTransXAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 0, vp.getWidth()/4);
                 Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1, 1+(float) SIZE_MIN/2);
                 Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_DEF, (float) SIZE_MIN);
+                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, 0, Utils.dpToPx(25));
+//                Utils.ModulatetScaleRotationYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_DEF, (float) SIZE_MIN, 0, 1, 0, 15f);
+                Utils.ModulateAlphaAnim(MainActivity.main_vp_textllArray[i], positionOffset, 0, 0.5f, 1, 0);
             }
             if (i == positionNEXT) {
 //                vpDirection = "LEFT";
 //                Utils.ModulatetTransXAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, -vp.getWidth()/4, 0);
                 Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1+(float) SIZE_MIN/2, 1);
                 Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_MIN, (float) SIZE_DEF);
+                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, Utils.dpToPx(25), 0);
+//                Utils.ModulatetScaleRotationYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_MIN, (float) SIZE_DEF, 0, 1, -15f, 0);
+                Utils.ModulateAlphaAnim(MainActivity.main_vp_textllArray[i], positionOffset, 0.5f, 1, 0, 1);
             }
         }
 //        if (currentCard != null) {
@@ -199,6 +205,5 @@ public class MainVp_PagerInteraction implements ViewPager.OnPageChangeListener, 
     public void onPageScrollStateChanged(int state) {
 
     }
-
 
 }

@@ -59,7 +59,15 @@ public class DetailActivity_Motion extends Activity implements View.OnClickListe
         motion_detailWebview.loadUrl(motionUrl);
         motion_detailWebview.setWebViewClient(new DetailActivity_Motion.WebViewClientClass());
         motion_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
-
+        motion_detailWebview.getSettings().setJavaScriptEnabled(true);
+        motion_detailWebview.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
+        motion_detailWebview.getSettings().setLoadsImagesAutomatically(true);
+        motion_detailWebview.getSettings().setUseWideViewPort(true);
+        motion_detailWebview.getSettings().setSupportZoom(false);
+        motion_detailWebview.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        motion_detailWebview.getSettings().setAppCacheEnabled(false);
+        motion_detailWebview.getSettings().setDomStorageEnabled(true);
+        motion_detailWebview.getSettings().setAllowFileAccess(true);
 //        settingWebview(motion_detailWebview);
 
         Display display = getWindowManager().getDefaultDisplay();

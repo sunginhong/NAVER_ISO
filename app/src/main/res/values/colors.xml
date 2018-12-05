@@ -72,5 +72,6 @@
 
     <color name="mainPagerBgColor">#F9F9F9</color>
     <color name="detailBgColor_dimmed">#646465</color>
+    <color name="detailBgColor_dimmed2">#7d646465</color>
 
 </resources>

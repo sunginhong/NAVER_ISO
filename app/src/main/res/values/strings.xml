@@ -7,4 +7,5 @@
     <string name="transition_maincard_image">transition_maincard_image</string>
     <string name="transition_maincard_contain">transition_maincard_contain</string>
     <string name="maincard_alpha">0.3</string>
+
 </resources>

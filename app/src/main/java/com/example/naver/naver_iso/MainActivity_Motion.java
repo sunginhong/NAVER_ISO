@@ -85,6 +85,8 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         motion_contain_card = (CardView) findViewById(R.id.motion_contain_card);
         motion_imageview = (ImageView) findViewById(R.id.motion_imageview);
 
+//        setActivityBackgroundColor(R.color.detailBgColor_dimmed2);
+
         // URL 설정.
         Utils.delayMin(0, new Utils.DelayCallback() {
             @Override
@@ -143,7 +145,13 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         });
 
         motion_appbar.bringToFront();
-        motion_contain_card.setRadius(0.0f);
+        motion_contain_card.setRadius(Utils.dpToPx(12));
+        Utils.delayMin(20, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                motion_contain_card.setRadius(Utils.dpToPx(0));
+            }
+        });
         headerAnim("IN");
         Utils.TransAnim(motion_appbar, 0, 0, -motion_appbar.getHeight(), 0, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
 
@@ -219,8 +227,6 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
     @Override
     public void onBackPressed() {
         outAnim();
-//        ActivityCompat.finishAfterTransition(this);
-//        this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
     }
 
     @Override
@@ -243,18 +249,6 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
     private void outAnim(){
         finish();
         this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
-//        ActivityCompat.finishAfterTransition(this);
-////        values_MotionMain.removeAll(values_MotionMain);
-//        headerAnim("OUT");
-////        Utils.AlphaAnim(motion_nestedscrollview, 1, 0, 200);
-//        Utils.AlphaAnim(motion_imageview, 0, 1, 500);
-//        Utils.AlphaAnim(motion_contain, 1, 0, 400);
-//        card_round_animator(500, 0f, Utils.dpToPx(12));
-//
-//        ChangeBounds bounds = new ChangeBounds();
-//        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
-//        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
-//        getWindow().setSharedElementEnterTransition(bounds);
     }
 
     private void headerAnim(String status) {
@@ -288,6 +282,11 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
             }
         });
         animator.start();
+    }
+
+    private void setActivityBackgroundColor(int color) {
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(color);
     }
 
 }

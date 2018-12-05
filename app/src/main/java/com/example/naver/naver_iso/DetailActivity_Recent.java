@@ -6,14 +6,12 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.transition.ChangeBounds;
 import android.view.Display;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -22,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 public class DetailActivity_Recent extends AppCompatActivity implements View.OnClickListener {
     int width;
@@ -75,11 +74,22 @@ public class DetailActivity_Recent extends AppCompatActivity implements View.OnC
         recent_Webview.loadUrl(recentUrl);
         recent_Webview.setWebViewClient(new DetailActivity_Recent.WebViewClientClass());
         recent_Webview.setWebChromeClient(new FullscreenableChromeClient(this));
-      
+
+//        setActivityBackgroundColor(R.color.detailBgColor_dimmed2);
+
+        recent_Webview.getSettings().setJavaScriptEnabled(true);
+        recent_Webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
+        recent_Webview.getSettings().setLoadsImagesAutomatically(true);
+        recent_Webview.getSettings().setUseWideViewPort(true);
+        recent_Webview.getSettings().setSupportZoom(false);
+        recent_Webview.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        recent_Webview.getSettings().setAppCacheEnabled(false);
+        recent_Webview.getSettings().setDomStorageEnabled(true);
+        recent_Webview.getSettings().setAllowFileAccess(true);
+
         recent_imageview = (ImageView)findViewById(R.id.recent_imageview);
         Picasso.with(context).load(recentImg).into(recent_imageview);
 
-        settingWebview(recent_Webview);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -113,7 +123,14 @@ public class DetailActivity_Recent extends AppCompatActivity implements View.OnC
         });
 
         recent_appbar.bringToFront();
-        recent_contain_card.setRadius(0.0f);
+        recent_contain_card.setRadius(Utils.dpToPx(12));
+        Utils.delayMin(20, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                recent_contain_card.setRadius(Utils.dpToPx(0));
+            }
+        });
+
         headerAnim("IN");
         Utils.TransAnim(recent_appbar, 0, 0, -recent_appbar.getHeight(), 0, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
 
@@ -129,37 +146,25 @@ public class DetailActivity_Recent extends AppCompatActivity implements View.OnC
         }
     }
 
-    private void settingWebview(WebView webView){
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
-        webView.getSettings().setLoadsImagesAutomatically(true);
-        webView.getSettings().setUseWideViewPort(true);
-        webView.getSettings().setSupportZoom(false);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-        webView.getSettings().setAppCacheEnabled(false);
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.setWebChromeClient(new WebChromeClient());
-        webView.getSettings().setUserAgentString("app");
-    }
-
     @Override
     protected void onResume() {
-        this.overridePendingTransition(R.anim.activity_slide_in3, R.anim.activity_slide_out3);
         super.onResume();
     }
 
     @Override
     public void onBackPressed() {
-        recent_Webview.stopLoading();
-        ActivityCompat.finishAfterTransition(this);
-        this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
+        outAnim();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
+
     }
 
     @Override
@@ -170,8 +175,7 @@ public class DetailActivity_Recent extends AppCompatActivity implements View.OnC
     }
 
     private void outAnim(){
-        recent_Webview.stopLoading();
-        ActivityCompat.finishAfterTransition(this);
+        finish();
         this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
     }
 
@@ -205,6 +209,11 @@ public class DetailActivity_Recent extends AppCompatActivity implements View.OnC
             }
         });
         animator.start();
+    }
+
+    private void setActivityBackgroundColor(int color) {
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(color);
     }
 
 }

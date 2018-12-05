@@ -60,12 +60,11 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         about_toolbar_backbtn.setOnClickListener(this);
 
         Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_02.png").into(about_imageview);
-
         Intent intent = getIntent();
-
         aboutWebview = (WebView)findViewById(R.id.aboutWebview);
-
         aboutWebview.getSettings().setJavaScriptEnabled(true);
+
+//        setActivityBackgroundColor(R.color.detailBgColor_dimmed2);
 
         aboutWebview.setWebViewClient(new MainActivity_About.WebViewClientClass());
         Utils.delayMin(40, new Utils.DelayCallback() {
@@ -87,7 +86,13 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         collapsing_about_toolbar.bringToFront();
 
         about_contain_card = (CardView) findViewById(R.id.about_contain_card);
-        about_contain_card.setRadius(0.0f);
+        about_contain_card.setRadius(Utils.dpToPx(12));
+        Utils.delayMin(20, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                about_contain_card.setRadius(Utils.dpToPx(0));
+            }
+        });
 
         headerAnim("IN");
         Utils.TransAnim(collapsing_about_toolbar, 0, 0, -collapsing_about_toolbar.getHeight(), 0, MainActivity.MAIN_CARD_TRANS_DURATION_IN);
@@ -147,7 +152,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     private void outAnim(){
         finish();
         this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
-        
+
 //        ActivityCompat.finishAfterTransition(this);
 //        aboutWebview.stopLoading();
 //        headerAnim("OUT");
@@ -194,4 +199,10 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         });
         animator.start();
     }
+
+    private void setActivityBackgroundColor(int color) {
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(color);
+    }
+
 }
