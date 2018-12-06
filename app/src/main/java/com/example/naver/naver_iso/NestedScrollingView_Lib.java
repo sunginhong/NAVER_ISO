@@ -13,7 +13,6 @@ public class NestedScrollingView_Lib extends NestedScrollView {
         void onNestedScrollViewStateChanged(int state);
     }
 
-
     public void setScrollListener(NestedScrollViewScrollStateListener scrollListener) {
         this.mScrollListener = scrollListener;
     }
