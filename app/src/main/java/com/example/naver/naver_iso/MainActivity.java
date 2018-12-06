@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String NONE_STATE = "NONE";
     private boolean newtwork = true;
 
-    int screenWidth;
-    int screenHeight;
+    static int screenWidth;
+    static int screenHeight;
 
     public static final int ITEM_COUNT = 100;
     public static final int MAIN_CARD_TRANS_DURATION_IN = 500;
@@ -229,7 +229,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
 //        this.overridePendingTransition(R.anim.activity_alpha_in, R.anim.activity_alpha_out);
-
         if (getSet){
             RecyclerViewAdapter_Main.reset();
         } else {

@@ -16,6 +16,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.transition.ChangeBounds;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -38,6 +40,9 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     static String urlLibArray[] = new String[ITEM_COUNT];
     static String libTitleNames[] = new String[ITEM_COUNT];
 
+    static boolean lib_lineAnim_Active = false;
+    private int mState = RecyclerView.SCROLL_STATE_IDLE;
+
     Toolbar lib_toolbar;
     AppBarLayout lib_appbar;
     CoordinatorLayout lib_contain;
@@ -47,6 +52,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     CardView lib_contain_card;
     ImageView lib_imageview;
     Context context;
+    RecyclerView libView;
 
     float cardRound_result;
     boolean lib_getSet = false;
@@ -77,7 +83,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_toolbar = (Toolbar) findViewById(R.id.lib_toolbar);
         lib_appbar = (AppBarLayout) findViewById(R.id.lib_appbar);
         lib_nestedscrollview = (NestedScrollView) findViewById(R.id.lib_nestedscrollview);
-//        lib_nestedscrollview.setSmoothScrollingEnabled(true);
+        lib_nestedscrollview.setSmoothScrollingEnabled(true);
         lib_toolbar_Title = (TextView) findViewById(R.id.lib_toolbar_title);
         lib_toolbar_Backbtn = (FrameLayout) findViewById(R.id.lib_toolbar_backbtn);
         lib_contain_card = (CardView) findViewById(R.id.lib_contain_card);
@@ -86,7 +92,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 //        setActivityBackgroundColor(R.color.detailBgColor_dimmed2);
 
         // URL 설정.
-        Utils.delayMin(0, new Utils.DelayCallback() {
+        Utils.delayMin(50, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {
                 values_LibMain.removeAll(values_LibMain);
@@ -123,6 +129,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
         scrollHeader = false;
 
+
         lib_nestedscrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
@@ -144,12 +151,18 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                     appbarVisible = false;
                     scrolledDistance = 0;
                 }
+
+                LineView_LibraryList.functionRedraw(scrollDirection, MainActivity.screenWidth/2-(MainActivity.screenWidth-LineView_LibraryList.lib_lineview.getWidth()), scrollY/10);
+
 //                if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
 //                    scrolledDistance += scrollY;
 //                }
             }
         });
 
+
+
+        lib_nestedscrollview.setOnClickListener(null);
 
         lib_appbar.bringToFront();
         lib_contain_card.setRadius(Utils.dpToPx(12));
@@ -211,7 +224,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                 values_LibMain.add(new String[]{num, title, subtitle, MainActivity.URL_THUMB_IMG+thumbImg, MainActivity.URL_LINK+url});
 
                 RecyclerViewAdapter_Lib adapter = new RecyclerViewAdapter_Lib(this, values_LibMain);
-                RecyclerView libView = (RecyclerView) findViewById(R.id.main_lib_recyclerview);
+                libView = (RecyclerView) findViewById(R.id.main_lib_recyclerview);
 
                 libView.setAdapter(adapter);
                 LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -219,6 +232,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                 libView.setLayoutManager(llm);
                 libView.setNestedScrollingEnabled(false);
                 libView.setHasFixedSize(false);
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -252,6 +266,25 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
             outAnim();
         }
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.v("ssssssss", ""+String.valueOf("0k"));
+                break;
+            case MotionEvent.ACTION_MOVE:
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.v("ssssssss", ""+String.valueOf("0k"));
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
+
 
     private void outAnim(){
         finish();

@@ -67,7 +67,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
 //        setActivityBackgroundColor(R.color.detailBgColor_dimmed2);
 
         aboutWebview.setWebViewClient(new MainActivity_About.WebViewClientClass());
-        Utils.delayMin(40, new Utils.DelayCallback() {
+        Utils.delayMin(50, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {
                 aboutWebview.loadUrl("http://jjangik.com/");
