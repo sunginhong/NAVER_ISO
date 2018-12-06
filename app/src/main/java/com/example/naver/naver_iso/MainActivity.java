@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.AssetManager;
+import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -18,6 +19,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.transition.ChangeBounds;
+import android.view.Display;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -56,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String NONE_STATE = "NONE";
     private boolean newtwork = true;
 
+    int screenWidth;
+    int screenHeight;
+
     public static final int ITEM_COUNT = 100;
     public static final int MAIN_CARD_TRANS_DURATION_IN = 500;
     public static final int MAIN_CARD_TRANS_DURATION_OUT = 400;
@@ -63,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
     static RelativeLayout lstMainRlArray[] = new RelativeLayout[ITEM_COUNT];
     static LinearLayout lstMainItemArray[] = new LinearLayout[ITEM_COUNT];
     static Class<?>  classMainItemArray[] = new Class<?> [ITEM_COUNT];
+
+    static View lstMaincardArray[] = new View[3];
+//    static View main_cardArray[] = new View[3];
+
     static final ArrayList<String[]> valuesMain = new ArrayList<String[]>();
     static final ArrayList<Class<?>[]> callValMain = new ArrayList<Class<?>[]>();
 
@@ -78,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     static ImageView bgImgArray[] = new ImageView[PAGE_ITEM_COUNT];
     static CardView main_vp_cardcotainArray[] = new CardView[PAGE_ITEM_COUNT];
     static LinearLayout main_vp_textllArray[] = new LinearLayout[PAGE_ITEM_COUNT];
+
 
     static String urlMainRecentArray[] = new String[PAGE_ITEM_COUNT];
     static String titleMainRecentArray[] = new String[PAGE_ITEM_COUNT];
@@ -113,6 +123,12 @@ public class MainActivity extends AppCompatActivity {
         if(getNetwork.equals("NONE")){ newtwork = false; }
 
         Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        screenWidth = size.x;
+        screenHeight = size.y;
 
         ChangeBounds bounds = new ChangeBounds();
         bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_IN);
@@ -153,6 +169,12 @@ public class MainActivity extends AppCompatActivity {
                 public void afterDelay() {
                     getSet = true;
                     HIDE_THRESHOLD = main_appbar_contain.getHeight();
+                    for (int i = 0; i < MainActivity.lstMaincardArray.length; i++) {
+                        if (MainActivity.lstMaincardArray[i].getY() > 0){
+//                            Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, Utils.dpToPx(100), Utils.dpToPx(100), 0);
+                            MainActivity.lstMaincardArray[i].setTranslationY(MainActivity.lstMaincardArray[i].getHeight()/2);
+                        }
+                    }
                 }
             });
 
@@ -160,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                     scrolledDistance = scrollY;
+//                    Log.v("ssssssss", ""+String.valueOf(main_cardArray));
                     if (scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
                         ScrollHederAnim.HeaderShow(main_appbar_contain, main_appbar_contain.getHeight(), Utils.dpToPx(0), 300);
                         appbarVisible = false;
@@ -173,11 +196,26 @@ public class MainActivity extends AppCompatActivity {
                         scrolledDistance += scrollY;
                     }
 
+                    for (int i = 0; i < MainActivity.lstMaincardArray.length; i++) {
+                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < 0 && scrolledDistance-MainActivity.lstMaincardArray[i].getY() > -MainActivity.lstMaincardArray[i].getHeight()/1.2 ){
+                            if (MainActivity.lstMaincardArray[i].getTranslationY() == MainActivity.lstMaincardArray[i].getHeight()/2){
+                                MainActivity.lstMaincardArray[i].setTranslationY(0);
+                                Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, MainActivity.lstMaincardArray[i].getHeight()/2, 0, 400);
+                            }
+                        }
+                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < -MainActivity.lstMaincardArray[i].getHeight()/1.2 ){
+                            if (MainActivity.lstMaincardArray[i].getTranslationY() == 0){
+                                MainActivity.lstMaincardArray[i].setTranslationY(MainActivity.lstMaincardArray[i].getHeight()/2);
+                                Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, 0, MainActivity.lstMaincardArray[i].getHeight()/2, 400);
+                            }
+                        }
+                    }
+
                     if ((scrollY > oldScrollY) && (scrollY - oldScrollY) > 10) { scrollDirection = "DOWN"; }
                     else if((scrollY < oldScrollY) && (oldScrollY - scrollY) > 10) { scrollDirection = "UP"; }
+
                 }
             });
-
 
             values_MainActivity.removeAll(values_MainActivity);
             if(values_MainActivity.size() == 0) {

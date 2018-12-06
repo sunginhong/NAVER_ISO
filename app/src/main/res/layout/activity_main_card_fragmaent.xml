@@ -15,6 +15,7 @@
     android:divider="@android:color/transparent"
     android:dividerHeight="0.0px"
     android:transitionName="@string/transition_maincard"
+    android:translationY="0dp"
     app:cardPreventCornerOverlap="false"
     card_view:cardCornerRadius="12dp"
     card_view:cardElevation="6dp"

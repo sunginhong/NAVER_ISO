@@ -93,88 +93,19 @@ public class MainVp_PagerInteraction implements ViewPager.OnPageChangeListener, 
 
         for (int i = 0; i < MainActivity.main_vp_cardcotainArray.length; i++) {
             if (i == position) {
-//                vpDirection = "RIGHT";
                 MainActivity.main_vp_cardcotainArray[i].bringToFront();
-//                Utils.ModulatetTransXAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 0, vp.getWidth()/4);
                 Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1, 1+(float) SIZE_MIN/2);
                 Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_DEF, (float) SIZE_MIN);
                 Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, 0, Utils.dpToPx(25));
-//                Utils.ModulatetScaleRotationYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_DEF, (float) SIZE_MIN, 0, 1, 0, 15f);
                 Utils.ModulateAlphaAnim(MainActivity.main_vp_textllArray[i], positionOffset, 0, 0.5f, 1, 0);
             }
             if (i == positionNEXT) {
-//                vpDirection = "LEFT";
-//                Utils.ModulatetTransXAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, -vp.getWidth()/4, 0);
                 Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1+(float) SIZE_MIN/2, 1);
                 Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_MIN, (float) SIZE_DEF);
                 Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, Utils.dpToPx(25), 0);
-//                Utils.ModulatetScaleRotationYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_MIN, (float) SIZE_DEF, 0, 1, -15f, 0);
                 Utils.ModulateAlphaAnim(MainActivity.main_vp_textllArray[i], positionOffset, 0.5f, 1, 0, 1);
             }
         }
-//        if (currentCard != null) {
-//            Utils.ModulatetScaleAnim(currentCard, positionOffset, 0, 1, (float) SIZE_DEF, (float) SIZE_MIN);
-//        }
-////        CardView nextCard = mAdapter.getCardViewAt(positionNEXT);
-//        if (nextCard != null ){
-//            Utils.ModulatetScaleAnim(nextCard, positionOffset, 0, 1, (float) SIZE_MIN, (float) SIZE_DEF);
-//        }
-
-//        for (int i = 0; i < MainActivity.pvArray.length; i++) {
-//            if (MainActivity.pvArray[i] != null && MainActivity.bgImgArray[i] != null) {
-//
-//                pageScrollX = -(MainActivity.pvArray[i].getTranslationX() - positionOffsetPixels);
-//                if (i == currentIdx && i == selected_index_before) {
-//                    MainActivity.pvArray[i].setAlpha(1);
-//                }
-//                if (i == currentIdx && i != selected_index) {
-//                    MainActivity.bgImgArray[i].setTranslationX(0 + positionOffsetPixels / CAL_IMG);
-//
-//                } else {
-//                    if (i != currentIdx && i == selected_index) {
-//                        MainActivity.bgImgArray[i].setTranslationX(-vp.getWidth() / CAL_IMG + positionOffsetPixels / CAL_IMG);
-//                    }
-//                }
-//                if (i == currentIdx && i == selected_index_before) {
-//                    MainActivity.bgImgArray[i].setTranslationX(0 + positionOffsetPixels / CAL_IMG);
-//                }
-//                if (i == currentIdx + 1 && i != selected_index + 1 && i != selected_index_before + 1) {
-//                    if (pageScrollX > 0 && pageScrollX < pageWidth && selected_index == i) {
-//                        MainActivity.bgImgArray[i].setTranslationX(positionOffsetPixels / CAL_IMG - pageWidth / CAL_IMG);
-//                    }
-//                }
-//            }
-//        }
-//
-//        if (scrollBool){
-//            for (int i = 0; i < MainActivity.pvArray.length; i++) {
-//                if (MainActivity.pvArray[i] != null && MainActivity.bgImgArray[i] != null) {
-//                    if (i == currentIdx && i != selected_index) {
-//
-//                    } else {
-//                        if (i != currentIdx && i == selected_index) {
-//                            Utils.ModulateAlphaAnim(MainActivity.pvArray[i], positionOffsetPixels, 0.0f, vp.getWidth(), PAPING_ALPHA_LOW, 1.0f);
-//                        }
-//                    }
-//                    if (i == currentIdx && i == selected_index_before) {
-//                        Utils.ModulateAlphaAnim(MainActivity.pvArray[i], positionOffsetPixels, vp.getWidth(), 0.0f, PAPING_ALPHA_LOW, 1.0f);
-//                    } else if (i == currentIdx) {
-//                        MainActivity.bgImgArray[i].setTranslationX(0);
-//                        MainActivity.pvArray[i].setAlpha(1);
-//                    }
-//                    if (selected_index + 1 == i) {
-//                        MainActivity.bgImgArray[i].setTranslationX(0);
-//                        MainActivity.pvArray[i].setAlpha(1);
-//                    }
-//                }
-//            }
-//        } else {
-//            for (int i = 0; i < MainActivity.pvArray.length; i++) {
-//                if (i == currentIdx && i == selected_index){ MainActivity.bgImgArray[i].setTranslationX( 0 ); MainActivity.pvArray[i].setAlpha( 1.0f ); }
-//                if (i == currentIdx && selected_index+1 == i){  MainActivity.bgImgArray[i].setTranslationX( 0 );  }
-//                if (i == currentIdx+1 && i == selected_index_before){ MainActivity.bgImgArray[i].setTranslationX( 0 );  }
-//            }
-//        }
     }
 
     @Override

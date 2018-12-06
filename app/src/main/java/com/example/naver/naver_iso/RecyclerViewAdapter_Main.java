@@ -36,6 +36,7 @@ import static java.lang.Integer.parseInt;
 public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewAdapter_Main.MyViewHolder> implements View.OnClickListener {
     ArrayList<String[]> arrayList1;
     ArrayList<Class<?>[]> arrayList2;
+    ArrayList<CardView[]> arrayList3;
     static Context context;
     public static boolean mainclick = false;
     static Animation cardImageIn, cardImageOut;
@@ -56,8 +57,8 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
     static VideoView vieoViewArray[] = new VideoView[mainViewItemN];
 
 //    static List<ImageView> mainCardImgArray = new ArrayList<ImageView>();
-    static final ArrayList<ImageView> mainCardImgArray = new ArrayList<ImageView>();
-
+    static ArrayList<ImageView> mainCardImgArray = new ArrayList<ImageView>();
+    static ArrayList<View> main_cardArray = new ArrayList<View>();
     static List<VideoView> vieoViewArray_List = new ArrayList<VideoView>();
 
     public RecyclerViewAdapter_Main (Context context, ArrayList<String[]> list, ArrayList<Class<?>[]> className) {
@@ -81,8 +82,6 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         Class<?>[] className = arrayList2.get(position);
 
         holder.rv_mainTextView.setText(detail[1]);
-//        int ImgViewArr = parseInt(detail[2]);
-//        holder.rv_mainLottieView.setImageResource(ImgViewArr);
         holder.rv_mainSubTextView.setText(detail[2]);
 
 //        holder.rv_mainLottieView.setAnimation(detail[3]);
@@ -91,13 +90,14 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 //        holder.rv_mainLottieView.playAnimation();
 
         holder.rv_mainView.setBackgroundColor(Color.parseColor(detail[3]));
-//        holder.rv_mainCaseLineView.setBackgroundColor(Color.parseColor(detail[3]));
 
         Class<?> classNameF = className[0];
         classMainItemArray[parseInt(detail[0])] = classNameF;
 
         holder.rv_mainLL.setId(parseInt(detail[0]));
         holder.rv_mainLL.setOnClickListener(this);
+
+        MainActivity.lstMaincardArray[parseInt(detail[0])] = holder.itemView;
 
 //        MediaController ctrl = new MediaController(context);
 //        ctrl.setVisibility(View.GONE);
@@ -127,7 +127,6 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         if (position == 0){ Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_00.png").into(holder.rv_mainImageView); }
         if (position == 1){ Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_01.png").into(holder.rv_mainImageView); }
         if (position == 2){ Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_02.png").into(holder.rv_mainImageView); }
-
     }
 
     @Override
@@ -144,11 +143,8 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         private View rv_mainView;
         private TextView rv_mainTextView;
         private TextView rv_mainSubTextView;
-//        private LottieAnimationView rv_mainLottieView;
         private View rv_mainCaseLineView;
         private ImageView rv_mainImageView;
-//        private VideoView rv_mainVideoView;
-//        private WebView rv_mainWebview;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -160,13 +156,13 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
             rv_mainView = (View) itemView.findViewById(R.id.rv_mainView);
             rv_mainTextView = (TextView)itemView.findViewById(R.id.rv_mainTextView);
             rv_mainSubTextView = (TextView)itemView.findViewById(R.id.rv_mainSubTextView);
-//            rv_mainLottieView = (LottieAnimationView)itemView.findViewById(R.id.rv_mainLottieView);
             rv_mainCaseLineView = (View) itemView.findViewById(R.id.rv_mainCaseLineView);
             rv_mainImageView = (ImageView) itemView.findViewById(R.id.rv_mainImageView);
-//            rv_mainVideoView = (VideoView) itemView.findViewById(R.id.rv_mainVideoView);
             mainCardImgArray.add(rv_mainImageView);
+//            main_cardArray.add(itemView_view);
         }
     }
+
 
     @Override
     public void onClick(View view) {
