@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
-
         // 앱 실행시 체크
         String getNetwork =  getWhatKindOfNetwork(getApplication());
         if(getNetwork.equals("NONE")){ newtwork = false; }
@@ -171,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
                     HIDE_THRESHOLD = main_appbar_contain.getHeight();
                     for (int i = 0; i < MainActivity.lstMaincardArray.length; i++) {
                         if (MainActivity.lstMaincardArray[i].getY() > 0){
-//                            Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, Utils.dpToPx(100), Utils.dpToPx(100), 0);
                             MainActivity.lstMaincardArray[i].setTranslationY(MainActivity.lstMaincardArray[i].getHeight()/2);
                         }
                     }
@@ -197,20 +195,19 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     for (int i = 0; i < MainActivity.lstMaincardArray.length; i++) {
-                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < 0 && scrolledDistance-MainActivity.lstMaincardArray[i].getY() > -MainActivity.lstMaincardArray[i].getHeight()/1.2 ){
+                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < 0 && scrolledDistance-MainActivity.lstMaincardArray[i].getY() > -MainActivity.lstMaincardArray[i].getHeight()/1.1 ){
                             if (MainActivity.lstMaincardArray[i].getTranslationY() == MainActivity.lstMaincardArray[i].getHeight()/2){
                                 MainActivity.lstMaincardArray[i].setTranslationY(0);
                                 Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, MainActivity.lstMaincardArray[i].getHeight()/2, 0, 400);
                             }
                         }
-                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < -MainActivity.lstMaincardArray[i].getHeight()/1.2 ){
+                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < -MainActivity.lstMaincardArray[i].getHeight()/1.1 ){
                             if (MainActivity.lstMaincardArray[i].getTranslationY() == 0){
                                 MainActivity.lstMaincardArray[i].setTranslationY(MainActivity.lstMaincardArray[i].getHeight()/2);
                                 Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, 0, MainActivity.lstMaincardArray[i].getHeight()/2, 400);
                             }
                         }
                     }
-
                     if ((scrollY > oldScrollY) && (scrollY - oldScrollY) > 10) { scrollDirection = "DOWN"; }
                     else if((scrollY < oldScrollY) && (oldScrollY - scrollY) > 10) { scrollDirection = "UP"; }
 
