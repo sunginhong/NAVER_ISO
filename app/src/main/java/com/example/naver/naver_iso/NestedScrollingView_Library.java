@@ -33,9 +33,10 @@ public class NestedScrollingView_Library extends NestedScrollView {
 
     @Override
     public void stopNestedScroll() {
+        MainActivity_Library.lib_scrollBool = false;
+        LineView_LibraryList.path_animator(300);
         super.stopNestedScroll();
         dispatchScrollState(RecyclerView.SCROLL_STATE_IDLE);
-        LineView_LibraryList.path_animator(300);
     }
 
     @Override

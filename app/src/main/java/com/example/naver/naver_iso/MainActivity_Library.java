@@ -16,7 +16,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.transition.ChangeBounds;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -57,6 +56,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     float cardRound_result;
     boolean lib_getSet = false;
     boolean scrollHeader = false;
+    static public boolean lib_scrollBool = false;
     int lib_toolbarDistance;
 
     private int HIDE_THRESHOLD = 20;
@@ -152,7 +152,13 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                     scrolledDistance = 0;
                 }
 
-                LineView_LibraryList.functionRedraw(scrollDirection, MainActivity.screenWidth/2-(MainActivity.screenWidth-LineView_LibraryList.lib_lineview.getWidth()), scrollY/4);
+                if (!lib_scrollBool){
+                    LineView_LibraryList.dragStart_point_y = oldScrollY;
+                    lib_scrollBool = true;
+                }
+
+                float lib_distanceY = -(LineView_LibraryList.dragStart_point_y - scrollY);
+                LineView_LibraryList.functionRedraw(scrollDirection, MainActivity.screenWidth/2-(MainActivity.screenWidth-LineView_LibraryList.lib_lineview.getWidth()), lib_distanceY);
 
 //                if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
 //                    scrolledDistance += scrollY;
@@ -271,12 +277,12 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                Log.v("ssssssss", ""+String.valueOf("0k"));
+//                Log.v("ssssssss", ""+String.valueOf("0k"));
                 break;
             case MotionEvent.ACTION_MOVE:
                 break;
             case MotionEvent.ACTION_UP:
-                Log.v("ssssssss", ""+String.valueOf("0k"));
+//                Log.v("ssssssss", ""+String.valueOf("0k"));
                 break;
             default:
                 break;

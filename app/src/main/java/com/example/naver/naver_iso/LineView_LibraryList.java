@@ -46,7 +46,7 @@ public class LineView_LibraryList extends View {
         paint.setStyle(Paint.Style.FILL);
         lib_lineview = (View)findViewById(R.id.lib_lineview);
         lib_lineview.bringToFront();
-        dragStart_point_y = Utils.dpToPx(21);
+//        dragStart_point_y = Utils.dpToPx(21);
         dragMove_point_y = Utils.dpToPx(21);
         dragEnd_point_y = Utils.dpToPx(21);
     }
@@ -94,9 +94,14 @@ public class LineView_LibraryList extends View {
         if (scrollDirection=="UP"){
 
         }
-        dragEnd_point_y = dragMove_point_y;
+
         dragMove_point_x = x;
-        dragMove_point_y = Utils.dpToPx(21)-dragEnd_point_x-y;
+
+        if (y < Utils.dpToPx(21*2) && y > Utils.dpToPx(0)){
+            dragMove_point_y = Utils.dpToPx(21)-y;
+//            Log.v("ssssssss", ""+String.valueOf(Utils.dpToPx(21)-y));
+        }
+
         lib_lineview.invalidate();
 
     }
