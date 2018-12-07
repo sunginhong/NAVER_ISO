@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class NestedScrollingView_Lib extends NestedScrollView {
+public class NestedScrollingView_Library extends NestedScrollView {
     private int mState = RecyclerView.SCROLL_STATE_IDLE;
 
     public interface NestedScrollViewScrollStateListener {
@@ -19,15 +19,15 @@ public class NestedScrollingView_Lib extends NestedScrollView {
 
     private NestedScrollViewScrollStateListener mScrollListener;
 
-    public NestedScrollingView_Lib(Context context) {
+    public NestedScrollingView_Library(Context context) {
         super(context);
     }
 
-    public NestedScrollingView_Lib(Context context, AttributeSet attrs) {
+    public NestedScrollingView_Library(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public NestedScrollingView_Lib(Context context, AttributeSet attrs, int defStyleAttr) {
+    public NestedScrollingView_Library(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

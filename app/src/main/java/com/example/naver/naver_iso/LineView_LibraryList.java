@@ -96,7 +96,7 @@ public class LineView_LibraryList extends View {
         }
         dragEnd_point_y = dragMove_point_y;
         dragMove_point_x = x;
-        dragMove_point_y = -dragEnd_point_x-y;
+        dragMove_point_y = Utils.dpToPx(21)-dragEnd_point_x-y;
         lib_lineview.invalidate();
 
     }
