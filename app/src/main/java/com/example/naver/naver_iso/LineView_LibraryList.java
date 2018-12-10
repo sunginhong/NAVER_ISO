@@ -84,24 +84,19 @@ public class LineView_LibraryList extends View {
 //        path.close();
     }
 
-    static public void functionRedraw(String scrollDirection, float x, float y) {
-
-        if (scrollDirection=="DOWN"){
-        }
-        if (scrollDirection=="UP"){
-        }
+    static public void functionRedraw(float x, float y) {
 
         dragMove_point_x = x;
 
-        if (y < Utils.dpToPx(21*2) && y > -Utils.dpToPx(21*2)){
-            dragMove_point_y = Utils.dpToPx(21)-y/1.5f;
+        if (y < Utils.dpToPx(21*3) && y > -Utils.dpToPx(21*2)){
+            dragMove_point_y = Utils.dpToPx(21)-y;
         }
 
         lib_lineview.invalidate();
-
+//        LineView_LibraryList.path_animator(0, false);
     }
 
-    static public void path_animator(int duration) {
+    static public void path_animator(int duration, boolean state) {
         ValueAnimator animator = ValueAnimator.ofFloat(dragMove_point_y, Utils.dpToPx(21));
         animator.setDuration(duration);
         animator.setInterpolator(new DecelerateInterpolator(Float.valueOf(String.valueOf(1.5))));
@@ -112,6 +107,11 @@ public class LineView_LibraryList extends View {
                 lib_lineview.invalidate();
             }
         });
-        animator.start();
+        if (state == true){
+            animator.start();
+        }else {
+            animator.cancel();
+        }
+
     }
 }

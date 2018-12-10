@@ -33,15 +33,14 @@ public class NestedScrollingView_Library extends NestedScrollView {
 
     @Override
     public void stopNestedScroll() {
-        LineView_LibraryList.path_animator(200);
-        MainActivity_Library.lib_scrollBool = false;
+        LineView_LibraryList.path_animator(300, true);
         super.stopNestedScroll();
         dispatchScrollState(RecyclerView.SCROLL_STATE_IDLE);
     }
 
     @Override
     public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
-        MainActivity_Library.lib_scrollBool = false;
+        LineView_LibraryList.path_animator(300, false);
         dispatchScrollState(RecyclerView.SCROLL_STATE_DRAGGING);
         return super.onStartNestedScroll(child, target, nestedScrollAxes);
     }
@@ -49,7 +48,10 @@ public class NestedScrollingView_Library extends NestedScrollView {
 
     @Override
     public boolean startNestedScroll(int axes) {
-        MainActivity_Library.lib_scrollBool = false;
+        LineView_LibraryList.path_animator(300, false);
+        MainActivity_Library.lib_scrollBool = true;
+        float oldScrollY = MainActivity_Library.lib_nestedscrollview.getScrollY();
+        LineView_LibraryList.dragStart_point_y = oldScrollY;
         boolean superScroll = super.startNestedScroll(axes);
         dispatchScrollState(RecyclerView.SCROLL_STATE_DRAGGING);
         return superScroll;
@@ -57,6 +59,11 @@ public class NestedScrollingView_Library extends NestedScrollView {
 
 
     private void dispatchScrollState(int state) {
+        if (state == 1){
+            MainActivity_Library.lib_scrollBool = true;
+            float oldScrollY = MainActivity_Library.lib_nestedscrollview.getScrollY();
+            LineView_LibraryList.dragStart_point_y = oldScrollY;
+        }
         if (mScrollListener != null && mState != state) {
             mScrollListener.onNestedScrollViewStateChanged(state);
             mState = state;

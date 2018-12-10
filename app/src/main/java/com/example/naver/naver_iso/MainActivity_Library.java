@@ -45,7 +45,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     Toolbar lib_toolbar;
     AppBarLayout lib_appbar;
     CoordinatorLayout lib_contain;
-    NestedScrollView lib_nestedscrollview;
+    static NestedScrollView lib_nestedscrollview;
     TextView lib_toolbar_Title;
     FrameLayout lib_toolbar_Backbtn;
     CardView lib_contain_card;
@@ -63,6 +63,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     private int scrolledDistance = 0;
     private boolean appbarVisible = false;
     private String scrollDirection = "none";
+    static float lib_distanceY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,13 +153,12 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                     scrolledDistance = 0;
                 }
 
-                if (!lib_scrollBool){
-                    LineView_LibraryList.dragStart_point_y = oldScrollY;
-                }
-                lib_scrollBool = true;
+//                if (!lib_scrollBool){
+//                    LineView_LibraryList.dragStart_point_y = oldScrollY;
+//                }
+                lib_distanceY = -(LineView_LibraryList.dragStart_point_y - scrollY);
 
-                float lib_distanceY = -(LineView_LibraryList.dragStart_point_y - scrollY);
-                LineView_LibraryList.functionRedraw(scrollDirection, MainActivity.screenWidth/2-(MainActivity.screenWidth-LineView_LibraryList.lib_lineview.getWidth()), lib_distanceY);
+                LineView_LibraryList.functionRedraw(MainActivity.screenWidth/2-(MainActivity.screenWidth-LineView_LibraryList.lib_lineview.getWidth()), lib_distanceY/2);
 
 //                if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
 //                    scrolledDistance += scrollY;
