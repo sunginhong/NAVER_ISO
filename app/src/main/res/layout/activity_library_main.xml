@@ -146,7 +146,8 @@
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/main_lib_recyclerview"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
+                                android:layout_height="match_parent"
+                                android:clipChildren="false" />
 
                             <include layout="@layout/recyclerview_footer_blink" />
                         </LinearLayout>

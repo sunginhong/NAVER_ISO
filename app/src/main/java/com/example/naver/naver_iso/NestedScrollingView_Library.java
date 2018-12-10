@@ -33,14 +33,15 @@ public class NestedScrollingView_Library extends NestedScrollView {
 
     @Override
     public void stopNestedScroll() {
+        LineView_LibraryList.path_animator(200);
         MainActivity_Library.lib_scrollBool = false;
-        LineView_LibraryList.path_animator(300);
         super.stopNestedScroll();
         dispatchScrollState(RecyclerView.SCROLL_STATE_IDLE);
     }
 
     @Override
     public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
+        MainActivity_Library.lib_scrollBool = false;
         dispatchScrollState(RecyclerView.SCROLL_STATE_DRAGGING);
         return super.onStartNestedScroll(child, target, nestedScrollAxes);
     }
@@ -48,6 +49,7 @@ public class NestedScrollingView_Library extends NestedScrollView {
 
     @Override
     public boolean startNestedScroll(int axes) {
+        MainActivity_Library.lib_scrollBool = false;
         boolean superScroll = super.startNestedScroll(axes);
         dispatchScrollState(RecyclerView.SCROLL_STATE_DRAGGING);
         return superScroll;

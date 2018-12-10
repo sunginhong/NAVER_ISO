@@ -76,8 +76,8 @@ public class LineView_LibraryList extends View {
 
     private void pathDraw(float x1, float y1, float x2, float y2, float x3, float y3){
         path = new Path();
-        paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(2);
+        paint.setColor(Color.DKGRAY);
+        paint.setStrokeWidth(3);
         paint.setStyle(Paint.Style.STROKE);
         path.moveTo(-Utils.dpToPx(0), Utils.dpToPx(21));
         path.cubicTo(x1, y1, x2, y2, x3, y3);
@@ -87,19 +87,14 @@ public class LineView_LibraryList extends View {
     static public void functionRedraw(String scrollDirection, float x, float y) {
 
         if (scrollDirection=="DOWN"){
-//            dragEnd_point_y = dragMove_point_y;
-//            dragMove_point_x = x;
-//            dragMove_point_y = -(dragEnd_point_x-dragMove_point_y)+y;
         }
         if (scrollDirection=="UP"){
-
         }
 
         dragMove_point_x = x;
 
-        if (y < Utils.dpToPx(21*2) && y > Utils.dpToPx(0)){
-            dragMove_point_y = Utils.dpToPx(21)-y;
-//            Log.v("ssssssss", ""+String.valueOf(Utils.dpToPx(21)-y));
+        if (y < Utils.dpToPx(21*2) && y > -Utils.dpToPx(21*2)){
+            dragMove_point_y = Utils.dpToPx(21)-y/1.5f;
         }
 
         lib_lineview.invalidate();

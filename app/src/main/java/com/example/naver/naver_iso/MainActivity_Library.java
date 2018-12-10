@@ -154,8 +154,8 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
                 if (!lib_scrollBool){
                     LineView_LibraryList.dragStart_point_y = oldScrollY;
-                    lib_scrollBool = true;
                 }
+                lib_scrollBool = true;
 
                 float lib_distanceY = -(LineView_LibraryList.dragStart_point_y - scrollY);
                 LineView_LibraryList.functionRedraw(scrollDirection, MainActivity.screenWidth/2-(MainActivity.screenWidth-LineView_LibraryList.lib_lineview.getWidth()), lib_distanceY);
