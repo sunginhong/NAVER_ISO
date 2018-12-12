@@ -84,7 +84,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_toolbar = (Toolbar) findViewById(R.id.lib_toolbar);
         lib_appbar = (AppBarLayout) findViewById(R.id.lib_appbar);
         lib_nestedscrollview = (NestedScrollView) findViewById(R.id.lib_nestedscrollview);
-        lib_nestedscrollview.setSmoothScrollingEnabled(true);
+//        lib_nestedscrollview.setSmoothScrollingEnabled(true);
         lib_toolbar_Title = (TextView) findViewById(R.id.lib_toolbar_title);
         lib_toolbar_Backbtn = (FrameLayout) findViewById(R.id.lib_toolbar_backbtn);
         lib_contain_card = (CardView) findViewById(R.id.lib_contain_card);
@@ -130,7 +130,6 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
         scrollHeader = false;
 
-
         lib_nestedscrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
@@ -153,11 +152,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                     scrolledDistance = 0;
                 }
 
-//                if (!lib_scrollBool){
-//                    LineView_LibraryList.dragStart_point_y = oldScrollY;
-//                }
                 lib_distanceY = -(LineView_LibraryList.dragStart_point_y - scrollY);
-
                 LineView_LibraryList.functionRedraw(MainActivity.screenWidth/2-(MainActivity.screenWidth-LineView_LibraryList.lib_lineview.getWidth()), lib_distanceY/2);
 
 //                if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {

@@ -25,6 +25,9 @@ public class LineView_LibraryList extends View {
 
     static Paint paint;
     static Path path;
+    static Paint paintLine;
+    static Path pathLine;
+    static private int libLineMargin = 21;
 
     public LineView_LibraryList(Context context) {
         super(context);
@@ -44,11 +47,13 @@ public class LineView_LibraryList extends View {
     public void init(){
         paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
+        paintLine = new Paint();
+        paintLine.setStyle(Paint.Style.FILL);
+
         lib_lineview = (View)findViewById(R.id.lib_lineview);
         lib_lineview.bringToFront();
-//        dragStart_point_y = Utils.dpToPx(21);
-        dragMove_point_y = Utils.dpToPx(21);
-        dragEnd_point_y = Utils.dpToPx(21);
+        dragMove_point_y = Utils.dpToPx(libLineMargin);
+        dragEnd_point_y = Utils.dpToPx(libLineMargin);
     }
 
     @Override
@@ -56,8 +61,9 @@ public class LineView_LibraryList extends View {
 
         // TODO Auto-generated method stub
         super.onDraw(canvas);
-        pathDraw(-Utils.dpToPx(0), Utils.dpToPx(21), dragMove_point_x, dragMove_point_y, lib_lineview.getWidth(), Utils.dpToPx(21));
+        pathDraw(-Utils.dpToPx(0), Utils.dpToPx(libLineMargin), dragMove_point_x, dragMove_point_y, lib_lineview.getWidth(), Utils.dpToPx(libLineMargin));
         canvas.drawPath(path, paint);
+        canvas.drawPath(pathLine, paintLine);
         invalidate();
     }
 
@@ -71,25 +77,35 @@ public class LineView_LibraryList extends View {
     public static void clearCanvas(){
         if (path!=null){
             path.reset();
+            pathLine.reset();
         }
     }
 
     private void pathDraw(float x1, float y1, float x2, float y2, float x3, float y3){
         path = new Path();
-        paint.setColor(Color.DKGRAY);
+        paint.setColor(Color.LTGRAY);
         paint.setStrokeWidth(3);
+        paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
-        path.moveTo(-Utils.dpToPx(0), Utils.dpToPx(21));
+        path.moveTo(-Utils.dpToPx(0), Utils.dpToPx(libLineMargin));
         path.cubicTo(x1, y1, x2, y2, x3, y3);
 //        path.close();
+        pathLine = new Path();
+        paintLine.setColor(Color.WHITE);
+        paintLine.setStrokeWidth(3);
+        paintLine.setAntiAlias(true);
+        paintLine.setStyle(Paint.Style.FILL);
+        pathLine.moveTo(-Utils.dpToPx(0), Utils.dpToPx(libLineMargin));
+        pathLine.cubicTo(x1, y1, x2, y2, x3, y3);
+
     }
 
     static public void functionRedraw(float x, float y) {
 
         dragMove_point_x = x;
 
-        if (y < Utils.dpToPx(21*3) && y > -Utils.dpToPx(21*2)){
-            dragMove_point_y = Utils.dpToPx(21)-y;
+        if (y < Utils.dpToPx(libLineMargin*4) && y > -Utils.dpToPx(libLineMargin*2)){
+            dragMove_point_y = Utils.dpToPx(libLineMargin)-y;
         }
 
         lib_lineview.invalidate();
@@ -97,7 +113,7 @@ public class LineView_LibraryList extends View {
     }
 
     static public void path_animator(int duration, boolean state) {
-        ValueAnimator animator = ValueAnimator.ofFloat(dragMove_point_y, Utils.dpToPx(21));
+        ValueAnimator animator = ValueAnimator.ofFloat(dragMove_point_y, Utils.dpToPx(libLineMargin));
         animator.setDuration(duration);
         animator.setInterpolator(new DecelerateInterpolator(Float.valueOf(String.valueOf(1.5))));
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

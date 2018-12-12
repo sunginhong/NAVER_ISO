@@ -33,14 +33,17 @@ public class NestedScrollingView_Library extends NestedScrollView {
 
     @Override
     public void stopNestedScroll() {
-        LineView_LibraryList.path_animator(300, true);
+
         super.stopNestedScroll();
         dispatchScrollState(RecyclerView.SCROLL_STATE_IDLE);
     }
 
     @Override
     public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
-        LineView_LibraryList.path_animator(300, false);
+        MainActivity_Library.lib_scrollBool = false;
+        float oldScrollY = MainActivity_Library.lib_nestedscrollview.getScrollY();
+        LineView_LibraryList.dragStart_point_y = oldScrollY;
+        
         dispatchScrollState(RecyclerView.SCROLL_STATE_DRAGGING);
         return super.onStartNestedScroll(child, target, nestedScrollAxes);
     }
@@ -48,26 +51,35 @@ public class NestedScrollingView_Library extends NestedScrollView {
 
     @Override
     public boolean startNestedScroll(int axes) {
-        LineView_LibraryList.path_animator(300, false);
-        MainActivity_Library.lib_scrollBool = true;
-        float oldScrollY = MainActivity_Library.lib_nestedscrollview.getScrollY();
-        LineView_LibraryList.dragStart_point_y = oldScrollY;
         boolean superScroll = super.startNestedScroll(axes);
         dispatchScrollState(RecyclerView.SCROLL_STATE_DRAGGING);
         return superScroll;
     }
 
-
     private void dispatchScrollState(int state) {
         if (state == 1){
+            /// scrollStart
+//            float oldScrollY = MainActivity_Library.lib_nestedscrollview.getScrollY();
+//            LineView_LibraryList.dragStart_point_y = oldScrollY;
+            MainActivity_Library.lib_scrollBool = false;
+            LineView_LibraryList.path_animator(200, false);
+        }
+        if (state == 0){
+            /// scrollEnd
             MainActivity_Library.lib_scrollBool = true;
-            float oldScrollY = MainActivity_Library.lib_nestedscrollview.getScrollY();
-            LineView_LibraryList.dragStart_point_y = oldScrollY;
+            LineView_LibraryList.path_animator(300, true);
         }
         if (mScrollListener != null && mState != state) {
             mScrollListener.onNestedScrollViewStateChanged(state);
             mState = state;
         }
+    }
+
+    @Override
+    protected void onScrollChanged(int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        super.onScrollChanged(scrollX, scrollY, oldScrollX, oldScrollY);
+//        float lib_distanceY = -(LineView_LibraryList.dragStart_point_y - scrollY);
+//        LineView_LibraryList.functionRedraw(MainActivity.screenWidth/2-(MainActivity.screenWidth-LineView_LibraryList.lib_lineview.getWidth()), lib_distanceY/2);
     }
 
 }
