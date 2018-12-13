@@ -53,6 +53,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
     float cardRound_result;
     boolean motion_getSet = false;
     int motion_toolbarDistance;
+    static int motionItemLength = 0;
 
     private int HIDE_THRESHOLD = 20;
     private int scrolledDistance = 0;
@@ -128,20 +129,20 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
                 if ((scrollY > oldScrollY) && (scrollY - oldScrollY) > 10) { scrollDirection = "UP"; }
                 else if((scrollY < oldScrollY) && (oldScrollY - scrollY) > 10) { scrollDirection = "DOWN"; }
 
-                if (scrollDirection == "DOWN" && scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
-                    ScrollHederAnim.HeaderHide(motion_appbar, -motion_appbar.getHeight(), Utils.dpToPx(0), 300);
-                    appbarVisible = false;
-                    scrolledDistance = 0;
-                } else if (scrollDirection == "UP" && scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
-                    ScrollHederAnim.HeaderShow(motion_appbar, Utils.dpToPx(0), -motion_appbar.getHeight(), 300);
-                    appbarVisible = true;
-                    scrolledDistance = 0;
-                }
-                if (scrollDirection == "DOWN" && scrolledDistance > HIDE_THRESHOLD && appbarVisible){
-                    ScrollHederAnim.HeaderHide(motion_appbar, -motion_appbar.getHeight(), Utils.dpToPx(0), 300);
-                    appbarVisible = false;
-                    scrolledDistance = 0;
-                }
+//                if (scrollDirection == "DOWN" && scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
+//                    ScrollHederAnim.HeaderHide(motion_appbar, -motion_appbar.getHeight(), Utils.dpToPx(0), 300);
+//                    appbarVisible = false;
+//                    scrolledDistance = 0;
+//                } else if (scrollDirection == "UP" && scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
+//                    ScrollHederAnim.HeaderShow(motion_appbar, Utils.dpToPx(0), -motion_appbar.getHeight(), 300);
+//                    appbarVisible = true;
+//                    scrolledDistance = 0;
+//                }
+//                if (scrollDirection == "DOWN" && scrolledDistance > HIDE_THRESHOLD && appbarVisible){
+//                    ScrollHederAnim.HeaderHide(motion_appbar, -motion_appbar.getHeight(), Utils.dpToPx(0), 300);
+//                    appbarVisible = false;
+//                    scrolledDistance = 0;
+//                }
             }
         });
 
@@ -195,15 +196,15 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
         String str = s;
         try {
             JSONArray jarray = new JSONArray(str);   // JSONArray 생성
+            motionItemLength = jarray.length();
             for(int i=0; i < jarray.length(); i++){
                 JSONObject jObject = jarray.getJSONObject(i);  // JSONObject 추출
-                String num = jObject.getString("num");
                 String title = jObject.getString("title");
                 String subtitle = jObject.getString("subtitle");
                 String thumbImg = jObject.getString("img");
                 String url = jObject.getString("url");
 
-                values_MotionMain.add(new String[]{num, title, subtitle, MainActivity.URL_THUMB_IMG+thumbImg, MainActivity.URL_LINK+url});
+                values_MotionMain.add(new String[]{title, subtitle, MainActivity.URL_THUMB_IMG+thumbImg, MainActivity.URL_LINK+url});
 
                 RecyclerViewAdapter_Motion adapter = new RecyclerViewAdapter_Motion(this, values_MotionMain);
                 RecyclerView motion_View =  (RecyclerView)findViewById(R.id.main_motion_recyclerview);

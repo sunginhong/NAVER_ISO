@@ -9,6 +9,7 @@ import android.support.v4.util.Pools;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +17,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.util.Pair;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.lang.Integer.parseInt;
 
 
 public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickListener {
@@ -78,20 +77,20 @@ public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickL
 
         CardView main_vp_cardcotain = (CardView) view.findViewById(R.id.main_vp_cardcotain);
         TextView titleTv = (TextView) view.findViewById(R.id.main_vp_titleTv);
-        titleTv.setText(detail[1]);
+        titleTv.setText(detail[0]);
         TextView subTitleTv = (TextView) view.findViewById(R.id.main_vp_subTitleTv);
-        subTitleTv.setText(detail[2]);
+        subTitleTv.setText(detail[1]);
         ImageView ImgView = (ImageView) view.findViewById(R.id.main_vp_ImgView);
-        Picasso.with(c).load(detail[3]).into(ImgView);
+        Picasso.with(c).load(detail[2]).into(ImgView);
 
-        MainActivity.pvArray[parseInt(detail[0])] = vpLayout;
-        MainActivity.bgImgArray[parseInt(detail[0])] = ImgView;
-        MainActivity.main_vp_cardcotainArray[parseInt(detail[0])] = main_vp_cardcotain;
+        MainActivity.pvArray[position] = vpLayout;
+        MainActivity.bgImgArray[position] = ImgView;
+        MainActivity.main_vp_cardcotainArray[position] = main_vp_cardcotain;
 
-        MainActivity.titleMainRecentArray[parseInt(detail[0])] = detail[1];
-        MainActivity.imgMainRecentArray[parseInt(detail[0])] = detail[3];
-        MainActivity.urlMainRecentArray[parseInt(detail[0])] = detail[4];
-        MainActivity.main_vp_textllArray[parseInt(detail[0])] = main_vp_textll;
+        MainActivity.titleMainRecentArray[position] = detail[0];
+        MainActivity.imgMainRecentArray[position] = detail[2];
+        MainActivity.urlMainRecentArray[position] = detail[3];
+        MainActivity.main_vp_textllArray[position] = main_vp_textll;
 
         ((ViewPager)container).addView(view, position);
         main_vp_cardcotain.setOnClickListener(this);

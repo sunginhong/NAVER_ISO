@@ -275,18 +275,16 @@ public class MainActivity extends AppCompatActivity {
             JSONArray jarray = new JSONArray(str);   // JSONArray 생성
             for(int i=0; i < jarray.length(); i++){
                 JSONObject jObject = jarray.getJSONObject(i);  // JSONObject 추출
-                String num = jObject.getString("num");
                 String title = jObject.getString("title");
                 String subtitle = jObject.getString("subtitle");
                 String thumbImg = jObject.getString("img");
                 String url = jObject.getString("url");
 
-                values_MainActivity.add(new String[]{num, title, subtitle, URL_THUMB_IMG+thumbImg, url});
-                mainJson_Arr0[i] = num;
-                mainJson_Arr1[i] = title;
-                mainJson_Arr2[i] = subtitle;
-                mainJson_Arr3[i] = URL_THUMB_IMG+thumbImg;
-                mainJson_Arr4[i] = URL_LINK+url;
+                values_MainActivity.add(new String[]{title, subtitle, URL_THUMB_IMG+thumbImg, url});
+                mainJson_Arr0[i] = title;
+                mainJson_Arr1[i] = subtitle;
+                mainJson_Arr2[i] = URL_THUMB_IMG+thumbImg;
+                mainJson_Arr3[i] = URL_LINK+url;
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -294,11 +292,11 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < PAGE_ITEM_COUNT; i++) {
             final ArrayList<String[]> values = new ArrayList<String[]>();
             if(values.size() == 0) {
-                values.add(new String[]{mainJson_Arr0[0], mainJson_Arr1[0], mainJson_Arr2[0], mainJson_Arr3[0], mainJson_Arr4[0]});
-                values.add(new String[]{mainJson_Arr0[1], mainJson_Arr1[1], mainJson_Arr2[1], mainJson_Arr3[1], mainJson_Arr4[1]});
-                values.add(new String[]{mainJson_Arr0[2], mainJson_Arr1[2], mainJson_Arr2[2], mainJson_Arr3[2], mainJson_Arr4[2]});
-                values.add(new String[]{mainJson_Arr0[3], mainJson_Arr1[3], mainJson_Arr2[3], mainJson_Arr3[3], mainJson_Arr4[3]});
-                values.add(new String[]{mainJson_Arr0[4], mainJson_Arr1[4], mainJson_Arr2[4], mainJson_Arr3[4], mainJson_Arr4[4]});
+                values.add(new String[]{mainJson_Arr0[0], mainJson_Arr1[0], mainJson_Arr2[0], mainJson_Arr3[0]});
+                values.add(new String[]{mainJson_Arr0[1], mainJson_Arr1[1], mainJson_Arr2[1], mainJson_Arr3[1]});
+                values.add(new String[]{mainJson_Arr0[2], mainJson_Arr1[2], mainJson_Arr2[2], mainJson_Arr3[2]});
+                values.add(new String[]{mainJson_Arr0[3], mainJson_Arr1[3], mainJson_Arr2[3], mainJson_Arr3[3]});
+                values.add(new String[]{mainJson_Arr0[4], mainJson_Arr1[4], mainJson_Arr2[4], mainJson_Arr3[4]});
             }
             vp = (ViewPager)findViewById(R.id.mainvp_pager);
             MainVp_MyPagerAdapter mAdapter = new MainVp_MyPagerAdapter(this, values);;

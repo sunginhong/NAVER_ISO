@@ -16,11 +16,13 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import static com.example.naver.naver_iso.MainActivity_Motion.urlMotionArray;
-import static java.lang.Integer.parseInt;
 
 public class RecyclerViewAdapter_Motion extends RecyclerView.Adapter<RecyclerViewAdapter_Motion.MyViewHolder> implements View.OnClickListener  {
     ArrayList<String[]> arrayList;
     Context c;
+    static View motionItemArray[] = new View[MainActivity_Motion.motionItemLength];
+    private  MyViewHolder view;
+    private float motionListHeight = 0;
 
     public RecyclerViewAdapter_Motion(Context c, ArrayList<String[]> list) {
         arrayList = list;
@@ -35,20 +37,38 @@ public class RecyclerViewAdapter_Motion extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapter_Motion.MyViewHolder holder, final int position) {
-
+        view = holder;
         String[] detail = arrayList.get(position);
 
-        holder.motion_titleview.setText(detail[1]);
-        holder.motion_subtitleview.setText(detail[2]);
+        holder.motion_titleview.setText(detail[0]);
+        holder.motion_subtitleview.setText(detail[1]);
 
-        Uri myUri = Uri.parse(detail[3]);
-        Picasso.with(c).load(myUri).into(holder.motion_imgview);
+        Uri motionThumb = Uri.parse(detail[2]);
+        Picasso.with(c).load(motionThumb).into(holder.motion_imgview);
 
-        holder.motion_lst_rl.setId(parseInt(detail[0]));
+        holder.motion_lst_rl.setId(position);
         holder.motion_lst_rl.setOnClickListener(this);
 
-        urlMotionArray[parseInt(detail[0])] = detail[4];
-        MainActivity_Motion.motionTitleNames[parseInt(detail[0])] = detail[1];
+        urlMotionArray[position] = detail[3];
+        MainActivity_Motion.motionTitleNames[position] = detail[0];
+
+        motionItemArray[position] = holder.motion_lst_rl;
+
+        Utils.delayMin(5, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                motionListHeight = view.motion_lst_rl.getHeight()/1;
+            }
+        });
+        Utils.TransAlphaAnim(motionItemArray[position], 0, 0, motionListHeight, motionListHeight, 0, 0, 000);
+        Utils.delayMin(8 * position, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                int i = position;
+                motionItemArray[position].setY(i * motionListHeight);
+                Utils.TransAlphaAnim(motionItemArray[i], 0, 0, motionListHeight, 0, 0, 1, 400);
+            }
+        });
     }
 
     @Override
@@ -61,14 +81,12 @@ public class RecyclerViewAdapter_Motion extends RecyclerView.Adapter<RecyclerVie
 
         private RelativeLayout motion_lst_rl;
         private ImageView motion_imgview;
-//        private View motion_colorView;
         private TextView motion_titleview;
         private TextView motion_subtitleview;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             motion_lst_rl = (RelativeLayout)itemView.findViewById(R.id.motion_lst_rl);
-//            motion_colorView = (View)itemView.findViewById(R.id.motion_colorView);
             motion_imgview = (ImageView)itemView.findViewById(R.id.motion_imgview);
             motion_titleview = (TextView)itemView.findViewById(R.id.motion_titleview);
             motion_subtitleview = (TextView)itemView.findViewById(R.id.motion_subtitleview);

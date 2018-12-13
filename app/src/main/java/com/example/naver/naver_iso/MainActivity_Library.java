@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.NestedScrollView;
@@ -41,10 +42,12 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
     static boolean lib_lineAnim_Active = false;
     private int mState = RecyclerView.SCROLL_STATE_IDLE;
+    static int libItemLength = 0;
 
     Toolbar lib_toolbar;
     AppBarLayout lib_appbar;
     CoordinatorLayout lib_contain;
+    CollapsingToolbarLayout lib_Detail_appbar;
     static NestedScrollView lib_nestedscrollview;
     TextView lib_toolbar_Title;
     FrameLayout lib_toolbar_Backbtn;
@@ -64,6 +67,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     private boolean appbarVisible = false;
     private String scrollDirection = "none";
     static float lib_distanceY;
+    static int Lib_LisItem_Height = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +87,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_contain = (CoordinatorLayout) findViewById(R.id.lib_contain);
         lib_toolbar = (Toolbar) findViewById(R.id.lib_toolbar);
         lib_appbar = (AppBarLayout) findViewById(R.id.lib_appbar);
+        lib_Detail_appbar = (CollapsingToolbarLayout)findViewById(R.id.lib_Detail_appbar);
         lib_nestedscrollview = (NestedScrollView) findViewById(R.id.lib_nestedscrollview);
 //        lib_nestedscrollview.setSmoothScrollingEnabled(true);
         lib_toolbar_Title = (TextView) findViewById(R.id.lib_toolbar_title);
@@ -108,6 +113,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_00.png").into(lib_imageview);
 
         lib_toolbar_Backbtn.setOnClickListener(this);
+        lib_appbar.bringToFront();
 
         Utils.delayMin(1, new Utils.DelayCallback() {
             @Override
@@ -115,16 +121,6 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 //                lib_toolbarDistance = lib_appbar.getHeight() - lib_toolbar.getHeight();
                 lib_getSet = true;
                 HIDE_THRESHOLD = lib_appbar.getHeight();
-            }
-        });
-
-
-        lib_appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            int scrollY;
-
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                scrollY = -verticalOffset;
             }
         });
 
@@ -137,23 +133,23 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                 if ((scrollY > oldScrollY) && (scrollY - oldScrollY) > 10) { scrollDirection = "UP"; }
                 else if((scrollY < oldScrollY) && (oldScrollY - scrollY) > 10) { scrollDirection = "DOWN"; }
 
-                if (scrollDirection == "DOWN" && scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
-                    ScrollHederAnim.HeaderHide(lib_appbar, -lib_appbar.getHeight(), Utils.dpToPx(0), 300);
-                    appbarVisible = false;
-                    scrolledDistance = 0;
-                } else if (scrollDirection == "UP" && scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
-                    ScrollHederAnim.HeaderShow(lib_appbar, Utils.dpToPx(0), -lib_appbar.getHeight(), 300);
-                    appbarVisible = true;
-                    scrolledDistance = 0;
-                }
-                if (scrollDirection == "DOWN" && scrolledDistance > HIDE_THRESHOLD && appbarVisible){
-                    ScrollHederAnim.HeaderHide(lib_appbar, -lib_appbar.getHeight(), Utils.dpToPx(0), 300);
-                    appbarVisible = false;
-                    scrolledDistance = 0;
-                }
+//                if (scrollDirection == "DOWN" && scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
+//                    ScrollHederAnim.HeaderHide(lib_appbar, -lib_Detail_appbar.getHeight(), Utils.dpToPx(0), 300);
+//                    appbarVisible = false;
+//                    scrolledDistance = 0;
+//                } else if (scrollDirection == "UP" && scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
+//                    ScrollHederAnim.HeaderShow(lib_appbar, Utils.dpToPx(0), -lib_Detail_appbar.getHeight(), 300);
+//                    appbarVisible = true;
+//                    scrolledDistance = 0;
+//                }
+//                if (scrollDirection == "DOWN" && scrolledDistance > HIDE_THRESHOLD && appbarVisible){
+//                    ScrollHederAnim.HeaderHide(lib_appbar, -lib_Detail_appbar.getHeight(), Utils.dpToPx(0), 300);
+//                    appbarVisible = false;
+//                    scrolledDistance = 0;
+//                }
 
-                lib_distanceY = -(LineView_LibraryList.dragStart_point_y - scrollY);
-                LineView_LibraryList.functionRedraw(MainActivity.screenWidth/2-(MainActivity.screenWidth-LineView_LibraryList.lib_lineview.getWidth()), lib_distanceY/2);
+//                lib_distanceY = -(LineView_LibraryList.dragStart_point_y - scrollY);
+//                LineView_LibraryList.functionRedraw(MainActivity.screenWidth/2-(MainActivity.screenWidth-LineView_LibraryList.lib_lineview.getWidth()), lib_distanceY/2);
 
 //                if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
 //                    scrolledDistance += scrollY;
@@ -214,15 +210,15 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         String str = s;
         try {
             JSONArray jarray = new JSONArray(str);   // JSONArray 생성
+            libItemLength = jarray.length();
             for (int i = 0; i < jarray.length(); i++) {
                 JSONObject jObject = jarray.getJSONObject(i);  // JSONObject 추출
-                String num = jObject.getString("num");
                 String title = jObject.getString("title");
                 String subtitle = jObject.getString("subtitle");
                 String thumbImg = jObject.getString("img");
                 String url = jObject.getString("url");
 
-                values_LibMain.add(new String[]{num, title, subtitle, MainActivity.URL_THUMB_IMG+thumbImg, MainActivity.URL_LINK+url});
+                values_LibMain.add(new String[]{title, subtitle, MainActivity.URL_THUMB_IMG+thumbImg, MainActivity.URL_LINK+url});
 
                 RecyclerViewAdapter_Lib adapter = new RecyclerViewAdapter_Lib(this, values_LibMain);
                 libView = (RecyclerView) findViewById(R.id.main_lib_recyclerview);
@@ -233,7 +229,6 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                 libView.setLayoutManager(llm);
                 libView.setNestedScrollingEnabled(false);
                 libView.setHasFixedSize(false);
-
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -290,18 +285,6 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     private void outAnim(){
         finish();
         this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
-//        ActivityCompat.finishAfterTransition(this);
-////        values_LibMain.removeAll(values_LibMain);
-//        headerAnim("OUT");
-////        Utils.AlphaAnim(lib_nestedscrollview, 1, 0, 200);
-//        Utils.AlphaAnim(lib_imageview, 0, 1, 500);
-//        Utils.AlphaAnim(lib_contain, 1, 0, 400);
-//        card_round_animator(500, 0f, Utils.dpToPx(12));
-//
-//        ChangeBounds bounds = new ChangeBounds();
-//        bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_OUT);
-//        bounds.setInterpolator(new DecelerateInterpolator(1.5f));
-//        getWindow().setSharedElementEnterTransition(bounds);
     }
 
     private void headerAnim(String status) {

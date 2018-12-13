@@ -50,8 +50,8 @@ public class LineView_LibraryList extends View {
         paintLine = new Paint();
         paintLine.setStyle(Paint.Style.FILL);
 
-        lib_lineview = (View)findViewById(R.id.lib_lineview);
-        lib_lineview.bringToFront();
+//        lib_lineview = (View)findViewById(R.id.lib_lineview);
+//        lib_lineview.bringToFront();
         dragMove_point_y = Utils.dpToPx(libLineMargin);
         dragEnd_point_y = Utils.dpToPx(libLineMargin);
     }
@@ -104,12 +104,11 @@ public class LineView_LibraryList extends View {
 
         dragMove_point_x = x;
 
-        if (y < Utils.dpToPx(libLineMargin*4) && y > -Utils.dpToPx(libLineMargin*2)){
-            dragMove_point_y = Utils.dpToPx(libLineMargin)-y;
+        if (y < (Utils.dpToPx(libLineMargin)+MainActivity_Library.Lib_LisItem_Height) && y > -(Utils.dpToPx(libLineMargin)+MainActivity_Library.Lib_LisItem_Height)){
+            dragMove_point_y = Utils.dpToPx(libLineMargin)-y/2;
         }
-
         lib_lineview.invalidate();
-//        LineView_LibraryList.path_animator(0, false);
+        LineView_LibraryList.path_animator(300, false);
     }
 
     static public void path_animator(int duration, boolean state) {
@@ -119,8 +118,8 @@ public class LineView_LibraryList extends View {
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
                 float path_origin_Yn = (float) animation.getAnimatedValue();
-                dragMove_point_y = path_origin_Yn;
-                lib_lineview.invalidate();
+//                dragMove_point_y = path_origin_Yn;
+//                lib_lineview.invalidate();
             }
         });
         if (state == true){

@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.naver.naver_iso.MainActivity.classMainItemArray;
-import static java.lang.Integer.parseInt;
 
 /**
  * Created by Naver on 2018. 8. 7..
@@ -92,12 +91,12 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         holder.rv_mainView.setBackgroundColor(Color.parseColor(detail[3]));
 
         Class<?> classNameF = className[0];
-        classMainItemArray[parseInt(detail[0])] = classNameF;
+        classMainItemArray[position] = classNameF;
 
-        holder.rv_mainLL.setId(parseInt(detail[0]));
+        holder.rv_mainLL.setId(position);
         holder.rv_mainLL.setOnClickListener(this);
 
-        MainActivity.lstMaincardArray[parseInt(detail[0])] = holder.itemView;
+        MainActivity.lstMaincardArray[position] = holder.itemView;
 
 //        MediaController ctrl = new MediaController(context);
 //        ctrl.setVisibility(View.GONE);

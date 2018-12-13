@@ -16,11 +16,13 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import static com.example.naver.naver_iso.MainActivity_Library.urlLibArray;
-import static java.lang.Integer.parseInt;
 
 public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAdapter_Lib.MyViewHolder> implements View.OnClickListener  {
     ArrayList<String[]> arrayList;
     Context c;
+    static View libItemArray[] = new View[MainActivity_Library.libItemLength];
+    private  MyViewHolder view;
+    private float LibListHeight = 0;
 
     public RecyclerViewAdapter_Lib (Context c, ArrayList<String[]> list) {
         arrayList = list;
@@ -35,20 +37,43 @@ public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAd
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapter_Lib.MyViewHolder holder, final int position) {
-
+        view = holder;
         String[] detail = arrayList.get(position);
 
-        holder.lib_titleview.setText(detail[1]);
-        holder.lib_subtitleview.setText(detail[2]);
+        holder.lib_titleview.setText(detail[0]);
+        holder.lib_subtitleview.setText(detail[1]);
 
-        Uri myUri = Uri.parse(detail[3]);
-        Picasso.with(c).load(myUri).into(holder.lib_imgview);
+        Uri libThumb = Uri.parse(detail[2]);
+        Picasso.with(c).load(libThumb).into(holder.lib_imgview);
 
-        holder.lib_lst_rl.setId(parseInt(detail[0]));
+        holder.lib_lst_rl.setId(position);
         holder.lib_lst_rl.setOnClickListener(this);
 
-        urlLibArray[parseInt(detail[0])] = detail[4];
-        MainActivity_Library.libTitleNames[parseInt(detail[0])] = detail[1];
+        urlLibArray[position] = detail[3];
+        MainActivity_Library.libTitleNames[position] = detail[0];
+
+        libItemArray[position] = holder.lib_lst_rl;
+
+        Utils.delayMin(5, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                LibListHeight = view.lib_lst_rl.getHeight()/1;
+            }
+        });
+        Utils.TransAlphaAnim(libItemArray[position], 0, 0, LibListHeight, LibListHeight, 0, 0, 000);
+        Utils.delayMin(8 * position, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                int i = position;
+                libItemArray[position].setY(i * LibListHeight);
+                Utils.TransAlphaAnim(libItemArray[i], 0, 0, LibListHeight, 0, 0, 1, 400);
+//                if (libItemArray[i].getY() < MainActivity.screenHeight){
+//                    Utils.TransAlphaAnim(libItemArray[i], 0, 0, LibListHeight, 0, 0, 1, 400);
+//                } else {
+//                    Utils.TransAlphaAnim(libItemArray[i], 0, 0, 0, 0, 1, 1, 000);
+//                }
+            }
+        });
     }
 
     @Override
@@ -63,6 +88,7 @@ public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAd
         private TextView lib_titleview;
         private TextView lib_subtitleview;
         private ImageView lib_imgview;
+        View view;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -70,6 +96,13 @@ public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAd
             lib_titleview = (TextView)itemView.findViewById(R.id.lib_titleview);
             lib_subtitleview = (TextView)itemView.findViewById(R.id.lib_subtitleview);
             lib_imgview = (ImageView)itemView.findViewById(R.id.lib_imgview);
+            view = itemView;
+            Utils.delayMin(10, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() {
+                    MainActivity_Library.Lib_LisItem_Height = view.getHeight();
+                }
+            });
         }
     }
 
@@ -79,6 +112,17 @@ public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAd
         intent.putExtra("libraryeUrl" ,urlLibArray[view.getId()]);
         intent.putExtra("libraryeTitle" ,MainActivity_Library.libTitleNames[view.getId()]);
         view.getContext().startActivity(intent);
+    }
+
+
+    public static void LibItemIntroAnim(Context context){
+        for (int i = 0; i < libItemArray.length; i++) {
+//            if (libItemArray[i].getY() > 0){
+////                libItemHeight = libItemArray[i].getHeight();
+//                Log.v("ssssssss", ""+String.valueOf(libItemArray[i].getHeight()));
+////                libItemArray[i].setTranslationY(libItemHeight);
+//            }
+        }
     }
 
 }

@@ -23,14 +23,14 @@
         <View
             android:id="@+id/mainvp_pageNav_bg"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="3dp"
             android:alpha="0.7"
             android:background="@color/white" />
 
         <View
             android:id="@+id/mainvp_pageNav_current"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="3dp"
             android:background="@color/splashBgColor" />
 
     </RelativeLayout>
