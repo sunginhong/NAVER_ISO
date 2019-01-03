@@ -60,13 +60,13 @@ public class RecyclerViewAdapter_Motion extends RecyclerView.Adapter<RecyclerVie
                 motionListHeight = view.motion_lst_rl.getHeight()/1;
             }
         });
-        Utils.TransAlphaAnim(motionItemArray[position], 0, 0, motionListHeight, motionListHeight, 0, 0, 000);
+//        Utils.TransAlphaAnim(motionItemArray[position], 0, 0, motionListHeight, motionListHeight, 0, 0, 000);
         Utils.delayMin(8 * position, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {
                 int i = position;
-                motionItemArray[position].setY(i * motionListHeight);
-                Utils.TransAlphaAnim(motionItemArray[i], 0, 0, motionListHeight, 0, 0, 1, 400);
+//                motionItemArray[position].setY(i * motionListHeight);
+//                Utils.TransAlphaAnim(motionItemArray[i], 0, 0, motionListHeight, 0, 0, 1, 400);
             }
         });
     }

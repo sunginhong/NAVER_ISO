@@ -60,13 +60,13 @@ public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAd
                 LibListHeight = view.lib_lst_rl.getHeight()/1;
             }
         });
-        Utils.TransAlphaAnim(libItemArray[position], 0, 0, LibListHeight, LibListHeight, 0, 0, 000);
+//        Utils.TransAlphaAnim(libItemArray[position], 0, 0, LibListHeight, LibListHeight, 0, 0, 000);
         Utils.delayMin(8 * position, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {
                 int i = position;
-                libItemArray[position].setY(i * LibListHeight);
-                Utils.TransAlphaAnim(libItemArray[i], 0, 0, LibListHeight, 0, 0, 1, 400);
+//                libItemArray[position].setY(i * LibListHeight);
+//                Utils.TransAlphaAnim(libItemArray[i], 0, 0, LibListHeight, 0, 0, 1, 400);
 //                if (libItemArray[i].getY() < MainActivity.screenHeight){
 //                    Utils.TransAlphaAnim(libItemArray[i], 0, 0, LibListHeight, 0, 0, 1, 400);
 //                } else {
