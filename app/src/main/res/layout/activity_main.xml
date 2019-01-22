@@ -71,7 +71,6 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="0dp"
-                                        android:fontFamily="@font/montserrat_bold"
                                         android:lineSpacingExtra="8sp"
                                         android:shadowColor="#33000000"
                                         android:shadowDy="0"
@@ -80,12 +79,11 @@
                                         android:textAllCaps="false"
                                         android:textColor="#FF0055F8"
                                         android:textSize="17sp"
-                                        android:textStyle="bold" />
+                                        app:font="addBold"/>
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/montserrat_bold"
                                         android:lineSpacingExtra="8sp"
                                         android:shadowColor="#33000000"
                                         android:shadowDy="4"
@@ -94,7 +92,7 @@
                                         android:textAllCaps="false"
                                         android:textColor="#000000"
                                         android:textSize="28sp"
-                                        android:textStyle="bold" />
+                                        app:font="addBold"/>
                                 </LinearLayout>
 
                                 <com.example.naver.naver_iso.ViewPagerNoSwipe
@@ -119,7 +117,6 @@
                             android:layout_marginLeft="25dp"
                             android:layout_marginTop="19dp"
                             android:layout_marginBottom="0dp"
-                            android:fontFamily="@font/montserrat_bold"
                             android:lineSpacingExtra="8sp"
                             android:shadowColor="#33000000"
                             android:shadowDy="4"
@@ -128,7 +125,7 @@
                             android:textAllCaps="false"
                             android:textColor="#000000"
                             android:textSize="28sp"
-                            android:textStyle="bold" />
+                            app:font="addBold"/>
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/main_recyclerview"
@@ -208,15 +205,13 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="25dp"
                                 android:layout_marginTop="0dp"
-                                android:fontFamily="@font/montserrat_bold"
                                 android:gravity="center"
                                 android:inputType="textMultiLine"
                                 android:singleLine="true"
                                 android:text="ISO WORKS."
                                 android:textAlignment="textStart"
                                 android:textColor="@color/detailHeaderTitleColor"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 

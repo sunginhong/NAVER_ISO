@@ -88,45 +88,36 @@
                             android:id="@+id/rv_mainTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="top"
-                            android:layout_marginBottom="0dp"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:gravity="center_horizontal"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="4dp"
+                            android:alpha="1"
                             android:shadowColor="#33000000"
                             android:shadowDy="4"
                             android:shadowRadius="12"
                             android:singleLine="true"
-                            android:text="title_"
-                            android:textAlignment="viewStart"
-                            android:textAllCaps="false"
+                            android:text="TextView"
                             android:textColor="@color/card_titleColor"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:id="@+id/rv_mainSubTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="24sp"
+                            android:text="subtitle"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/card_subtitleColor"
+                            android:textSize="14sp"
                             android:typeface="normal" />
 
                         <View
                             android:id="@+id/rv_mainCaseLineView"
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_marginTop="-2dp"
+                            android:layout_height="0dp"
                             android:background="@color/white" />
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/rv_mainSubTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0.7"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:lineSpacingExtra="5sp"
-                        android:maxLines="1"
-                        android:text="subtitle"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/card_subtitleColor"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:typeface="normal" />
                 </LinearLayout>
 
                 <View

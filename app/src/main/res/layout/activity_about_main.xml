@@ -71,15 +71,13 @@
                                 android:id="@+id/about_toolbar_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:fontFamily="@font/montserrat_bold"
                                 android:gravity="center_vertical"
                                 android:inputType="textMultiLine"
                                 android:singleLine="true"
                                 android:text="About."
                                 android:textAlignment="center"
                                 android:textColor="@color/endHeaderTitleColor"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
+                                android:textSize="18sp" />
 
                         </LinearLayout>
 

@@ -45,15 +45,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="false"
-                    android:fontFamily="@font/montserrat_bold"
                     android:inputType="textMultiLine"
                     android:letterSpacing="0"
                     android:text="ISO WORKS."
                     android:textAlignment="center"
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="45sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:font="addBold" />
 
                 <View
                     android:id="@+id/splash_border"
@@ -78,13 +78,12 @@
                     android:layout_centerInParent="false"
                     android:layout_marginTop="0dp"
                     android:alpha="1"
-                    android:fontFamily="@font/montserrat_regular"
                     android:inputType="textMultiLine"
                     android:text="Naver Interactive Studio"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    app:font="addCustom1" />
 
             </LinearLayout>
 

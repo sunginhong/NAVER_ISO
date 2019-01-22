@@ -48,7 +48,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:fontFamily="@font/lekton_bold"
                         android:gravity="center_horizontal"
                         android:singleLine="true"
                         android:text="TITLE"
@@ -56,14 +55,12 @@
                         android:textAllCaps="false"
                         android:textColor="@color/fregment_titleColor"
                         android:textSize="17sp"
-                        android:textStyle="bold"
                         android:typeface="normal" />
 
                     <TextView
                         android:id="@+id/dev_private_subtitleview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/lekton_regular"
                         android:lineSpacingExtra="5sp"
                         android:text="SubTitle"
                         android:textAlignment="viewStart"

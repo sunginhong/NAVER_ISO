@@ -33,10 +33,6 @@ public class SplashActivity extends AppCompatActivity {
         Utils.updateStatusBarColor_string(this, R.color.statusbar_color_splash);
         splash_border = (View) findViewById(R.id.splash_border);
 
-//        splash_videoView = (VideoView) findViewById(R.id.splash_videoView);
-
-//        MediaController ctrl = new MediaController(this);
-//        ctrl.setVisibility(View.GONE);
         Utils.SclaeAnim(splash_border, 0, 0, 1, 1, 0, 0.5f, 0);
         Utils.delayMin(30, new Utils.DelayCallback() {
             @Override
@@ -56,41 +52,6 @@ public class SplashActivity extends AppCompatActivity {
                 });
             }
         });
-//        splashEnd();
-
-
-
-
-//        splash_videoView.setMediaController(ctrl);
-//        splash_videoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videosplash ));
-//        splash_videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//            @Override
-//            public void onPrepared(MediaPlayer mp) {
-//                mMediaPlayer = mp;
-////                mMediaPlayer.isLooping();
-//
-//                Utils.delayMin(10, new Utils.DelayCallback() {
-//                    @Override
-//                    public void afterDelay() {
-//                        mMediaPlayer.start();
-//                    }
-//                });
-//            }
-//        });
-//
-//        splash_videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//            public void onCompletion(MediaPlayer mp) {
-//
-//
-//                Utils.delayMin(20, new Utils.DelayCallback() {
-//                    @Override
-//                    public void afterDelay() {
-//
-//                    }
-//                });
-//            }
-//        });
-
 
     }
 

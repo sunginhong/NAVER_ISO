@@ -9,9 +9,10 @@ public class CustomFontApp extends Application {
     public void onCreate() {
         super.onCreate();
         Typekit.getInstance()
-                .addNormal(Typekit.createFromAsset(this, "notosans_regular.ttf"))
-                .addBold(Typekit.createFromAsset(this, "notosans_bold.ttf"))
-                .addItalic(Typekit.createFromAsset(this, "notosans_italic.ttf"))
-                .add("superior_Title_Bold",Typekit.createFromAsset(this, "superior_title_bold.otf"));
+                .addNormal(Typekit.createFromAsset(this, "NanumSquareRoundR.ttf"))
+                .addBold(Typekit.createFromAsset(this, "NanumSquareRoundB.ttf"))
+                .addBoldItalic(Typekit.createFromAsset(this, "NanumSquareRoundL.ttf"));
+
     }
 }
+

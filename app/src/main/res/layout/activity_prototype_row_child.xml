@@ -19,7 +19,6 @@ android:orientation="horizontal">
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:fontFamily="NotoSans"
             android:gravity="left|center"
             android:lineSpacingExtra="4sp"
             android:maxLines="1"

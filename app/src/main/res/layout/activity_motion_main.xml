@@ -80,15 +80,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="0dp"
-                                android:fontFamily="@font/montserrat_bold"
                                 android:gravity="center"
                                 android:inputType="textMultiLine"
                                 android:singleLine="true"
                                 android:text="Motion."
                                 android:textAlignment="center"
                                 android:textColor="@color/detailHeaderTitleColor"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 
