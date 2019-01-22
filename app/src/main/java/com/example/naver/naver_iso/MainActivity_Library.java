@@ -103,7 +103,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
             public void afterDelay() {
                 values_LibMain.removeAll(values_LibMain);
                 if (values_LibMain.size() == 0) {
-                    String url = "http://10.113.183.52/naverISO/json/data_library.json";
+                    String url = MainActivity.URL_JSON + "data_library.json";
                     NetworkTask networkTask = new NetworkTask(url, null);
                     networkTask.execute();
                 }
@@ -132,28 +132,6 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                 scrolledDistance = scrollY;
                 if ((scrollY > oldScrollY) && (scrollY - oldScrollY) > 10) { scrollDirection = "UP"; }
                 else if((scrollY < oldScrollY) && (oldScrollY - scrollY) > 10) { scrollDirection = "DOWN"; }
-
-//                if (scrollDirection == "DOWN" && scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
-//                    ScrollHederAnim.HeaderHide(lib_appbar, -lib_Detail_appbar.getHeight(), Utils.dpToPx(0), 300);
-//                    appbarVisible = false;
-//                    scrolledDistance = 0;
-//                } else if (scrollDirection == "UP" && scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
-//                    ScrollHederAnim.HeaderShow(lib_appbar, Utils.dpToPx(0), -lib_Detail_appbar.getHeight(), 300);
-//                    appbarVisible = true;
-//                    scrolledDistance = 0;
-//                }
-//                if (scrollDirection == "DOWN" && scrolledDistance > HIDE_THRESHOLD && appbarVisible){
-//                    ScrollHederAnim.HeaderHide(lib_appbar, -lib_Detail_appbar.getHeight(), Utils.dpToPx(0), 300);
-//                    appbarVisible = false;
-//                    scrolledDistance = 0;
-//                }
-
-//                lib_distanceY = -(LineView_LibraryList.dragStart_point_y - scrollY);
-//                LineView_LibraryList.functionRedraw(MainActivity.screenWidth/2-(MainActivity.screenWidth-LineView_LibraryList.lib_lineview.getWidth()), lib_distanceY/2);
-
-//                if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
-//                    scrolledDistance += scrollY;
-//                }
             }
         });
 

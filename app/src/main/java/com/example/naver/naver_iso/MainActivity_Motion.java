@@ -95,7 +95,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
             public void afterDelay() {
                 values_MotionMain.removeAll(values_MotionMain);
                 if(values_MotionMain.size() == 0) {
-                    String url = "http://10.113.183.52/naverISO/json/data_motion.json";
+                    String url = MainActivity.URL_JSON + "data_motion.json";
                     NetworkTask networkTask = new NetworkTask(url, null);
                     networkTask.execute();
                 }
@@ -128,21 +128,6 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
                 scrolledDistance = scrollY;
                 if ((scrollY > oldScrollY) && (scrollY - oldScrollY) > 10) { scrollDirection = "UP"; }
                 else if((scrollY < oldScrollY) && (oldScrollY - scrollY) > 10) { scrollDirection = "DOWN"; }
-
-//                if (scrollDirection == "DOWN" && scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
-//                    ScrollHederAnim.HeaderHide(motion_appbar, -motion_appbar.getHeight(), Utils.dpToPx(0), 300);
-//                    appbarVisible = false;
-//                    scrolledDistance = 0;
-//                } else if (scrollDirection == "UP" && scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
-//                    ScrollHederAnim.HeaderShow(motion_appbar, Utils.dpToPx(0), -motion_appbar.getHeight(), 300);
-//                    appbarVisible = true;
-//                    scrolledDistance = 0;
-//                }
-//                if (scrollDirection == "DOWN" && scrolledDistance > HIDE_THRESHOLD && appbarVisible){
-//                    ScrollHederAnim.HeaderHide(motion_appbar, -motion_appbar.getHeight(), Utils.dpToPx(0), 300);
-//                    appbarVisible = false;
-//                    scrolledDistance = 0;
-//                }
             }
         });
 

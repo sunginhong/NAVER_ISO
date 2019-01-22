@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
     boolean getSet = false;
 
     public static final String CONNECTION_CONFIRM_CLIENT_URL = "http://naver.com";
+    public static final String JSON_CLIENT_URL = "http://10.113.183.52/naverISO/";
+    public static final String URL_JSON = JSON_CLIENT_URL + "json/";
+    public static final String URL_THUMB_IMG = JSON_CLIENT_URL + "json/thumbImg/";
+    public static final String URL_LINK = "http://jjangik.com/";
     public static final String WIFE_STATE = "WIFE";
     public static final String MOBILE_STATE = "MOBILE";
     public static final String NONE_STATE = "NONE";
@@ -101,8 +105,6 @@ public class MainActivity extends AppCompatActivity {
     public String mainJson_Arr4[] = new String[ITEM_COUNT];
 
     public static String json = null;
-    public static String URL_THUMB_IMG = "http://10.113.183.52/naverISO/json/thumbImg/";
-    public static String URL_LINK = "http://jjangik.com/";
 
     public FrameLayout main_appbar_contain;
     private int HIDE_THRESHOLD = 20;
@@ -219,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
 
             values_MainActivity.removeAll(values_MainActivity);
             if(values_MainActivity.size() == 0) {
-                String url = "http://10.113.183.52/naverISO/json/data_main.json";
+                String url = MainActivity.URL_JSON + "data_main.json";
                 MainActivity.NetworkTask networkTask = new MainActivity.NetworkTask(url, null);
                 networkTask.execute();
             }
@@ -323,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
                 return MOBILE_STATE;
             }
         } else {
-            Toast toast = Toast.makeText(context, "사내 네트워크만 접근이 가능합니다. Connect_wlan 연결을 확인 해주세요.", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(context, "네트워크 연결을 확인 해주세요.", Toast.LENGTH_LONG);
             toast.show();
         }
         return NONE_STATE;
