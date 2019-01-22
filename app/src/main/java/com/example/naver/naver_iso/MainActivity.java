@@ -145,13 +145,13 @@ public class MainActivity extends AppCompatActivity {
             main_appbar_contain = (FrameLayout) findViewById(R.id.main_appbar_contain);
 
             if(valuesMain.size() == 0){
-                valuesMain.add(new String[]{"0", "인터랙션.", "Interaction Library", String.valueOf("#0055F8")});
+                valuesMain.add(new String[]{"0", "Interaction.", "인터랙션 라이브러리", String.valueOf("#0055F8")});
                 callValMain.add(new Class<?>[]{MainActivity_Library.class});
-                valuesMain.add(new String[]{"1", "모션 그래픽.", "MotionGraphic Library", String.valueOf("#0055F8")});
+                valuesMain.add(new String[]{"1", "Motion.", "모션그래픽 라이브러리", String.valueOf("#0055F8")});
                 callValMain.add(new Class<?>[]{MainActivity_Motion.class});
                 //            valuesMain.add(new String[]{"2", "AndDev.", "Android Prototype Library", String.valueOf("#ffffff")});
                 //            callValMain.add(new Class<?>[]{MainActivity_AndDev_Private.class});
-                valuesMain.add(new String[]{"2", "인터랙티브 스튜디오.", "Naver Interactive Studio", String.valueOf("#0055F8")});
+                valuesMain.add(new String[]{"2", "About us.", "Naver Interactive Studio", String.valueOf("#0055F8")});
                 callValMain.add(new Class<?>[]{MainActivity_About.class});
             }
 
