@@ -96,15 +96,16 @@ public class MainVp_PagerInteraction implements ViewPager.OnPageChangeListener, 
                 MainActivity.main_vp_cardcotainArray[i].bringToFront();
                 Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1, 1+(float) SIZE_MIN/2);
                 Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_DEF, (float) SIZE_MIN);
-                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, 0, Utils.dpToPx(25));
+                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, Utils.dpToPx(5), Utils.dpToPx(25));
                 Utils.ModulateAlphaAnim(MainActivity.main_vp_textllArray[i], positionOffset, 0, 0.5f, 1, 0);
             }
             if (i == positionNEXT) {
                 Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1+(float) SIZE_MIN/2, 1);
                 Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_MIN, (float) SIZE_DEF);
-                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, Utils.dpToPx(25), 0);
+                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, Utils.dpToPx(25), Utils.dpToPx(5));
                 Utils.ModulateAlphaAnim(MainActivity.main_vp_textllArray[i], positionOffset, 0.5f, 1, 0, 1);
             }
+
         }
     }
 

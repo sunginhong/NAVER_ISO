@@ -84,7 +84,8 @@
                                 android:text="Interaction."
                                 android:textAlignment="center"
                                 android:textColor="@color/detailHeaderTitleColor"
-                                android:textSize="18sp" />
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 

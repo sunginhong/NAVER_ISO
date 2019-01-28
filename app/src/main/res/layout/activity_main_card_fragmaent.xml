@@ -97,7 +97,8 @@
                             android:singleLine="true"
                             android:text="TextView"
                             android:textColor="@color/card_titleColor"
-                            android:textSize="24sp" />
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/rv_mainSubTextView"

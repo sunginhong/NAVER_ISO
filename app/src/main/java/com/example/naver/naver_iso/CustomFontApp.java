@@ -9,9 +9,8 @@ public class CustomFontApp extends Application {
     public void onCreate() {
         super.onCreate();
         Typekit.getInstance()
-                .addNormal(Typekit.createFromAsset(this, "NanumSquareRoundR.ttf"))
-                .addBold(Typekit.createFromAsset(this, "NanumSquareRoundB.ttf"))
-                .addBoldItalic(Typekit.createFromAsset(this, "NanumSquareRoundL.ttf"));
+                .addNormal(Typekit.createFromAsset(this, "NanumGothic.ttf"))
+                .addBold(Typekit.createFromAsset(this, "NanumGothicBold.ttf"));
 
     }
 }

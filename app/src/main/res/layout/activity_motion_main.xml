@@ -86,7 +86,8 @@
                                 android:text="Motion."
                                 android:textAlignment="center"
                                 android:textColor="@color/detailHeaderTitleColor"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 

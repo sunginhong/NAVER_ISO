@@ -81,7 +81,8 @@
                             android:singleLine="true"
                             android:text="Recent."
                             android:textColor="@color/endHeaderTitleColor"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
