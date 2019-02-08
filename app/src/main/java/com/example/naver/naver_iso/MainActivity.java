@@ -120,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
-
         // 앱 실행시 체크
         String getNetwork =  getWhatKindOfNetwork(getApplication());
         if(getNetwork.equals("NONE")){ newtwork = false; }
