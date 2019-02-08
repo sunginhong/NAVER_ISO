@@ -70,7 +70,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         Utils.delayMin(50, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {
-                aboutWebview.loadUrl("http://jjangik.com/");
+                aboutWebview.loadUrl("http://n-interaction.com/");
             }
         });
 

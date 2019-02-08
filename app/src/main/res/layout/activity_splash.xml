@@ -48,7 +48,7 @@
                     android:fontFamily="sans-serif"
                     android:inputType="textMultiLine"
                     android:letterSpacing="0"
-                    android:text="ISO WORKS."
+                    android:text="N-Interaction"
                     android:textAlignment="center"
                     android:textColor="#00FF4D"
                     android:textSize="45sp"

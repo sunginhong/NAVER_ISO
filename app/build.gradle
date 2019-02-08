@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "com.example.naver.naver_iso"
+        applicationId "com.example.naver.NInteraction"
         minSdkVersion 24
         targetSdkVersion 24
         versionCode 2

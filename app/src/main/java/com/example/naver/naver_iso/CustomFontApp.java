@@ -11,7 +11,6 @@ public class CustomFontApp extends Application {
         Typekit.getInstance()
                 .addNormal(Typekit.createFromAsset(this, "NanumGothic.ttf"))
                 .addBold(Typekit.createFromAsset(this, "NanumGothicBold.ttf"));
-
     }
 }
 

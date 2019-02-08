@@ -37,8 +37,8 @@
     <color name="line_color">#dddddd</color>
     <color name="naverGreen">#00C73C</color>
 
-    <color name="statusbar_color_splash">#000000</color>
-    <color name="statusbar_color_main">#232329</color>
+    <color name="statusbar_color_splash">#18181d</color>
+    <color name="statusbar_color_main">#18181d</color>
     <color name="splashBgColor">#232329</color>
 
     <color name="mainBgColor">#ffffff</color>
@@ -74,7 +74,7 @@
     <color name="fregment_subtitleColor">#a3a3a3</color>
     <color name="fregment_lineColor">#eeeeee</color>
 
-    <color name="mainPagerBgColor">#F9F9F9</color>
+    <color name="mainPagerBgColor">#0c000000</color>
     <color name="detailBgColor_dimmed">#646465</color>
     <color name="detailBgColor_dimmed2">#7d646465</color>
 

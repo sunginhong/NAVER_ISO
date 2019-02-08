@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ISO WORKS</string>
+    <string name="app_name">N-Interaction</string>
     <string name="transition_pagecard">transition_pagecard</string>
     <string name="transition_maincard">transition_maincard</string>
     <string name="transition_maincard_duration">400</string>
