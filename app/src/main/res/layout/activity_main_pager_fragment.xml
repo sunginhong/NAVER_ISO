@@ -71,14 +71,14 @@
                 android:id="@+id/main_vp_titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="5dp"
                 android:alpha="1"
                 android:shadowColor="#33000000"
                 android:shadowDy="4"
                 android:shadowRadius="12"
                 android:singleLine="true"
                 android:text="TextView"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/mainVp_titleColor"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -86,13 +86,14 @@
                 android:id="@+id/main_vp_subTitleTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alpha="0.7"
                 android:lineSpacingExtra="24sp"
+                android:text="subtitle"
+                android:alpha="0.8"
                 android:singleLine="true"
-                android:text="TextView"
-                android:textColor="@color/white"
+                android:textAlignment="viewStart"
+                android:textColor="@color/mainVp_subtitleColor"
                 android:textSize="14sp"
-                android:textStyle="normal" />
+                android:typeface="normal" />
 
         </LinearLayout>
     </RelativeLayout>

@@ -59,10 +59,13 @@
     <color name="footerColor">#F9F9F9</color>
 
     <color name="cardBgColor">#f9f9f9</color>
-    <color name="card_titleColor">#ffffff</color>
+    <color name="card_titleColor">#00FF4D</color>
     <color name="card_subtitleColor">#ffffff</color>
 
+    <color name="mainVp_titleColor">#ffffff</color>
+    <color name="mainVp_subtitleColor">#ffffff</color>
     <color name="mainVpColor">#232329</color>
+
     <color name="card_listColor0">#232329</color>
     <color name="card_listColor1">#232329</color>
     <color name="card_listColor2">#232329</color>
