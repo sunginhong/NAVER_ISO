@@ -185,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                     scrolledDistance = scrollY;
-//                    Log.v("ssssssss", ""+String.valueOf(main_cardArray));
                     if (scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
                         ScrollHederAnim.HeaderShow(main_appbar_contain, main_appbar_contain.getHeight(), Utils.dpToPx(0), 400);
                         appbarVisible = false;
