@@ -50,8 +50,7 @@
                     android:letterSpacing="0"
                     android:text="ISO WORKS."
                     android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="#00FF4D"
                     android:textSize="45sp"
                     android:textStyle="bold"
                     app:font="addBold" />
@@ -61,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="6dp"
                     android:layout_marginTop="-3dp"
-                    android:background="@color/white" />
+                    android:background="#00FF4D" />
 
             </LinearLayout>
 

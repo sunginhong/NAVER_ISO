@@ -76,7 +76,7 @@
                         android:id="@+id/lib_titleview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
+                        android:layout_marginBottom="5dp"
                         android:gravity="center_horizontal"
                         android:lineSpacingExtra="26sp"
                         android:singleLine="true"

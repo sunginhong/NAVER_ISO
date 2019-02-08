@@ -10,8 +10,6 @@
     android:clipToPadding="true"
     android:divider="@android:color/transparent"
     android:dividerHeight="0.0px"
-    android:scaleX="0.8"
-    android:scaleY="0.8"
     android:transitionName="@string/transition_pagecard"
     android:translationY="@dimen/main_pagecard_posY"
     app:cardPreventCornerOverlap="false"
@@ -26,7 +24,7 @@
         android:layout_height="match_parent"
         android:background="#000000" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:id="@+id/main_vp_vpLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,8 +42,14 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:alpha="0.7"
+            android:alpha="0"
             android:background="@drawable/bg_black_gradient_maincard" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.7"
+            android:background="@color/mainVpColor" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"

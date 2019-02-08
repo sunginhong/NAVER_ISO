@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="bottom"
     android:gravity="center|center"
     android:orientation="vertical">
@@ -31,7 +31,7 @@
             android:id="@+id/mainvp_pageNav_current"
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:background="@color/splashBgColor" />
+            android:background="#232329" />
 
     </RelativeLayout>
 

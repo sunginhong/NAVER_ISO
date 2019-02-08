@@ -23,7 +23,7 @@ public class MainVp_PagerInteraction implements ViewPager.OnPageChangeListener, 
     double CAL_PAGING = 1.0/ MainActivity.PAGE_ITEM_COUNT;
     float PAPING_ALPHA_LOW = 0.4f;
     String vpDirection;
-    public double SIZE_MIN = 0.8;
+    public double SIZE_MIN = 1.0;
     public double SIZE_DEF = 1.0;
     public static int currentItemIdx = 0;
     public static int currentItem_scroll_Idx = 0;
@@ -95,14 +95,14 @@ public class MainVp_PagerInteraction implements ViewPager.OnPageChangeListener, 
             if (i == position) {
                 MainActivity.main_vp_cardcotainArray[i].bringToFront();
                 Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1, 1+(float) SIZE_MIN/2);
-                Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_DEF, (float) SIZE_MIN);
-                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, Utils.dpToPx(10), Utils.dpToPx(25));
+//                Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_DEF, (float) SIZE_MIN);
+//                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, Utils.dpToPx(10), Utils.dpToPx(25));
                 Utils.ModulateAlphaAnim(MainActivity.main_vp_textllArray[i], positionOffset, 0, 0.5f, 1, 0);
             }
             if (i == positionNEXT) {
                 Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1+(float) SIZE_MIN/2, 1);
-                Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_MIN, (float) SIZE_DEF);
-                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, Utils.dpToPx(25), Utils.dpToPx(10));
+//                Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_MIN, (float) SIZE_DEF);
+//                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, Utils.dpToPx(25), Utils.dpToPx(10));
                 Utils.ModulateAlphaAnim(MainActivity.main_vp_textllArray[i], positionOffset, 0.5f, 1, 0, 1);
             }
 

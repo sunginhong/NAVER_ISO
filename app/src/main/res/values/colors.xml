@@ -35,19 +35,19 @@
     <color name="color_textual">#8D5020</color>
     <color name="chef_bg_color">#82ffffff</color>
     <color name="line_color">#dddddd</color>
-    <color name="naverGreen">#00c73c</color>
+    <color name="naverGreen">#00C73C</color>
 
-    <color name="statusbar_color_splash">#0055F8</color>
-    <color name="statusbar_color_main">#00b457</color>
-    <color name="splashBgColor">#0055f8</color>
+    <color name="statusbar_color_splash">#000000</color>
+    <color name="statusbar_color_main">#232329</color>
+    <color name="splashBgColor">#232329</color>
 
     <color name="mainBgColor">#ffffff</color>
     <color name="detailBgColor">#ffffff</color>
 
     <color name="mainHeaderColor">#1adc6c</color>
-    <color name="detailHeaderColor">#1ADC6C</color>
+    <color name="detailHeaderColor">#232329</color>
     <color name="detailHeaderTitleColor">#ffffff</color>
-    <color name="endHeaderColor">#1ADC6C</color>
+    <color name="endHeaderColor">#232329</color>
     <color name="endHeaderTitleColor">#ffffff</color>
 
     <color name="toptitleColor">#000000</color>
@@ -62,9 +62,10 @@
     <color name="card_titleColor">#ffffff</color>
     <color name="card_subtitleColor">#ffffff</color>
 
-    <color name="card_listColor0">#0055f8</color>
-    <color name="card_listColor1">#0055F8</color>
-    <color name="card_listColor2">#0055F8</color>
+    <color name="mainVpColor">#232329</color>
+    <color name="card_listColor0">#232329</color>
+    <color name="card_listColor1">#232329</color>
+    <color name="card_listColor2">#232329</color>
 
     <color name="fregment_titleColor">#000000</color>
     <color name="fregment_subtitleColor">#a3a3a3</color>

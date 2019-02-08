@@ -145,13 +145,13 @@ public class MainActivity extends AppCompatActivity {
             main_appbar_contain = (FrameLayout) findViewById(R.id.main_appbar_contain);
 
             if(valuesMain.size() == 0){
-                valuesMain.add(new String[]{"0", "Interaction.", "인터랙션 라이브러리", String.valueOf("#0055F8")});
+                valuesMain.add(new String[]{"0", "Interaction.", "인터랙션 라이브러리", String.valueOf("#232329")});
                 callValMain.add(new Class<?>[]{MainActivity_Library.class});
-                valuesMain.add(new String[]{"1", "Motion.", "모션그래픽 라이브러리", String.valueOf("#0055F8")});
+                valuesMain.add(new String[]{"1", "Motion.", "모션그래픽 라이브러리", String.valueOf("#232329")});
                 callValMain.add(new Class<?>[]{MainActivity_Motion.class});
-                //            valuesMain.add(new String[]{"2", "AndDev.", "Android Prototype Library", String.valueOf("#ffffff")});
+                //            valuesMain.add(new String[]{"2", "AndDev.", "Android Prototype Library", String.valueOf("#0055F8")});
                 //            callValMain.add(new Class<?>[]{MainActivity_AndDev_Private.class});
-                valuesMain.add(new String[]{"2", "About us.", "Naver Interactive Studio", String.valueOf("#0055F8")});
+                valuesMain.add(new String[]{"2", "About us.", "Naver Interactive Studio", String.valueOf("#232329")});
                 callValMain.add(new Class<?>[]{MainActivity_About.class});
             }
 
@@ -306,8 +306,8 @@ public class MainActivity extends AppCompatActivity {
             vp.setAdapter(mAdapter);
             vp.setClipToPadding(false);
             vp.setOffscreenPageLimit(PAGE_ITEM_COUNT);
-            vp.setPadding(vp.getWidth()/15, 0, vp.getWidth()/15, vp.getWidth()/20);
-            vp.setPageMargin(-vp.getWidth()/12);
+            vp.setPadding(vp.getWidth()/15, 0, vp.getWidth()/15, vp.getWidth()/10);
+//            vp.setPageMargin(-vp.getWidth()/12);
             vp.setCurrentItem(0);
             pageNav_current = (View)findViewById(R.id.mainvp_pageNav_current);
             mainVp_PagerInteraction = new MainVp_PagerInteraction(vp);
