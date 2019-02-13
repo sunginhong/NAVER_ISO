@@ -123,9 +123,9 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 //            }
 //        });
 
-        if (position == 0){ Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_00.png").into(holder.rv_mainImageView); }
-        if (position == 1){ Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_01.png").into(holder.rv_mainImageView); }
-        if (position == 2){ Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_thumb_02.png").into(holder.rv_mainImageView); }
+        if (position == 0){ Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_00.png").into(holder.rv_mainImageView); }
+        if (position == 1){ Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_01.png").into(holder.rv_mainImageView); }
+        if (position == 2){ Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_02.png").into(holder.rv_mainImageView); }
     }
 
     @Override

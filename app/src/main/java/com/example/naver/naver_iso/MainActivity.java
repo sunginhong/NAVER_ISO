@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity {
     boolean getSet = false;
 
     public static final String CONNECTION_CONFIRM_CLIENT_URL = "http://naver.com";
-    public static final String JSON_CLIENT_URL = "http://10.113.183.52/naverISO/";
-    public static final String URL_JSON = JSON_CLIENT_URL + "json/";
-    public static final String URL_THUMB_IMG = JSON_CLIENT_URL + "json/thumbImg/";
-    public static final String URL_LINK = "http://jjangik.com/";
+    public static final String JSON_CLIENT_URL = "http://n-interaction.com/";
+    public static final String URL_JSON = JSON_CLIENT_URL + "appData/json/";
+    public static final String URL_THUMB_IMG = JSON_CLIENT_URL + "appData/thumbImg/";
+    public static final String URL_LINK = JSON_CLIENT_URL+"?p=";
     public static final String WIFE_STATE = "WIFE";
     public static final String MOBILE_STATE = "MOBILE";
     public static final String NONE_STATE = "NONE";
@@ -281,10 +281,10 @@ public class MainActivity extends AppCompatActivity {
                 String thumbImg = jObject.getString("img");
                 String url = jObject.getString("url");
 
-                values_MainActivity.add(new String[]{title, subtitle, URL_THUMB_IMG+thumbImg, url});
+                values_MainActivity.add(new String[]{title, subtitle, thumbImg, url});
                 mainJson_Arr0[i] = title;
                 mainJson_Arr1[i] = subtitle;
-                mainJson_Arr2[i] = URL_THUMB_IMG+thumbImg;
+                mainJson_Arr2[i] = thumbImg;
                 mainJson_Arr3[i] = URL_LINK+url;
             }
         } catch (JSONException e) {
