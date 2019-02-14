@@ -46,20 +46,24 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
 
         Intent intent = getIntent();
         String libraryeUrl = intent.getStringExtra("libraryeUrl");
-        String libraryeTitle = intent.getStringExtra("libraryeTitle");
+        final String libraryeTitle = intent.getStringExtra("libraryeTitle");
 
         library_detailWebview = (WebView)findViewById(R.id.library_detailWebview);
         library_detailWebview.loadUrl(libraryeUrl);
         library_detailWebview.setWebViewClient(new DetailActivity_Library.WebViewClientClass());
         library_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
 
-//        library_detailWebview.setWebViewClient(new WebViewClient(){
-//            @Override
-//            public void onLoadResource(WebView view, String url) {
-//                super.onLoadResource(view, url);
-//                Log.d("sssss", "onLoadResource: " + url);
-//            }
-//        });
+        library_detailWebview.setWebViewClient(new WebViewClient() {
+
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                Intent intent = new Intent(view.getContext(), DetailActivity_LinkPage.class);
+                intent.putExtra("libraryeUrl" , url);
+                intent.putExtra("libraryeTitle" , libraryeTitle);
+                view.getContext().startActivity(intent);
+                MainActivity.webviewDetailView = true;
+                return true;
+            }
+        });
 
         settingWebview(library_detailWebview);
         Display display = getWindowManager().getDefaultDisplay();
@@ -119,7 +123,12 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
 
     @Override
     protected void onResume() {
-        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+        if (MainActivity.webviewDetailView == false){
+            this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+        } else {
+            MainActivity.webviewDetailView = false;
+            this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
+        }
         super.onResume();
     }
 
@@ -133,7 +142,7 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
+//        finish();
     }
 
     @Override

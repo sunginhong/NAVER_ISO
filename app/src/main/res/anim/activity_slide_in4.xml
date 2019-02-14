@@ -2,12 +2,12 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <translate
         android:interpolator="@anim/cubic_out"
-        android:duration="300"
+        android:duration="350"
         android:fromYDelta="-0%"
         android:toYDelta="0%" />
     <alpha
         android:interpolator="@anim/cubic_out"
-        android:duration="300"
+        android:duration="350"
         android:fromAlpha="0"
         android:toAlpha="1" />
 </set>

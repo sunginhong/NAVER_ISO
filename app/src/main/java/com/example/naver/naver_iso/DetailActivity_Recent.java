@@ -65,7 +65,7 @@ public class DetailActivity_Recent extends AppCompatActivity implements View.OnC
 
         Intent intent = getIntent();
         String recentUrl = intent.getStringExtra("recentUrl");
-        String recentTitle = intent.getStringExtra("recentTitle");
+        final String recentTitle = intent.getStringExtra("recentTitle");
         String recentImg = intent.getStringExtra("recentImg");
 
         recent_Webview = (WebView)findViewById(R.id.recent_detailWebview);
@@ -86,6 +86,18 @@ public class DetailActivity_Recent extends AppCompatActivity implements View.OnC
         recent_Webview.getSettings().setAppCacheEnabled(false);
         recent_Webview.getSettings().setDomStorageEnabled(true);
         recent_Webview.getSettings().setAllowFileAccess(true);
+
+        recent_Webview.setWebViewClient(new WebViewClient() {
+
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                Intent intent = new Intent(view.getContext(), DetailActivity_LinkPage.class);
+                intent.putExtra("libraryeUrl" , url);
+                intent.putExtra("libraryeTitle" , recentTitle);
+                view.getContext().startActivity(intent);
+                MainActivity.webviewDetailView = true;
+                return true;
+            }
+        });
 
         recent_imageview = (ImageView)findViewById(R.id.recent_imageview);
         Picasso.with(context).load(recentImg).into(recent_imageview);
@@ -148,6 +160,12 @@ public class DetailActivity_Recent extends AppCompatActivity implements View.OnC
 
     @Override
     protected void onResume() {
+        if (MainActivity.webviewDetailView == false){
+
+        } else {
+            MainActivity.webviewDetailView = false;
+            this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
+        }
         super.onResume();
     }
 

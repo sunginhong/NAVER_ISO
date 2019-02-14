@@ -53,7 +53,7 @@ public class DetailActivity_Motion extends Activity implements View.OnClickListe
 
         Intent intent = getIntent();
         String motionUrl = intent.getStringExtra("motionUrl");
-        String motionTitle = intent.getStringExtra("motionTitle");
+        final String motionTitle = intent.getStringExtra("motionTitle");
 
         motion_detailWebview = (WebView)findViewById(R.id.motion_detailWebview);
         motion_detailWebview.loadUrl(motionUrl);
@@ -69,6 +69,18 @@ public class DetailActivity_Motion extends Activity implements View.OnClickListe
         motion_detailWebview.getSettings().setDomStorageEnabled(true);
         motion_detailWebview.getSettings().setAllowFileAccess(true);
 //        settingWebview(motion_detailWebview);
+
+        motion_detailWebview.setWebViewClient(new WebViewClient() {
+
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                Intent intent = new Intent(view.getContext(), DetailActivity_LinkPage.class);
+                intent.putExtra("libraryeUrl" , url);
+                intent.putExtra("libraryeTitle" , motionTitle);
+                view.getContext().startActivity(intent);
+                MainActivity.webviewDetailView = true;
+                return true;
+            }
+        });
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -128,7 +140,12 @@ public class DetailActivity_Motion extends Activity implements View.OnClickListe
 
     @Override
     protected void onResume() {
-        this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+        if (MainActivity.webviewDetailView == false){
+            this.overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out);
+        } else {
+            MainActivity.webviewDetailView = false;
+            this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
+        }
         super.onResume();
     }
 

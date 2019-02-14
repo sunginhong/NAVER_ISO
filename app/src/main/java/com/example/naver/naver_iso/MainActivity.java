@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
     private String scrollDirection = "none";
     private int scrollCardHeight =  0;
 
+    public static boolean webviewDetailView = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -235,6 +237,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
 //            mainHeaderTrans.setAlpha(0);
         }
+        webviewDetailView = false;
         super.onResume();
     }
 
