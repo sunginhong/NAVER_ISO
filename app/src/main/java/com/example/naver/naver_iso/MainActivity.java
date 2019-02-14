@@ -231,7 +231,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-//        this.overridePendingTransition(R.anim.activity_alpha_in, R.anim.activity_alpha_out);
         if (getSet){
             RecyclerViewAdapter_Main.reset();
         } else {
