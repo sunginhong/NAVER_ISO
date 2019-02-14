@@ -41,7 +41,6 @@ public class MainVp_PagerInteraction implements ViewPager.OnPageChangeListener, 
 
         vp.setCurrentItem(0);
         Utils.SclaeAnim(MainActivity.pageNav_current, (float) CAL_PAGING, (float) CAL_PAGING, 1.0f, 1.0f, 0.0f, 0.5f, 0);
-
     }
 
     @Override
