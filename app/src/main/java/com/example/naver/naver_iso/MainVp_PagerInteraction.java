@@ -41,6 +41,7 @@ public class MainVp_PagerInteraction implements ViewPager.OnPageChangeListener, 
 
         vp.setCurrentItem(0);
         Utils.SclaeAnim(MainActivity.pageNav_current, (float) CAL_PAGING, (float) CAL_PAGING, 1.0f, 1.0f, 0.0f, 0.5f, 0);
+
     }
 
     @Override
@@ -94,13 +95,13 @@ public class MainVp_PagerInteraction implements ViewPager.OnPageChangeListener, 
         for (int i = 0; i < MainActivity.main_vp_cardcotainArray.length; i++) {
             if (i == position) {
                 MainActivity.main_vp_cardcotainArray[i].bringToFront();
-                Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1, 1+(float) SIZE_MIN/2);
+                Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1, 1.4f);
 //                Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_DEF, (float) SIZE_MIN);
 //                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, Utils.dpToPx(10), Utils.dpToPx(25));
                 Utils.ModulateAlphaAnim(MainActivity.main_vp_textllArray[i], positionOffset, 0, 0.5f, 1, 0);
             }
             if (i == positionNEXT) {
-                Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1+(float) SIZE_MIN/2, 1);
+                Utils.ModulatetScaleAnim(MainActivity.bgImgArray[i], positionOffset, 0, 1, 1.4f, 1);
 //                Utils.ModulatetScaleAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, (float) SIZE_MIN, (float) SIZE_DEF);
 //                Utils.ModulatetTransYAnim(MainActivity.main_vp_cardcotainArray[i], positionOffset, 0, 1, Utils.dpToPx(25), Utils.dpToPx(10));
                 Utils.ModulateAlphaAnim(MainActivity.main_vp_textllArray[i], positionOffset, 0.5f, 1, 0, 1);

@@ -196,7 +196,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
                 String thumbImg = jObject.getString("img");
                 String url = jObject.getString("url");
 
-                values_LibMain.add(new String[]{title, subtitle, thumbImg, MainActivity.URL_LINK+url});
+                values_LibMain.add(new String[]{title, subtitle, MainActivity.URL_IMG+thumbImg, MainActivity.URL_LINK+url});
 
                 RecyclerViewAdapter_Lib adapter = new RecyclerViewAdapter_Lib(this, values_LibMain);
                 libView = (RecyclerView) findViewById(R.id.main_lib_recyclerview);

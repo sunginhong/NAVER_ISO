@@ -189,7 +189,7 @@ public class MainActivity_Motion extends Activity implements View.OnClickListene
                 String thumbImg = jObject.getString("img");
                 String url = jObject.getString("url");
 
-                values_MotionMain.add(new String[]{title, subtitle, thumbImg, MainActivity.URL_LINK+url});
+                values_MotionMain.add(new String[]{title, subtitle, MainActivity.URL_IMG+thumbImg, MainActivity.URL_LINK+url});
 
                 RecyclerViewAdapter_Motion adapter = new RecyclerViewAdapter_Motion(this, values_MotionMain);
                 RecyclerView motion_View =  (RecyclerView)findViewById(R.id.main_motion_recyclerview);
