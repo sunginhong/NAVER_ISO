@@ -103,7 +103,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
             public void afterDelay() {
                 values_LibMain.removeAll(values_LibMain);
                 if (values_LibMain.size() == 0) {
-                    String url = MainActivity.URL_JSON + "data_library.json";
+                    String url = MainActivity.URL_JSON + "data_interaction.json";
                     NetworkTask networkTask = new NetworkTask(url, null);
                     networkTask.execute();
                 }
