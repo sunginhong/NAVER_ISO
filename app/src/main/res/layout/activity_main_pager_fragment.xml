@@ -86,13 +86,13 @@
                 android:id="@+id/main_vp_subTitleTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="24sp"
-                android:text="subtitle"
                 android:alpha="0.8"
+                android:lineSpacingExtra="24sp"
                 android:singleLine="true"
+                android:text="subtitle"
                 android:textAlignment="viewStart"
                 android:textColor="@color/mainVp_subtitleColor"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:typeface="normal" />
 
         </LinearLayout>

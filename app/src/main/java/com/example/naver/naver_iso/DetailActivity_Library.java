@@ -53,6 +53,14 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
         library_detailWebview.setWebViewClient(new DetailActivity_Library.WebViewClientClass());
         library_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
 
+//        library_detailWebview.setWebViewClient(new WebViewClient(){
+//            @Override
+//            public void onLoadResource(WebView view, String url) {
+//                super.onLoadResource(view, url);
+//                Log.d("sssss", "onLoadResource: " + url);
+//            }
+//        });
+
         settingWebview(library_detailWebview);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
