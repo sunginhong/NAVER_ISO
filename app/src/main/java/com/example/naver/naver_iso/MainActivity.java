@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                                 Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, scrollCardHeight, 0, 400);
                             }
                         }
-                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < 0 && scrolledDistance-MainActivity.lstMaincardArray[i].getY() < -MainActivity.lstMaincardArray[i].getHeight()/1.01 ){
+                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < 0 && scrolledDistance-MainActivity.lstMaincardArray[i].getY() < -MainActivity.lstMaincardArray[i].getHeight()/1 ){
                             if (MainActivity.lstMaincardArray[i].getTranslationY() == 0){
                                 Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, 0, scrollCardHeight, 300);
                                 MainActivity.lstMaincardArray[i].setTranslationY(scrollCardHeight);
