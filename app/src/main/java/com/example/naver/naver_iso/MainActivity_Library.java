@@ -134,8 +134,6 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
             }
         });
 
-
-
         lib_nestedscrollview.setOnClickListener(null);
 
         lib_appbar.bringToFront();
@@ -257,8 +255,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         return true;
     }
 
-
-
+    
     private void outAnim(){
         finish();
         this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
