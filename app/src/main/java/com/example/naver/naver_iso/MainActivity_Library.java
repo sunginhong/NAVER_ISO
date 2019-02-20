@@ -255,7 +255,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         return true;
     }
 
-    
+
     private void outAnim(){
         finish();
         this.overridePendingTransition(R.anim.activity_slide_in4, R.anim.activity_slide_out4);
