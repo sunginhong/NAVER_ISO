@@ -3,7 +3,6 @@ package com.example.naver.naver_iso;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -43,7 +42,7 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_about_main);
         about_imageview = (ImageView) findViewById(R.id.about_imageview);
 

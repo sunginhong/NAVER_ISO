@@ -20,23 +20,25 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity"
+            android:configChanges="screenSize|orientation">
+        </activity>
         <activity android:name=".MainActivity_Library"></activity>
-        <activity android:name=".not_used.MainActivity_Prototype_Cus"></activity>
-        <activity android:name=".MainActivity_AndDev_Private"></activity>
-        <activity android:name=".MainActivity_Motion"></activity>
-        <activity android:name=".MainActivity_About"></activity>
-
-        <activity android:name=".and_dev.ParallaxVP00_MainActivity"
-                  android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".and_dev.ParallaxVP01_MainActivity"
-                  android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".and_dev.ParallaxVP02_MainActivity"
-                  android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".not_used.MainActivity_Prototype_Cus"
+            android:configChanges="screenSize|orientation">
+        </activity>
+        <activity android:name=".MainActivity_AndDev_Private"
+            android:configChanges="screenSize|orientation">
+        </activity>
+        <activity android:name=".MainActivity_Motion"
+            android:configChanges="screenSize|orientation">
+        </activity>
+        <activity android:name=".MainActivity_About"
+            android:configChanges="screenSize|orientation">
+        </activity>
 
         <activity android:name=".and_dev.Sidemenu00_MainActivity"
                   android:theme="@style/AppTheme.NoActionBar"></activity>

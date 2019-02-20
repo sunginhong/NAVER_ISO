@@ -2,7 +2,6 @@ package com.example.naver.naver_iso;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.content.res.AssetManager;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
         // 앱 실행시 체크
         String getNetwork =  getWhatKindOfNetwork(getApplication());
