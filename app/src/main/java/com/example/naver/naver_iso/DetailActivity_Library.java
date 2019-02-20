@@ -56,7 +56,7 @@ public class DetailActivity_Library extends AppCompatActivity implements View.On
         library_detailWebview.setWebViewClient(new WebViewClient() {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                Intent intent = new Intent(view.getContext(), DetailActivity_LinkPage.class);
+                Intent intent = new Intent(view.getContext(), DetailActivity_Library_LinkPage.class);
                 intent.putExtra("libraryeUrl" , url);
                 intent.putExtra("libraryeTitle" , libraryeTitle);
                 view.getContext().startActivity(intent);

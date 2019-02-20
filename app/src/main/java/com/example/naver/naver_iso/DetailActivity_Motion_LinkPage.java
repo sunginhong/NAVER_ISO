@@ -15,14 +15,14 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class DetailActivity_LinkPage extends AppCompatActivity implements View.OnClickListener {
+public class DetailActivity_Motion_LinkPage extends AppCompatActivity implements View.OnClickListener {
 
     int width;
     int height;
     float screenScale;
     FrameLayout detail_linkpage_toolbar_backbtn;
-    TextView detail_linkpage_toolbar_title;
-    WebView detail_linkpage_detailWebview;
+    TextView detail_linkpage_MOTION_toolbar_title;
+    WebView detail_linkpage_MOTION_detailWebview;
 
     private AppBarLayout detail_linkpage_appbar;
 
@@ -46,22 +46,34 @@ public class DetailActivity_LinkPage extends AppCompatActivity implements View.O
         Utils.updateStatusBarColor_string(this, R.color.statusbar_color_main);
 
         Intent intent = getIntent();
-        String detail_linkpage_Url = intent.getStringExtra("libraryeUrl");
-        String detail_linkpage_Title = intent.getStringExtra("libraryeTitle");
+        String detail_linkpage_Url = intent.getStringExtra("motionUrl");
+        String detail_linkpage_Title = intent.getStringExtra("motionTitle");
 
-        detail_linkpage_detailWebview = (WebView)findViewById(R.id.detail_linkpage_detailWebview);
-        detail_linkpage_detailWebview.loadUrl(detail_linkpage_Url);
-        detail_linkpage_detailWebview.setWebViewClient(new DetailActivity_LinkPage.WebViewClientClass());
-        detail_linkpage_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
+        detail_linkpage_MOTION_detailWebview = (WebView)findViewById(R.id.detail_linkpage_detailWebview);
 
-        settingWebview(detail_linkpage_detailWebview);
+        detail_linkpage_MOTION_detailWebview.getSettings().setJavaScriptEnabled(true);
+        detail_linkpage_MOTION_detailWebview.getSettings().setLoadWithOverviewMode(true);
+        detail_linkpage_MOTION_detailWebview.getSettings().setUseWideViewPort(true);
+
+        detail_linkpage_MOTION_detailWebview.getSettings().setSupportZoom(true);
+        detail_linkpage_MOTION_detailWebview.getSettings().setBuiltInZoomControls(true);
+        detail_linkpage_MOTION_detailWebview.getSettings().setDisplayZoomControls(false);
+
+        detail_linkpage_MOTION_detailWebview.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        detail_linkpage_MOTION_detailWebview.setScrollbarFadingEnabled(false);
+
+        detail_linkpage_MOTION_detailWebview.loadUrl(detail_linkpage_Url);
+        detail_linkpage_MOTION_detailWebview.setWebViewClient(new DetailActivity_Motion_LinkPage.WebViewClientClass());
+        detail_linkpage_MOTION_detailWebview.setWebChromeClient(new FullscreenableChromeClient(this));
+
+        settingWebview(detail_linkpage_MOTION_detailWebview);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         width = size.x;
         height = size.y;
-        detail_linkpage_toolbar_title = (TextView)findViewById(R.id.detail_linkpage_toolbar_title);
-        detail_linkpage_toolbar_title.setText(detail_linkpage_Title);
+        detail_linkpage_MOTION_toolbar_title = (TextView)findViewById(R.id.detail_linkpage_toolbar_title);
+        detail_linkpage_MOTION_toolbar_title.setText(detail_linkpage_Title);
     }
 
     private class WebViewClientClass extends WebViewClient {
@@ -94,7 +106,7 @@ public class DetailActivity_LinkPage extends AppCompatActivity implements View.O
 
     @Override
     public void onBackPressed() {
-        detail_linkpage_detailWebview.stopLoading();
+        detail_linkpage_MOTION_detailWebview.stopLoading();
         ActivityCompat.finishAfterTransition(this);
         this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
     }
@@ -107,7 +119,7 @@ public class DetailActivity_LinkPage extends AppCompatActivity implements View.O
     @Override
     public void onClick(View view) {
         if (!appbarVisible){
-            detail_linkpage_detailWebview.stopLoading();
+            detail_linkpage_MOTION_detailWebview.stopLoading();
             ActivityCompat.finishAfterTransition(this);
             this.overridePendingTransition(R.anim.activity_slide_in2, R.anim.activity_slide_out2);
         }

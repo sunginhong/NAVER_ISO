@@ -73,9 +73,9 @@ public class DetailActivity_Motion extends Activity implements View.OnClickListe
         motion_detailWebview.setWebViewClient(new WebViewClient() {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                Intent intent = new Intent(view.getContext(), DetailActivity_LinkPage.class);
-                intent.putExtra("libraryeUrl" , url);
-                intent.putExtra("libraryeTitle" , motionTitle);
+                Intent intent = new Intent(view.getContext(), DetailActivity_Motion_LinkPage.class);
+                intent.putExtra("motionUrl" , url);
+                intent.putExtra("motionTitle" , motionTitle);
                 view.getContext().startActivity(intent);
                 MainActivity.webviewDetailView = true;
                 return true;
@@ -159,7 +159,7 @@ public class DetailActivity_Motion extends Activity implements View.OnClickListe
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
+//        finish();
     }
 
     @Override

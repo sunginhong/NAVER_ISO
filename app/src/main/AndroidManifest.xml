@@ -52,7 +52,10 @@
         <activity android:name=".DetailActivity_Recent"
             android:configChanges="screenSize|orientation">
         </activity>
-        <activity android:name=".DetailActivity_LinkPage"
+        <activity android:name=".DetailActivity_Library_LinkPage"
+            android:configChanges="screenSize|orientation">
+        </activity>
+        <activity android:name=".DetailActivity_Motion_LinkPage"
             android:configChanges="screenSize|orientation">
         </activity>
 

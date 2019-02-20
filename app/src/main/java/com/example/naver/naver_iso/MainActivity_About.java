@@ -64,7 +64,16 @@ public class MainActivity_About extends AppCompatActivity implements View.OnClic
         aboutWebview = (WebView)findViewById(R.id.aboutWebview);
         aboutWebview.getSettings().setJavaScriptEnabled(true);
 
-//        setActivityBackgroundColor(R.color.detailBgColor_dimmed2);
+        aboutWebview.getSettings().setJavaScriptEnabled(true);
+        aboutWebview.getSettings().setLoadWithOverviewMode(true);
+        aboutWebview.getSettings().setUseWideViewPort(true);
+
+        aboutWebview.getSettings().setSupportZoom(true);
+        aboutWebview.getSettings().setBuiltInZoomControls(true);
+        aboutWebview.getSettings().setDisplayZoomControls(false);
+
+        aboutWebview.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        aboutWebview.setScrollbarFadingEnabled(false);
 
         aboutWebview.setWebViewClient(new MainActivity_About.WebViewClientClass());
         Utils.delayMin(50, new Utils.DelayCallback() {

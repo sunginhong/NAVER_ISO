@@ -90,7 +90,7 @@ public class DetailActivity_Recent extends AppCompatActivity implements View.OnC
         recent_Webview.setWebViewClient(new WebViewClient() {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                Intent intent = new Intent(view.getContext(), DetailActivity_LinkPage.class);
+                Intent intent = new Intent(view.getContext(), DetailActivity_Library_LinkPage.class);
                 intent.putExtra("libraryeUrl" , url);
                 intent.putExtra("libraryeTitle" , recentTitle);
                 view.getContext().startActivity(intent);
