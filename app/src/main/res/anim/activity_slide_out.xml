@@ -7,5 +7,11 @@
         android:fromYDelta="0"
         android:toXDelta="-50%"
         android:toYDelta="0" />
+
+    <alpha
+        android:interpolator="@anim/cubic_out"
+        android:duration="350"
+        android:fromAlpha="1"
+        android:toAlpha="0" />
 </set>
 
