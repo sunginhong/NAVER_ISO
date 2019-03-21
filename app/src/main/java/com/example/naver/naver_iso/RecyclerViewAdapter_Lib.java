@@ -24,6 +24,8 @@ public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAd
     private  MyViewHolder view;
     private float LibListHeight = 0;
 
+    static RelativeLayout pvArray[] = new RelativeLayout[MainActivity_Library.libItemLength];
+
     public RecyclerViewAdapter_Lib (Context c, ArrayList<String[]> list) {
         arrayList = list;
         this.c = c;
@@ -48,7 +50,7 @@ public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAd
 
         holder.lib_lst_rl.setId(position);
         holder.lib_lst_rl.setOnClickListener(this);
-
+        pvArray[position] = holder.lib_lst_rl;
         urlLibArray[position] = detail[3];
         MainActivity_Library.libTitleNames[position] = detail[0];
 
@@ -122,6 +124,35 @@ public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAd
 //                Log.v("ssssssss", ""+String.valueOf(libItemArray[i].getHeight()));
 ////                libItemArray[i].setTranslationY(libItemHeight);
 //            }
+        }
+    }
+
+    static void detailItemResumeAnim(){
+        Utils.delay(1, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                detailItemResumeAnim_index(0);
+            }
+        });
+
+    }
+
+    private static void detailItemResumeAnim_index(final int index){
+        int iterations = 10;
+        final int current = index+1;
+        final float lstHeight_Rate = 1.5f;
+        if (current <= iterations){
+            Utils.delayMin(5, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() {
+                    for (int i = 0; i < pvArray.length; i++) {
+                        if (i == index){
+                            Utils.TransAnim(pvArray[i], 0f, 0f, pvArray[i].getHeight()*lstHeight_Rate, 0f, 400);
+                        }
+                    }
+                    detailItemResumeAnim_index(current);
+                }
+            });
         }
     }
 

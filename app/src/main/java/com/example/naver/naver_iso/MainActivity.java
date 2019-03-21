@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewPager;
@@ -29,6 +30,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.tsengvn.typekit.TypekitContextWrapper;
 
 import org.json.JSONArray;
@@ -110,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
     public FrameLayout main_appbar_contain;
     private int HIDE_THRESHOLD = 20;
     private int scrolledDistance = 0;
+    private int scrolledDistance_header = 0;
     private boolean appbarVisible = false;
 
     private String scrollDirection = "none";
@@ -118,8 +121,14 @@ public class MainActivity extends AppCompatActivity {
     public static boolean webviewDetailView = false;
 
     public static RelativeLayout sidemenu;
-    public static Button sidemenu_backbtn;
+    public static FrameLayout sidemenu_backbtn;
+    LottieAnimationView sidemenu_backbtn_icon;
     public static boolean sidemenuActive = false;
+
+    public static FrameLayout main_appbar_sidemenu_btn;
+    LottieAnimationView main_appbar_sidemenu_btn_icon;
+    private Handler mHandler;
+    private Runnable mRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,18 +153,48 @@ public class MainActivity extends AppCompatActivity {
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
 
-//        sidemenu = (RelativeLayout) findViewById(R.id.sidemenu);
-//        sidemenu_backbtn = (Button)findViewById(R.id.sidemenu_backbtn);
-//        sidemenu_backbtn.setOnClickListener(sidemenu_backbtn__event);
+        setSupportActionBar(toolbar);
+        main_nestedscrollview = (NestedScrollView) findViewById(R.id.main_nestedscrollview);
+        main_appbar_contain = (FrameLayout) findViewById(R.id.main_appbar_contain);
+        main_appbar_sidemenu_btn = (FrameLayout)findViewById(R.id.main_appbar_sidemenu_btn);
+        main_appbar_sidemenu_btn_icon = (LottieAnimationView) findViewById(R.id.main_appbar_sidemenu_btn_icon);
+        main_appbar_sidemenu_btn_icon.setProgress(0);
 
-//        Utils.TransAnim(sidemenu,-MainActivity.screenWidth/1, -MainActivity.screenWidth/1, 0.0f, 0.0f, 0);
+        sidemenu = (RelativeLayout) findViewById(R.id.sidemenu);
+        sidemenu_backbtn_icon = (LottieAnimationView) findViewById(R.id.sidemenu_backbtn_icon);
+        sidemenu_backbtn = (FrameLayout)findViewById(R.id.sidemenu_backbtn);
+        sidemenu_backbtn_icon.setProgress(1);
+
+//        TextView sidemenu_textView = (TextView) findViewById(R.id.sidemenu_textView);
+//        sidemenu_textView.setText("");
+
+        sidemenu_backbtn.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (sidemenuActive){
+                    Main_SideMenuView.path_status_check(false);
+                }
+            }
+        });
+
+        Utils.TransAnim(sidemenu,-MainActivity.screenWidth/1, -MainActivity.screenWidth/1, 0.0f, 0.0f, 0);
+        sidemenu.setX(-screenWidth);
+
+        main_appbar_sidemenu_btn.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!sidemenuActive){
+                    Main_SideMenuView.path_status_check(true);
+                }
+            }
+        });
 
         main_contain = (CoordinatorLayout) findViewById(R.id.main_contain);
+        main_appbar_contain.bringToFront();
+        main_appbar_contain.setY(Utils.dpToPx(-56));
+
 
         if (newtwork){
-            setSupportActionBar(toolbar);
-            main_nestedscrollview = (NestedScrollView) findViewById(R.id.main_nestedscrollview);
-            main_appbar_contain = (FrameLayout) findViewById(R.id.main_appbar_contain);
 
             if(valuesMain.size() == 0){
                 valuesMain.add(new String[]{"0", "Interaction.", "인터랙션 라이브러리", String.valueOf("#232329")});
@@ -198,17 +237,53 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                     scrolledDistance = scrollY;
-                    if (scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
-                        ScrollHederAnim.HeaderShow(main_appbar_contain, main_appbar_contain.getHeight(), Utils.dpToPx(0), 400);
-                        appbarVisible = false;
-                        scrolledDistance = 0;
-                    } else if (scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
-                        ScrollHederAnim.HeaderHide(main_appbar_contain, Utils.dpToPx(0), main_appbar_contain.getHeight(), 400);
-                        appbarVisible = true;
-                        scrolledDistance = 0;
-                    }
+                    scrolledDistance_header = scrollY;
+//                    if (scrolledDistance > 0 && !appbarVisible) {
+//                        main_appbar_contain.setY(0);
+//                        ScrollHederAnim.HeaderShow(main_appbar_contain, -main_appbar_contain.getHeight(), Utils.dpToPx(0), 400);
+//                        appbarVisible = false;
+//                        scrolledDistance = 0;
+//                    } else {
+//                        Utils.delayMin(40, new Utils.DelayCallback() {
+//                            @Override
+//                            public void afterDelay() {
+//                                main_appbar_contain.setY(Utils.dpToPx(-56));
+//                            }
+//                        });
+//                        ScrollHederAnim.HeaderHide(main_appbar_contain, Utils.dpToPx(0), -main_appbar_contain.getHeight(), 400);
+//                        appbarVisible = true;
+//                        scrolledDistance = 0;
+//                    }
                     if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
                         scrolledDistance += scrollY;
+                    }
+
+                    mRunnable = new Runnable() {
+                        @Override
+                        public void run() { main_appbar_contain.setY(Utils.dpToPx(-56)); }
+                    };
+
+                    if (scrollY > Utils.dpToPx(0)){
+                        if (scrollDirection == "DOWN" && scrolledDistance_header > HIDE_THRESHOLD && !appbarVisible) {
+                            ScrollHederAnim.HeaderShow(main_appbar_contain, -main_appbar_contain.getHeight(), Utils.dpToPx(0), 400);
+                            main_appbar_contain.setY(Utils.dpToPx(0));
+                            appbarVisible = true;
+                            scrolledDistance_header = 0;
+                        } else if (scrollDirection == "DOWN" && scrolledDistance_header > HIDE_THRESHOLD && appbarVisible) {
+//                            ScrollHederAnim.HeaderShow(main_appbar_contain, 0, -main_appbar_contain.getHeight(), 400);
+//                            mHandler = new Handler();
+//                            mHandler.postDelayed(mRunnable, 400);
+//                            appbarVisible = false;
+//                            scrolledDistance_header = 0;
+                        }
+                    } else {
+                        if (main_appbar_contain.getY() == Utils.dpToPx(0) && appbarVisible) {
+                            ScrollHederAnim.HeaderShow(main_appbar_contain, 0, -main_appbar_contain.getHeight(), 400);
+                            mHandler = new Handler();
+                            mHandler.postDelayed(mRunnable, 400);
+                            appbarVisible = false;
+                            scrolledDistance_header = 0;
+                        }
                     }
 
                     for (int i = 0; i < MainActivity.lstMaincardArray.length; i++) {
@@ -342,15 +417,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return NONE_STATE;
     }
-
-    Button.OnClickListener sidemenu_backbtn__event = new View.OnClickListener() {
-        public void onClick( View v ) {
-            MainActivity.sidemenuActive = true;
-            if (sidemenuActive){
-                Main_SideMenuView.path_status_check(false);
-            }
-        }
-    };
-
 
 }

@@ -41,7 +41,7 @@ public class Main_SideMenuView extends View {
     private void init(){
         paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
-        sidemenu_canvas = (View)findViewById(R.id.sidemenu_canvas);
+//        sidemenu_canvas = (View)findViewById(R.id.sidemenu_canvas);
     }
 
     @Override
@@ -125,23 +125,27 @@ public class Main_SideMenuView extends View {
     public static void path_status_check(boolean bool){
         boolean status = bool;
         if (status){
-            MainActivity.sidemenuActive = true;
-            Utils.TransAnim(Main_SideMenuView.sidemenu_canvas, 0.0f, MainActivity.screenWidth, 0.0f, 0.0f, 400);
+            MainActivity.sidemenu.setX(0);
             Utils.TransAnim(MainActivity.sidemenu, -MainActivity.screenWidth, 0.0f, 0.0f, 0.0f, 400);
-            Utils.TransAlphaAnim(MainActivity.main_contain, 0f, MainActivity.screenWidth/2, 0.0f, 0.0f, 1, 0,400);
-
+            Utils.TransAlphaAnim(MainActivity.main_contain, 0f, MainActivity.screenWidth/2, 0.0f, 0.0f, 1, 0.5f,400);
             Utils.delayMin(40, new Utils.DelayCallback() {
                 @Override
                 public void afterDelay() {
+                    MainActivity.sidemenuActive = true;
                     MainActivity.main_contain.setX(MainActivity.screenWidth);
                 }
             });
         } else {
-            MainActivity.sidemenuActive = false;
-            Utils.TransAnim(Main_SideMenuView.sidemenu_canvas, MainActivity.screenWidth, 0.0f, 0.0f, 0.0f, 400);
-            Utils.TransAnim(MainActivity.sidemenu,0.0f, -MainActivity.screenWidth, 0.0f, 0.0f, 400);
             MainActivity.main_contain.setX(0);
-            Utils.TransAlphaAnim(MainActivity.main_contain, MainActivity.screenWidth/2, 0f, 0.0f, 0.0f, 0, 1,400);
+            Utils.TransAnim(MainActivity.sidemenu,0.0f, -MainActivity.screenWidth, 0.0f, 0.0f, 400);
+            Utils.TransAlphaAnim(MainActivity.main_contain, MainActivity.screenWidth/2, 0f, 0.0f, 0.0f, 0.5f, 1,400);
+            Utils.delayMin(40, new Utils.DelayCallback() {
+                @Override
+                public void afterDelay() {
+                    MainActivity.sidemenuActive = false;
+                    MainActivity.sidemenu.setX(-MainActivity.screenWidth);
+                }
+            });
         }
     }
 

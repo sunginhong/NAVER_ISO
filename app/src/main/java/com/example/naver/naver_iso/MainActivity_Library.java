@@ -212,6 +212,12 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
     @Override
     protected void onResume() {
+//        Utils.delay(10, new Utils.DelayCallback() {
+//            @Override
+//            public void afterDelay() {
+//                RecyclerViewAdapter_Lib.detailItemResumeAnim();
+//            }
+//        });
         super.onResume();
     }
 

@@ -5,14 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:orientation="vertical"
-    android:background="@color/mainBgColor"
     tools:context=".MainActivity">
 
     <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main_contain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,9 +19,9 @@
             android:id="@+id/main_nestedscrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:clickable="true"
             app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
             <RelativeLayout
@@ -153,8 +150,7 @@
         <FrameLayout
             android:id="@+id/main_appbar_contain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:translationY="-56dp">
+            android:layout_height="wrap_content">
 
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/main_appbar"
@@ -205,10 +201,26 @@
                             android:layout_marginTop="0dp"
                             android:orientation="horizontal">
 
+                            <FrameLayout
+                                android:id="@+id/main_appbar_sidemenu_btn"
+                                android:layout_width="75dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="0dp">
+
+                                <com.airbnb.lottie.LottieAnimationView
+                                    android:id="@+id/main_appbar_sidemenu_btn_icon"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginLeft="25dp"
+                                    app:lottie_fileName="menuIcon.json" />
+
+                            </FrameLayout>
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="25dp"
+                                android:layout_marginLeft="-12dp"
                                 android:layout_marginTop="0dp"
                                 android:gravity="center"
                                 android:inputType="textMultiLine"
@@ -242,26 +254,19 @@
     <com.example.naver.naver_iso.ViewMainCustom
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:clickable="false"/>
+        android:clickable="false" />
 
-    <com.example.naver.naver_iso.Main_SideMenuView
-        android:id="@+id/sidemenu_canvas"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/sidemenu"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:orientation="vertical">
 
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/sidemenu"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical">-->
+        <include
+            layout="@layout/sidemenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-        <!--<include-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--layout="@layout/sidemenu"/>-->
-
-    <!--</RelativeLayout>-->
+    </RelativeLayout>
 
 </FrameLayout>

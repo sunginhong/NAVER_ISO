@@ -158,7 +158,6 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
     }
 
 
-
     public static void reset() {
         if (mainclick){
             Utils.AlphaAnim(view_d, 0, 1, 400);
@@ -167,5 +166,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 
         }
     }
+
+
 }
 

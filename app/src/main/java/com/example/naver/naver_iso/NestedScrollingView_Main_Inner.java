@@ -79,36 +79,36 @@ public class NestedScrollingView_Main_Inner extends NestedScrollView {
 
         switch (e.getAction())
         {
-            case MotionEvent.ACTION_DOWN:
-                Main_SideMenuView.drag = true;
-                if (!MainActivity.sidemenuActive){
-                    Main_SideMenuView.dragStart_point_x = e.getX();
-                    Main_SideMenuView.dragStart_point_y = e.getY();
-                    Main_SideMenuView.sidemenu_canvas.invalidate();
-                }
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if (Main_SideMenuView.drag && !MainActivity.sidemenuActive){
-//                    ((NestedScrollingView_Main)findViewById(R.id.main_nestedscrollview)).setY(NestedScrollingView_Main.ScrollY);
-//                    MainActivity.main_nestedscrollview.scrollTo(0, NestedScrollingView_Main.ScrollY);
-                    Main_SideMenuView.dragMove_point_x = e.getX()*1.0f - Main_SideMenuView.dragStart_point_x;
-                    Main_SideMenuView.dragMove_point_y = e.getY()*1.0f - NestedScrollingView_Main.ScrollY;
-                    Main_SideMenuView.sidemenu_canvas.invalidate();
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                Main_SideMenuView.drag = false;
-                if (Main_SideMenuView.dragMove_point_x > MainActivity.screenWidth/2 && !MainActivity.sidemenuActive){
-                    MainActivity.sidemenuActive = true;
-                    Main_SideMenuView.path_status_check(MainActivity.sidemenuActive);
-                    Main_SideMenuView.path_animator(400);
-                } else {
-                    MainActivity.sidemenuActive = false;
-                    Main_SideMenuView.path_animator(300);
-                }
-                break;
-            default:
-                break;
+//            case MotionEvent.ACTION_DOWN:
+//                Main_SideMenuView.drag = true;
+//                if (!MainActivity.sidemenuActive){
+//                    Main_SideMenuView.dragStart_point_x = e.getX();
+//                    Main_SideMenuView.dragStart_point_y = e.getY();
+//                    Main_SideMenuView.sidemenu_canvas.invalidate();
+//                }
+//                break;
+//            case MotionEvent.ACTION_MOVE:
+//                if (Main_SideMenuView.drag && !MainActivity.sidemenuActive){
+////                    ((NestedScrollingView_Main)findViewById(R.id.main_nestedscrollview)).setY(NestedScrollingView_Main.ScrollY);
+////                    MainActivity.main_nestedscrollview.scrollTo(0, NestedScrollingView_Main.ScrollY);
+//                    Main_SideMenuView.dragMove_point_x = e.getX()*1.0f - Main_SideMenuView.dragStart_point_x;
+//                    Main_SideMenuView.dragMove_point_y = e.getY()*1.0f - NestedScrollingView_Main.ScrollY;
+//                    Main_SideMenuView.sidemenu_canvas.invalidate();
+//                }
+//                break;
+//            case MotionEvent.ACTION_UP:
+//                Main_SideMenuView.drag = false;
+//                if (Main_SideMenuView.dragMove_point_x > MainActivity.screenWidth/2 && !MainActivity.sidemenuActive){
+//                    MainActivity.sidemenuActive = true;
+//                    Main_SideMenuView.path_status_check(MainActivity.sidemenuActive);
+//                    Main_SideMenuView.path_animator(400);
+//                } else {
+//                    MainActivity.sidemenuActive = false;
+//                    Main_SideMenuView.path_animator(300);
+//                }
+//                break;
+//            default:
+//                break;
         }
         return super.onTouchEvent(e);
     }
