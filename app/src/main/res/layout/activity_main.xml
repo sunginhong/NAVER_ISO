@@ -2,9 +2,12 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/mainBgColor"
+    tools:context=".MainActivity">
 
     <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +18,7 @@
         android:layout_height="match_parent"
         android:background="@color/mainBgColor">
 
-        <android.support.v4.widget.NestedScrollView
+        <com.example.naver.naver_iso.NestedScrollingView_Main
             android:id="@+id/main_nestedscrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +33,7 @@
                 android:descendantFocusability="blocksDescendants">
 
 
-                <android.support.v4.widget.NestedScrollView
+                <com.example.naver.naver_iso.NestedScrollingView_Main_Inner
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingTop="0dp">
@@ -142,10 +145,10 @@
                             android:layout_gravity="bottom" />
 
                     </LinearLayout>
-                </android.support.v4.widget.NestedScrollView>
+                </com.example.naver.naver_iso.NestedScrollingView_Main_Inner>
 
             </RelativeLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </com.example.naver.naver_iso.NestedScrollingView_Main>
 
         <FrameLayout
             android:id="@+id/main_appbar_contain"
@@ -241,5 +244,24 @@
         android:layout_height="0dp"
         android:clickable="false"/>
 
+    <com.example.naver.naver_iso.Main_SideMenuView
+        android:id="@+id/sidemenu_canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/sidemenu"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<include-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--layout="@layout/sidemenu"/>-->
+
+    <!--</RelativeLayout>-->
 
 </FrameLayout>

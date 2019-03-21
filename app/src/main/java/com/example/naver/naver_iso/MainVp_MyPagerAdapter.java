@@ -112,23 +112,18 @@ public class MainVp_MyPagerAdapter extends PagerAdapter implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        view_d = view;
-        selectIndex = view_d.getId();
+        if (!MainActivity.sidemenuActive){
+            view_d = view;
+            selectIndex = view_d.getId();
 
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) c,
-                Pair.create((View)view_d, c.getString(R.string.transition_pagecard)) );
-        Intent intent = new Intent(view_d.getContext(), DetailActivity_Recent.class);
-        intent.putExtra("recentTitle" ,MainActivity.titleMainRecentArray[view_d.getId()]);
-        intent.putExtra("recentImg" ,MainActivity.imgMainRecentArray[view_d.getId()]);
-        intent.putExtra("recentUrl" ,MainActivity.urlMainRecentArray[view_d.getId()]);
-        view_d.getContext().startActivity(intent, options.toBundle());
-
-//            Intent intent = new Intent(view_d.getContext(), DetailActivity_Recent.class);
-//            intent.putExtra("recentTitle" ,MainActivity.titleMainRecentArray[view_d.getId()]);
-//            intent.putExtra("recentImg" ,MainActivity.imgMainRecentArray[view_d.getId()]);
-//            intent.putExtra("recentUrl" ,MainActivity.urlMainRecentArray[view_d.getId()]);
-//            view.getContext().startActivity(intent);
-
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) c,
+                    Pair.create((View)view_d, c.getString(R.string.transition_pagecard)) );
+            Intent intent = new Intent(view_d.getContext(), DetailActivity_Recent.class);
+            intent.putExtra("recentTitle" ,MainActivity.titleMainRecentArray[view_d.getId()]);
+            intent.putExtra("recentImg" ,MainActivity.imgMainRecentArray[view_d.getId()]);
+            intent.putExtra("recentUrl" ,MainActivity.urlMainRecentArray[view_d.getId()]);
+            view_d.getContext().startActivity(intent, options.toBundle());
+        }
     }
 
 }

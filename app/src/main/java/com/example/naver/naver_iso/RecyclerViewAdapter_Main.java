@@ -82,12 +82,6 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 
         holder.rv_mainTextView.setText(detail[1]);
         holder.rv_mainSubTextView.setText(detail[2]);
-
-//        holder.rv_mainLottieView.setAnimation(detail[3]);
-//        holder.rv_mainLottieView.pauseAnimation();
-//        holder.rv_mainLottieView.loop(true);
-//        holder.rv_mainLottieView.playAnimation();
-
         holder.rv_mainView.setBackgroundColor(Color.parseColor(detail[3]));
 
         Class<?> classNameF = className[0];
@@ -97,31 +91,6 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         holder.rv_mainLL.setOnClickListener(this);
 
         MainActivity.lstMaincardArray[position] = holder.itemView;
-
-//        MediaController ctrl = new MediaController(context);
-//        ctrl.setVisibility(View.GONE);
-//        holder.rv_mainVideoView.setMediaController(ctrl);
-//        if (position == 0){ holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videointeraction )); }
-//        if (position == 1){ holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videomotion )); }
-//        if (position == 2){ holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videoabout )); }
-//        if (position == 3){ holder.rv_mainVideoView.setVideoURI(Uri.parse("android.resource://com.example.naver.naver_iso/" + R.raw.videoabout )); }
-//
-////        holder.rv_mainVideoView.start();
-//        vieoViewArray_List.add(holder.rv_mainVideoView);
-//
-//        holder.rv_mainVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//            @Override
-//            public void onPrepared(MediaPlayer mp) {
-//                mMediaPlayer = mp;
-//                mMediaPlayer.setLooping(true);
-//                mMediaPlayer.start();
-//            }
-//        });
-//
-//        holder.rv_mainVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//            public void onCompletion(MediaPlayer mp) {
-//            }
-//        });
 
         if (position == 0){ Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_00.png").into(holder.rv_mainImageView); }
         if (position == 1){ Picasso.with(context).load(MainActivity.URL_THUMB_IMG+"main_thumb_01.png").into(holder.rv_mainImageView); }
@@ -165,57 +134,38 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 
     @Override
     public void onClick(View view) {
-        if (!mainclick){
-            mainclick = true;
-            mainCardHeight = Utils.dpToPx(85);;
-            view_d = view;
-    //        Utils.AlphaAnim(view_d, 1, 0, 200);
-//            view_d.bringToFront();
-            selectIndex = view_d.getId();
+        if (!MainActivity.sidemenuActive){
+            if (!mainclick){
+                mainclick = true;
+                mainCardHeight = Utils.dpToPx(85);;
+                view_d = view;
+                selectIndex = view_d.getId();
 
-//            Utils.TransAnim(view_d, 0, 0, 0, mainCardHeight, 150);
-            Utils.AlphaAnim(view_d, 1, 0, 100);
+                Utils.AlphaAnim(view_d, 1, 0, 100);
 
-//            cardImageIn = AnimationUtils.loadAnimation(context, R.anim.main_card_anim_in);
-//            Utils.SclaeAnim(mainCardImgArray.get(selectIndex), 1, 1.5f, 1, 1.5f, 0.5f, 0.5f, 400);
-//            mainCardImgArray.get(selectIndex).startAnimation(cardImageIn);
+                Utils.delayMin(0, new Utils.DelayCallback() {
+                    @Override
+                    public void afterDelay() {
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
+                                Pair.create((View)view_d, context.getString(R.string.transition_maincard)) );
 
-            Utils.delayMin(0, new Utils.DelayCallback() {
-                @Override
-                public void afterDelay() {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
-                            Pair.create((View)view_d, context.getString(R.string.transition_maincard)) );
-
-                    Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
-                    view_d.getContext().startActivity(intent, options.toBundle());
-//                    ActivityOptions options = null;
-//                    options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, view_d, context.getString(R.string.transition_maincard));
-//                    Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
-//                    view_d.getContext().startActivity(intent, options.toBundle());
-//                    view_d.setAlpha(0);
-                }
-            });
+                        Intent intent = new Intent(view_d.getContext(), classMainItemArray[view_d.getId()]);
+                        view_d.getContext().startActivity(intent, options.toBundle());
+                    }
+                });
+            }
         }
     }
 
 
 
     public static void reset() {
-//        Utils.TransAnim(view_d, 0, 0, mainCardHeight, 0, 400);
         if (mainclick){
             Utils.AlphaAnim(view_d, 0, 1, 400);
             view_d.setAlpha(1);
             mainclick = false;
 
         }
-        Utils.delayMin(15, new Utils.DelayCallback() {
-            @Override
-            public void afterDelay() {
-//                cardImageOut = AnimationUtils.loadAnimation(context, R.anim.main_card_anim_out);
-//                mainCardImgArray.get(selectIndex).startAnimation(cardImageOut);
-//                Utils.SclaeAnim(mainCardImgArray.get(selectIndex), 1.5f, 1, 1.5f, 1, 0.5f, 0.5f, 300);
-            }
-        });
     }
 }
 

@@ -21,6 +21,7 @@ import android.transition.ChangeBounds;
 import android.view.Display;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     AssetManager assetManager;
     Toolbar toolbar;
     AppBarLayout main_appbar;
-    NestedScrollView main_nestedscrollview;
-    CoordinatorLayout main_contain;
+    static NestedScrollView main_nestedscrollview;
+    static CoordinatorLayout main_contain;
 
     boolean getSet = false;
 
@@ -116,6 +117,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean webviewDetailView = false;
 
+    public static RelativeLayout sidemenu;
+    public static Button sidemenu_backbtn;
+    public static boolean sidemenuActive = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -138,6 +143,12 @@ public class MainActivity extends AppCompatActivity {
         bounds.setDuration(MainActivity.MAIN_CARD_TRANS_DURATION_IN);
         bounds.setInterpolator(new DecelerateInterpolator(1.5f));
         getWindow().setSharedElementEnterTransition(bounds);
+
+//        sidemenu = (RelativeLayout) findViewById(R.id.sidemenu);
+//        sidemenu_backbtn = (Button)findViewById(R.id.sidemenu_backbtn);
+//        sidemenu_backbtn.setOnClickListener(sidemenu_backbtn__event);
+
+//        Utils.TransAnim(sidemenu,-MainActivity.screenWidth/1, -MainActivity.screenWidth/1, 0.0f, 0.0f, 0);
 
         main_contain = (CoordinatorLayout) findViewById(R.id.main_contain);
 
@@ -201,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     for (int i = 0; i < MainActivity.lstMaincardArray.length; i++) {
-                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < 0 && scrolledDistance-MainActivity.lstMaincardArray[i].getY() > -MainActivity.lstMaincardArray[i].getHeight()/0.5 ){
+                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < 0 && scrolledDistance-MainActivity.lstMaincardArray[i].getY() > -MainActivity.lstMaincardArray[i].getHeight()/0.6 ){
                             if (MainActivity.lstMaincardArray[i].getTranslationY() == scrollCardHeight){
                                 MainActivity.lstMaincardArray[i].setTranslationY(0);
                                 Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, scrollCardHeight, 0, 400);
@@ -331,6 +342,15 @@ public class MainActivity extends AppCompatActivity {
         }
         return NONE_STATE;
     }
+
+    Button.OnClickListener sidemenu_backbtn__event = new View.OnClickListener() {
+        public void onClick( View v ) {
+            MainActivity.sidemenuActive = true;
+            if (sidemenuActive){
+                Main_SideMenuView.path_status_check(false);
+            }
+        }
+    };
 
 
 }

@@ -78,4 +78,6 @@
     <color name="detailBgColor_dimmed">#646465</color>
     <color name="detailBgColor_dimmed2">#7d646465</color>
 
+    <color name="sidemenu_bg_color">#18181d</color>
+
 </resources>
