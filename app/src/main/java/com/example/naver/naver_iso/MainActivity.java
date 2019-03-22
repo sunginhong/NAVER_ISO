@@ -31,7 +31,6 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.tsengvn.typekit.TypekitContextWrapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -136,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
+
         // 앱 실행시 체크
         String getNetwork =  getWhatKindOfNetwork(getApplication());
         if(getNetwork.equals("NONE")){ newtwork = false; }
@@ -324,11 +324,6 @@ public class MainActivity extends AppCompatActivity {
         }
         webviewDetailView = false;
         super.onResume();
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
     public class NetworkTask extends AsyncTask<Void, Void, String> {

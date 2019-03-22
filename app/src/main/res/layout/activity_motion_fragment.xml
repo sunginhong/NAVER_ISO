@@ -74,6 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
+                        android:fontFamily="sans-serif-medium"
                         android:gravity="center_horizontal"
                         android:lineSpacingExtra="26sp"
                         android:singleLine="true"
@@ -82,13 +83,13 @@
                         android:textAllCaps="false"
                         android:textColor="@color/fregment_titleColor"
                         android:textSize="17sp"
-                        android:textStyle="bold"
                         android:typeface="normal" />
 
                     <TextView
                         android:id="@+id/motion_subtitleview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
                         android:lineSpacingExtra="5sp"
                         android:text="subtitle"
                         android:textAlignment="viewStart"

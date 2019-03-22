@@ -9,8 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.VideoView;
 
-import com.tsengvn.typekit.TypekitContextWrapper;
-
 /**
  * Created by Naver on 2018. 8. 2..
  */
@@ -52,11 +50,6 @@ public class SplashActivity extends AppCompatActivity {
                 });
             }
         });
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
     private void splashEnd() {

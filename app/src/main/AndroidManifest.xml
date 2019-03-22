@@ -14,10 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:hardwareAccelerated="true"
-        android:name=".CustomFontApp"
+        android:name=".Application"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,9 +27,6 @@
         </activity>
         <activity android:name=".MainActivity_Library"></activity>
         <activity android:name=".not_used.MainActivity_Prototype_Cus"
-            android:configChanges="screenSize|orientation">
-        </activity>
-        <activity android:name=".MainActivity_AndDev_Private"
             android:configChanges="screenSize|orientation">
         </activity>
         <activity android:name=".MainActivity_Motion"

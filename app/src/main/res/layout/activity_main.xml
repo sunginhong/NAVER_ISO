@@ -71,6 +71,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="5dp"
+                                        android:fontFamily="sans-serif-medium"
                                         android:lineSpacingExtra="8sp"
                                         android:shadowColor="#33000000"
                                         android:shadowDy="0"
@@ -78,12 +79,12 @@
                                         android:text="N-Interaction."
                                         android:textAllCaps="false"
                                         android:textColor="@color/black_two"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
+                                        android:textSize="14sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-black"
                                         android:lineSpacingExtra="8sp"
                                         android:shadowColor="#33000000"
                                         android:shadowDy="0"
@@ -222,14 +223,14 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="-12dp"
                                 android:layout_marginTop="0dp"
+                                android:fontFamily="sans-serif-black"
                                 android:gravity="center"
                                 android:inputType="textMultiLine"
                                 android:singleLine="true"
                                 android:text="N-Interaction."
                                 android:textAlignment="textStart"
                                 android:textColor="@color/detailHeaderTitleColor"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 

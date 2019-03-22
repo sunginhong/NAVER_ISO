@@ -38,22 +38,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="0dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="false"
-                    android:fontFamily="sans-serif"
-                    android:inputType="textMultiLine"
+                    android:fontFamily="sans-serif-medium"
                     android:letterSpacing="0"
+                    android:singleLine="true"
                     android:text="N-Interaction"
                     android:textAlignment="center"
                     android:textColor="#00FF4D"
-                    android:textSize="45sp"
-                    android:textStyle="bold"
-                    app:font="addBold" />
+                    android:textSize="40sp" />
 
                 <View
                     android:id="@+id/splash_border"
@@ -61,29 +58,6 @@
                     android:layout_height="6dp"
                     android:layout_marginTop="-3dp"
                     android:background="#00FF4D" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="-5dp"
-                android:alpha="0"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="false"
-                    android:layout_marginTop="0dp"
-                    android:alpha="1"
-                    android:inputType="textMultiLine"
-                    android:text="Naver Interactive Studio"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
 
             </LinearLayout>
 

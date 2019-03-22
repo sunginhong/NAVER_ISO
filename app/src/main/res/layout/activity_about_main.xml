@@ -71,6 +71,7 @@
                                 android:id="@+id/about_toolbar_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:fontFamily="sans-serif-black"
                                 android:gravity="center_vertical"
                                 android:inputType="textMultiLine"
                                 android:singleLine="true"

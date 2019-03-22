@@ -75,7 +75,12 @@ public class DetailActivity_Recent extends AppCompatActivity implements View.OnC
         recent_Webview.setWebViewClient(new DetailActivity_Recent.WebViewClientClass());
         recent_Webview.setWebChromeClient(new FullscreenableChromeClient(this));
 
-//        setActivityBackgroundColor(R.color.detailBgColor_dimmed2);
+        recent_Webview.setWebViewClient(new WebViewClient() {
+
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return true;
+            }
+        });
 
         recent_Webview.getSettings().setJavaScriptEnabled(true);
         recent_Webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);

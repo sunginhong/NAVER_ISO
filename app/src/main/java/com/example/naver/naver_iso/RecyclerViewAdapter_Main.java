@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -126,6 +127,7 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
             rv_mainSubTextView = (TextView)itemView.findViewById(R.id.rv_mainSubTextView);
             rv_mainCaseLineView = (View) itemView.findViewById(R.id.rv_mainCaseLineView);
             rv_mainImageView = (ImageView) itemView.findViewById(R.id.rv_mainImageView);
+
             mainCardImgArray.add(rv_mainImageView);
 //            main_cardArray.add(itemView_view);
         }
