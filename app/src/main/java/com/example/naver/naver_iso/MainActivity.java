@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
     private Handler mHandler;
     private Runnable mRunnable;
 
+    public int selIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -224,12 +226,12 @@ public class MainActivity extends AppCompatActivity {
                 public void afterDelay() {
                     getSet = true;
                     HIDE_THRESHOLD = main_appbar_contain.getHeight();
-                    for (int i = 0; i < MainActivity.lstMaincardArray.length; i++) {
-                        if (MainActivity.lstMaincardArray[i].getY() > 0){
-                            scrollCardHeight = MainActivity.lstMaincardArray[i].getHeight();
-                            MainActivity.lstMaincardArray[i].setTranslationY(scrollCardHeight);
-                        }
-                    }
+//                    for (int i = 0; i < MainActivity.lstMaincardArray.length; i++) {
+//                        if (MainActivity.lstMaincardArray[i].getY() > 0){
+//                            scrollCardHeight = MainActivity.lstMaincardArray[i].getHeight();
+//                            MainActivity.lstMaincardArray[i].setTranslationY(scrollCardHeight);
+//                        }
+//                    }
                 }
             });
 
@@ -238,22 +240,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                     scrolledDistance = scrollY;
                     scrolledDistance_header = scrollY;
-//                    if (scrolledDistance > 0 && !appbarVisible) {
-//                        main_appbar_contain.setY(0);
-//                        ScrollHederAnim.HeaderShow(main_appbar_contain, -main_appbar_contain.getHeight(), Utils.dpToPx(0), 400);
-//                        appbarVisible = false;
-//                        scrolledDistance = 0;
-//                    } else {
-//                        Utils.delayMin(40, new Utils.DelayCallback() {
-//                            @Override
-//                            public void afterDelay() {
-//                                main_appbar_contain.setY(Utils.dpToPx(-56));
-//                            }
-//                        });
-//                        ScrollHederAnim.HeaderHide(main_appbar_contain, Utils.dpToPx(0), -main_appbar_contain.getHeight(), 400);
-//                        appbarVisible = true;
-//                        scrolledDistance = 0;
-//                    }
+
                     if((!appbarVisible && scrollY>0) || (appbarVisible && scrollY<0)) {
                         scrolledDistance += scrollY;
                     }
@@ -264,17 +251,13 @@ public class MainActivity extends AppCompatActivity {
                     };
 
                     if (scrollY > Utils.dpToPx(0)){
-                        if (scrollDirection == "DOWN" && scrolledDistance_header > HIDE_THRESHOLD && !appbarVisible) {
+                        if (scrolledDistance_header > HIDE_THRESHOLD && !appbarVisible) {
                             ScrollHederAnim.HeaderShow(main_appbar_contain, -main_appbar_contain.getHeight(), Utils.dpToPx(0), 400);
                             main_appbar_contain.setY(Utils.dpToPx(0));
                             appbarVisible = true;
                             scrolledDistance_header = 0;
                         } else if (scrollDirection == "DOWN" && scrolledDistance_header > HIDE_THRESHOLD && appbarVisible) {
-//                            ScrollHederAnim.HeaderShow(main_appbar_contain, 0, -main_appbar_contain.getHeight(), 400);
-//                            mHandler = new Handler();
-//                            mHandler.postDelayed(mRunnable, 400);
-//                            appbarVisible = false;
-//                            scrolledDistance_header = 0;
+
                         }
                     } else {
                         if (main_appbar_contain.getY() == Utils.dpToPx(0) && appbarVisible) {
@@ -286,20 +269,27 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
 
-                    for (int i = 0; i < MainActivity.lstMaincardArray.length; i++) {
-                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < 0 && scrolledDistance-MainActivity.lstMaincardArray[i].getY() > -MainActivity.lstMaincardArray[i].getHeight()/0.6 ){
-                            if (MainActivity.lstMaincardArray[i].getTranslationY() == scrollCardHeight){
-                                MainActivity.lstMaincardArray[i].setTranslationY(0);
-                                Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, scrollCardHeight, 0, 400);
-                            }
-                        }
-                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < 0 && scrolledDistance-MainActivity.lstMaincardArray[i].getY() < -MainActivity.lstMaincardArray[i].getHeight()/1 ){
-                            if (MainActivity.lstMaincardArray[i].getTranslationY() == 0){
-                                Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, 0, scrollCardHeight, 300);
-                                MainActivity.lstMaincardArray[i].setTranslationY(scrollCardHeight);
-                            }
-                        }
-                    }
+//                    for (int i = 0; i < MainActivity.lstMaincardArray.length; i++) {
+//                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < 0 && scrolledDistance-MainActivity.lstMaincardArray[i].getY() > -MainActivity.lstMaincardArray[i].getHeight()/0.6 ){
+//                            if (MainActivity.lstMaincardArray[i].getTranslationY() == scrollCardHeight){
+//                                MainActivity.lstMaincardArray[i].setTranslationY(0);
+//                                Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, scrollCardHeight, 0, 400);
+//                            }
+//                        }
+//                        if ( scrolledDistance-MainActivity.lstMaincardArray[i].getY() < 0 && scrolledDistance-MainActivity.lstMaincardArray[i].getY() < -(MainActivity.lstMaincardArray[i].getHeight()+MainActivity.lstMaincardArray[i].getHeight()/50) ){
+//                            if (MainActivity.lstMaincardArray[i].getTranslationY() == 0){
+//                                Utils.TransAnim(MainActivity.lstMaincardArray[i], 0, 0, 0, scrollCardHeight, 300);
+////                                MainActivity.lstMaincardArray[i].setTranslationY(scrollCardHeight);
+//                                selIndex = i;
+//                                Utils.delayMin(30, new Utils.DelayCallback() {
+//                                    @Override
+//                                    public void afterDelay() {
+//                                        MainActivity.lstMaincardArray[selIndex].setTranslationY(scrollCardHeight);
+//                                    }
+//                                });
+//                            }
+//                        }
+//                    }
                     if ((scrollY > oldScrollY) && (scrollY - oldScrollY) > 10) { scrollDirection = "DOWN"; }
                     else if((scrollY < oldScrollY) && (oldScrollY - scrollY) > 10) { scrollDirection = "UP"; }
 
