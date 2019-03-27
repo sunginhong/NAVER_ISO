@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,12 +20,14 @@ import java.util.ArrayList;
 
 import static com.example.naver.naver_iso.MainActivity_Library.urlLibArray;
 
-public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAdapter_Lib.MyViewHolder> implements View.OnClickListener  {
+public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAdapter_Lib.MyViewHolder> implements View.OnClickListener, Filterable {
     ArrayList<String[]> arrayList;
     Context c;
     static View libItemArray[] = new View[MainActivity_Library.libItemLength];
+    static View mFilteredList[] = new View[MainActivity_Library.libItemLength];
     private  MyViewHolder view;
     private float LibListHeight = 0;
+
 
     static RelativeLayout pvArray[] = new RelativeLayout[MainActivity_Library.libItemLength];
 
@@ -41,7 +46,6 @@ public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAd
     public void onBindViewHolder(RecyclerViewAdapter_Lib.MyViewHolder holder, final int position) {
         view = holder;
         String[] detail = arrayList.get(position);
-
         holder.lib_titleview.setText(detail[0]);
         holder.lib_subtitleview.setText(detail[1]);
 
@@ -81,6 +85,35 @@ public class RecyclerViewAdapter_Lib extends RecyclerView.Adapter<RecyclerViewAd
     @Override
     public int getItemCount() {
         return arrayList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()) {
+
+                } else {
+                    String[] detail = arrayList.get(1);
+                    Log.d("ssss", "sss"+charString);
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mFilteredList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

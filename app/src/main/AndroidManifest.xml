@@ -25,7 +25,8 @@
         <activity android:name=".MainActivity"
             android:configChanges="screenSize|orientation">
         </activity>
-        <activity android:name=".MainActivity_Library"></activity>
+        <activity android:name=".MainActivity_Library"
+            android:theme="@style/Theme.Design.NoActionBar"></activity>
         <activity android:name=".not_used.MainActivity_Prototype_Cus"
             android:configChanges="screenSize|orientation">
         </activity>

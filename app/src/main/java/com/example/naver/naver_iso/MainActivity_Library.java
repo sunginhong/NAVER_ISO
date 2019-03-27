@@ -1,7 +1,6 @@
 package com.example.naver.naver_iso;
 
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -10,12 +9,17 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.transition.ChangeBounds;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -31,7 +35,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity_Library extends Activity implements View.OnClickListener {
+public class MainActivity_Library extends AppCompatActivity implements View.OnClickListener {
 
     public static int ITEM_COUNT = 100;
     static final ArrayList<String[]> values_LibMain = new ArrayList<String[]>();
@@ -67,6 +71,8 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
     static float lib_distanceY;
     static int Lib_LisItem_Height = 0;
 
+    private RecyclerViewAdapter_Lib adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -92,6 +98,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         lib_toolbar_Backbtn = (FrameLayout) findViewById(R.id.lib_toolbar_backbtn);
         lib_contain_card = (CardView) findViewById(R.id.lib_contain_card);
         lib_imageview = (ImageView) findViewById(R.id.lib_imageview);
+//        setSupportActionBar(lib_toolbar);
 
 //        setActivityBackgroundColor(R.color.detailBgColor_dimmed2);
 
@@ -194,7 +201,7 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
 
                 values_LibMain.add(new String[]{title, subtitle, MainActivity.URL_IMG+thumbImg, MainActivity.URL_LINK+url});
 
-                RecyclerViewAdapter_Lib adapter = new RecyclerViewAdapter_Lib(this, values_LibMain);
+                adapter = new RecyclerViewAdapter_Lib(this, values_LibMain);
                 libView = (RecyclerView) findViewById(R.id.main_lib_recyclerview);
 
                 libView.setAdapter(adapter);
@@ -299,4 +306,37 @@ public class MainActivity_Library extends Activity implements View.OnClickListen
         view.setBackgroundColor(color);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem search = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+        search(searchView);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void search(SearchView searchView) {
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                adapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+    }
 }

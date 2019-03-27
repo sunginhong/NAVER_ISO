@@ -51,11 +51,11 @@
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="0dp"
                     android:layout_marginBottom="0dp"
+                    android:fontFamily="sans-serif-black"
                     android:lineSpacingExtra="4sp"
                     android:text="Naver Interactive Studio."
                     android:textColor="@color/footerFontColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </RelativeLayout>
